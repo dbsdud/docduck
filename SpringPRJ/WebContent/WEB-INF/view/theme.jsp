@@ -12,7 +12,7 @@
 <script src="/Resources/css/creative.min.css"></script>
 <!-- Bootstrap core JavaScript -->
 <script src="/Resources/vendor/jquery/jquery.min.js"></script>
-<script src="/Resources/vendor/bootstrap/bootstrap.bundle.min.js"></script>
+<script src="/Resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- Plugin JavaScript -->
 <script src="/Resources/vendor/jquery-easing/jquery.easing.min.js"></script>
 <script src="/Resources/vendor/scrollreveal/scrollreveal.min.js"></script>
