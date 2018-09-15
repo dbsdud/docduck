@@ -3,7 +3,7 @@
 <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top">Doc.Duck</a>
+        <a class="navbar-brand js-scroll-trigger" href="/home.do">Doc.Duck</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -25,7 +25,7 @@
             	<a class="nav-link" data-toggle="modal" data-target="#login" href="#">Login</a>
             </li>
             <li class="nav-item">
-            	<a class="nav-link" href="#">Join</a>
+            	<a class="nav-link" href="/user/userReg.do">Join</a>
             </li>
           </ul>
         </div>
@@ -43,7 +43,7 @@
     			</div>
     			<div class="modal-body">
     				<form action="#" method="post">
-    					<div class="form-controls">
+    					<div class="form-control">
     						<div class="col-sm-12 text-center">
     							<p>
     								<input type="text" name="userID" placeholder="아이디">
@@ -73,7 +73,7 @@
     				</form>
     				<div class="modal-footer" style="clear:both;">
     					<div class="col-sm-6" style="text-align: left;">
-    						<a href="#">회원가입</a>
+    						<a href="/user/userReg.do">회원가입</a>
     					</div>
     					<div class="col-sm-6" style="text-align: right;">
     						<a href="#">내 계정 찾기</a>
