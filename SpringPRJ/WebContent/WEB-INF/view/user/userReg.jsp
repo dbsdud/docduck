@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>Insert title here</title>
+<title>회원가입</title>
 <%@ include file="/WEB-INF/view/mainCss.jsp" %>
 </head>
 <body id="page-top">
@@ -50,7 +50,23 @@
 							<hr class="my-4">
 							<div class="col-sm-12">
 								<div class="input-group">
-									
+									<input type="password" class="form-control" id="password" name="password" placeholder="비밀번호" maxlength="20" value="">
+								</div>
+								<p><font id="length" size="2" color="red">8자리 이상 20자리 이하의 [영문 + 숫자] 조합</font></p>
+							</div>
+							<div class="col-sm-12">
+								<div class="input-group">
+									<p><input type="password" class="form-control" id="passwordCheck"  name="passwordCheck" placeholder="비밀번호 확인" maxlength="20" value=""></p>
+									<font id="check" size="2" color="red"></font>
+								</div>
+							</div>
+							<h3 class="section--heading">
+								이름
+							</h3>
+							<hr class="my-4">
+							<div class="col-sm-12">
+								<div class="input-group">
+									<input type="text" class="form-control" id="userName" name="userName" placeholder="이름">
 								</div>
 							</div>
 						</div>

@@ -22,7 +22,7 @@ public class UserContoller {
 		return "/user/userReg";
 	}
 	
-	/*@RequestMapping(value="user/userRegProc", method=RequestMethod.POST)
+	@RequestMapping(value="user/userRegProc", method=RequestMethod.POST)
 	public String userRegProc(HttpServletRequest req, Model model) throws Exception{
 		String id = CmmUtil.nvl(req.getParameter("id"));
 		log.info(this.getClass() + " id : " + id);
@@ -38,6 +38,6 @@ public class UserContoller {
 		log.info(this.getClass() + " regNo : " + regNo);
 		
 		return "/alert";
-	}*/
+	}
 	
 }

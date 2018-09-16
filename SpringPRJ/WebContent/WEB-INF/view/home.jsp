@@ -83,7 +83,6 @@
         	</div>
 		</div>
 	</section>
-
 	
 	<section class="p-0" id="portfolio">
 		<div class="container-fluid p-0">
