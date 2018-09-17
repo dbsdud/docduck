@@ -30,9 +30,9 @@
 				<div class="col-lg-12 text-center">
 					<form class="form-horizontal" action="/user/userProc.do" method="post">
 						<div class="form-gourp">
-							<h3 class="section-heading">
+							<h4 class="section-heading">
 								아이디
-							</h3>
+							</h4>
 							<hr class="my-4">
 							<div class="col-sm-12">
 								<div class="input-group">
@@ -44,9 +44,9 @@
 								</div>
 							</div>
 							<br>
-							<h3 class="section-heading">
+							<h4 class="section-heading">
 								비밀번호
-							</h3>
+							</h4>
 							<hr class="my-4">
 							<div class="col-sm-12">
 								<div class="input-group">
@@ -56,19 +56,38 @@
 							</div>
 							<div class="col-sm-12">
 								<div class="input-group">
-									<p><input type="password" class="form-control" id="passwordCheck"  name="passwordCheck" placeholder="비밀번호 확인" maxlength="20" value=""></p>
-									<font id="check" size="2" color="red"></font>
+									<input type="password" class="form-control" id="passwordCheck"  name="passwordCheck" placeholder="비밀번호 확인" maxlength="20" value="">
 								</div>
 							</div>
-							<h3 class="section--heading">
+							<br>
+							<h4 class="section--heading">
 								이름
-							</h3>
+							</h4>
 							<hr class="my-4">
 							<div class="col-sm-12">
 								<div class="input-group">
 									<input type="text" class="form-control" id="userName" name="userName" placeholder="이름">
 								</div>
 							</div>
+							<br>
+							<h4 class="section-heading">
+								전화번호
+							</h4>
+							<hr class="my-4">
+							<div class="col-sm-12">
+								<div class="input-group">
+									<input type="text" class="form-control" id="userTel" name="userTel" placeholder="전화번호">
+								</div>
+							</div>
+							<br>
+						</div>
+						<div class="col-sm-12 text-center">
+							<button class="btn btn-danger" type="reset">
+								취소하기
+							</button>
+							<button class="btn btn-primary" id="regSub" type="submit">
+								회원가입
+							</button>
 						</div>
 					</form>
 				</div>
