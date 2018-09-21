@@ -50,14 +50,15 @@
 							<hr class="my-4">
 							<div class="col-sm-12">
 								<div class="input-group">
-									<input type="password" class="form-control" id="password" name="password" placeholder="비밀번호" maxlength="20" value="">
+									<input type="password" class="form-control" id="pwd" name="password" placeholder="비밀번호" maxlength="20" value="">
 								</div>
 								<p><font id="length" size="2" color="red">8자리 이상 20자리 이하의 [영문 + 숫자] 조합</font></p>
 							</div>
 							<div class="col-sm-12">
 								<div class="input-group">
-									<input type="password" class="form-control" id="passwordCheck"  name="passwordCheck" placeholder="비밀번호 확인" maxlength="20" value="">
+									<input type="password" class="form-control" id="pwdCheck"  name="passwordCheck" placeholder="비밀번호 확인" maxlength="20" value="">
 								</div>
+								<p><font id="check" size="2" color="red">비밀번호를 한번 더 입력해주세요.</font></p>
 							</div>
 							<br>
 							<h4 class="section--heading">
@@ -78,6 +79,7 @@
 								<div class="input-group">
 									<input type="text" class="form-control" id="userTel" name="userTel" placeholder="전화번호">
 								</div>
+								<p><font id="telCheck" size="2" color="red">전화번호는 숫자만 입력해주세요.</font></p>
 							</div>
 							<br>
 						</div>

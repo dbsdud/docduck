@@ -211,7 +211,6 @@
 			</div>
 		</div>
 	</section>
-   
     <%@ include file="mainJs.jsp" %>
   </body>
 </html>

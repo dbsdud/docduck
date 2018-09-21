@@ -30,7 +30,7 @@
         <property name="url" value="jdbc:mysql://localhost:3306/docduck?useSSL=false&amp;allowMultiQueries=true&amp;serverTimezone=Asia/Seoul" />
         <!-- AWS LINUX Server -->
         <!-- <property name="url" value="jdbc:mysql://13.209.164.26:3306/superdev?useSSL=false&amp;allowMultiQueries=true&amp;serverTimezone=Asia/Seoul" /> -->
-        <property name="username" value="superdev" />
+        <property name="username" value="docduck" />
         <property name="password" value="admin" />
     </bean>
     
