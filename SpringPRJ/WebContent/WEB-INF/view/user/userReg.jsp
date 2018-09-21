@@ -28,7 +28,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12 text-center">
-					<form class="form-horizontal" action="/user/userProc.do" method="post">
+					<form class="form-horizontal" action="/user/userRegProc.do" method="post">
 						<div class="form-gourp">
 							<h4 class="section-heading">
 								아이디
@@ -95,5 +95,7 @@
 		</div>
 	</section>
 	<%@ include file="/WEB-INF/view/mainJs.jsp" %>
+	<!-- 유효성검사  -->
+	<%@ include file="userScript.jsp" %>
 </body>
 </html>

@@ -46,12 +46,12 @@
     					<div class="form-control">
     						<div class="col-sm-12 text-center">
     							<p>
-    								<input type="text" name="userID" placeholder="아이디">
+    								<input type="text" class="form-control" name="userID" placeholder="아이디">
     							</p>
     						</div>
     						<div class="col-sm-12 text-center">
     							<p>
-    								<input type="password" name="password" placeholder="비밀번호">
+    								<input type="password" class="form-control" name="password" placeholder="비밀번호">
     							</p>
     						</div>
     					</div>

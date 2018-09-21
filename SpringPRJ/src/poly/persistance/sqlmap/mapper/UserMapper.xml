@@ -4,23 +4,25 @@
 	<insert id="insertUser" parameterType="UserDTO">
 		INSERT INTO DOC_USER
 		(
-			USER_NO,
 			ID,
 			PASSWORD,
 			USER_NAME,
 			USER_TEL,
-			REGDATE,
-			REGNO
+			REGDATE
 		)
 		VALUES
 		(
-			USER_NO.NEXTVAL,
 			#{id},
 			#{password},
 			#{userName},
 			#{userTel},
-			SYSDATE,
-			USER_NO.NEXTVAL
+			NOW()
 		)
 	</insert>
+	<!-- 중복체크 -->
+	<select id="getUserIdCheck" parameterType="string" resultType="int">
+		SELECT COUNT(*)
+		FROM DOC_USER
+		WHERE ID=#{id}
+	</select>
 </mapper>

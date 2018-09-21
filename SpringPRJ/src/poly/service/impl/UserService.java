@@ -18,4 +18,9 @@ public class UserService implements IUserService {
 		return userMapper.insertUser(uDTO);
 	}
 
+	@Override
+	public int getUserIdCheck(String id) throws Exception {
+		return userMapper.getUserIdCheck(id);
+	}
+
 }
