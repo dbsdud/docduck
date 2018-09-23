@@ -8,4 +8,6 @@ public interface UserMapper {
 	public int insertUser(UserDTO uDTO) throws Exception;
 
 	public int getUserIdCheck(String id);
+	
+	public UserDTO getUserLogin(UserDTO uDTO) throws Exception;
 }

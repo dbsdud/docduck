@@ -7,4 +7,6 @@ public interface IUserService {
 	public int insertUser(UserDTO uDTO) throws Exception;
 	// 회원가입 중복체크
 	public int getUserIdCheck(String id) throws Exception;
+	// 로그인
+	public UserDTO getUserLogin(UserDTO uDTO) throws Exception;
 }

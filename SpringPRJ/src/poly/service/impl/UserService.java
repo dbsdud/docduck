@@ -23,4 +23,9 @@ public class UserService implements IUserService {
 		return userMapper.getUserIdCheck(id);
 	}
 
+	@Override
+	public UserDTO getUserLogin(UserDTO uDTO) throws Exception {
+		return userMapper.getUserLogin(uDTO);
+	}
+
 }

@@ -4,6 +4,7 @@ package poly.controller;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,5 +81,39 @@ public class UserContoller {
 		System.out.println("count : " + count);
 		res.getWriter().println(count);
 	}
-	
+	// 로그인
+	@RequestMapping(value="user/loginProc", method=RequestMethod.POST)
+	public String loginProc(HttpServletRequest req, HttpSession session, Model model) throws Exception{
+		String id = CmmUtil.nvl(req.getParameter("id"));
+		String password = CmmUtil.nvl(req.getParameter("password"));
+		log.info(this.getClass() + " id : " + id);
+		log.info(this.getClass() + " password : " + password);
+		
+		UserDTO uDTO = new UserDTO();
+		uDTO.setId(id);
+		uDTO.setPassword(password);
+		
+		uDTO = userService.getUserLogin(uDTO);
+		String msg = "";
+		String url = "";
+		
+		if(uDTO==null) {
+			msg = "로그인에 실패 하였습니다.";
+			url = "/home.do";
+			model.addAttribute("msg", msg);
+			model.addAttribute("url", url);
+			return "/alert";
+		} else {
+			session.setAttribute("id", uDTO.getId());
+			session.setAttribute("userName", uDTO.getUserName());
+			session.setAttribute("regNo", uDTO.getRegNo());
+		}
+		return "redirect:/home.do";
+	}
+	// 로그아웃
+	@RequestMapping(value="user/logout")
+	public String logout(HttpSession session) throws Exception{
+		session.invalidate();
+		return "redirect:/home.do";
+	}
 }
