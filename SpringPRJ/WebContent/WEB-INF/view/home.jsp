@@ -22,7 +22,7 @@
 				</div>
 				<div class="col-lg-8 mx-auto">
 					<p class="text-faded mb-5">위급할 때, 시간 없을 때, 야간진료, 각종 이벤트 여기서 찾으세요!</p>
-					<a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">병원 찾기</a>
+					<a class="btn btn-primary btn-xl js-scroll-trigger" href="/find/findHospital.do">병원 찾기</a>
 				</div>
 			</div>
     	  </div>
