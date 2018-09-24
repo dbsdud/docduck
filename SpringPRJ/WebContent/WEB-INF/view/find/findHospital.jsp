@@ -22,7 +22,6 @@
 			</div>
 		</div>
 	</header>
-	
 	<section id="findHospitalMap">
 		<div class="container">
 			<div class="row">
@@ -32,7 +31,6 @@
 			</div>
 		</div>
 	</section>
-	
 	<section id="findHospitalList">
 		<div class="container">
 			<div class="row text-center">

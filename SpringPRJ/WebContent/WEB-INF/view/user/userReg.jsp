@@ -23,7 +23,6 @@
 			</div>
 		</div>
 	</header>
-	
 	<section id="userRegForm">
 		<div class="container">
 			<div class="row">

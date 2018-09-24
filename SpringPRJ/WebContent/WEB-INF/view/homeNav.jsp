@@ -14,45 +14,50 @@
 </script>
 <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-      <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="/home.do">Doc.Duck</a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse text-center" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#about">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#services">Services</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
-            </li>
-            <% if("".equals(id)) {%>
-            <li class="nav-item">
-            	<a class="nav-link" data-toggle="modal" data-target="#login" href="#">Login</a>
-            </li>
-            <li class="nav-item">
-            	<a class="nav-link" href="/user/userReg.do">Join</a>
-            </li>
-            <%} else {%>
-            <li class="nav-item">
-            	<!-- 마이페이지 연동 -->
-            	<a class="nav-link" href="#"><%= userName + "님 환영합니다." %></a>
-            </li>
-            <li class="nav-item">
-            	<a class="nav-link" onclick="logout();">Logout</a>
-            </li>
-            <%} %>
-          </ul>
-        </div>
-      </div>
-    </nav>
+      	<div class="container">
+			<a class="navbar-brand js-scroll-trigger" href="/home.do">Doc.Duck</a>
+			<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse text-center" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto">
+					<% if("".equals(id)) {%>
+					<li class="nav-item">
+						<a class="nav-link" data-toggle="modal" data-target="#login" href="#">Login</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/user/userReg.do">Join</a>
+					</li>
+					<%} else {%>
+					<li class="nav-item">
+						<!-- 마이페이지 연동 -->
+						<a class="nav-link" href="#"><%= userName + "님 환영합니다." %></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" onclick="logout();">Logout</a>
+					</li>
+					<% } %>
+					<% if("admin".equals(id)) { %>
+					<li class="nav-item">
+						<a class="nav-link" href="#">관리</a>
+					</li>
+					<% } %>
+					<li class="nav-item">
+						<a class="nav-link js-scroll-trigger" href="#about">About</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link js-scroll-trigger" href="#services">Services</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
      <!-- 로그인 모달 -->
     <div class="modal fade" id="login">
     	<div class="modal-dialog">

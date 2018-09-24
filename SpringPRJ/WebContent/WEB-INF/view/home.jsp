@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>Creative - Start Bootstrap Theme</title>
+<title>Doc.Duck's Home</title>
 <%@ include file="mainCss.jsp" %>
 </head>
 <body id="page-top">
@@ -25,7 +25,7 @@
 					<a class="btn btn-primary btn-xl js-scroll-trigger" href="/find/findHospital.do">병원 찾기</a>
 				</div>
 			</div>
-    	  </div>
+		</div>
     </header>
 	<% if("".equals(id)) { %>
 	<section class="bg-primary" id="about">
@@ -83,7 +83,6 @@
         	</div>
 		</div>
 	</section>
-	
 	<section class="p-0" id="portfolio">
 		<div class="container-fluid p-0">
 			<div class="row no-gutters popup-gallery">
@@ -180,14 +179,12 @@
 			</div>
 		</div>
 	</section>
-
 	<section class="bg-dark text-white">
 		<div class="container text-center">
 			<h2 class="mb-4">Free Download at Start Bootstrap!</h2>
 			<a class="btn btn-light btn-xl sr-button" href="http://startbootstrap.com/template-overviews/creative/">Download Now!</a>
 		</div>
 	</section>
-
 	<%@ include file="homeFooter.jsp" %>
     <%@ include file="mainJs.jsp" %>
   </body>
