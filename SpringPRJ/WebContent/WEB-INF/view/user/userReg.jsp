@@ -96,6 +96,7 @@
 			</div>
 		</div>
 	</section>
+	<%@ include file="/WEB-INF/view/homeFooter.jsp" %>
 	<%@ include file="/WEB-INF/view/mainJs.jsp" %>
 	<!-- 유효성검사  -->
 	<%@ include file="userScript.jsp" %>
