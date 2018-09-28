@@ -39,7 +39,7 @@
 					<% } %>
 					<% if("admin".equals(id)) { %>
 					<li class="nav-item">
-						<a class="nav-link" href="#">관리</a>
+						<a class="nav-link" href="/admin/adminHome.do">관리</a>
 					</li>
 					<% } %>
 					<li class="nav-item">
