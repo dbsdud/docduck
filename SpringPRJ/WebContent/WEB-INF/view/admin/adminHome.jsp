@@ -2,17 +2,14 @@
     pageEncoding="UTF-8"%>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
-
-   <%@ include file="adminCss.jsp" %>
+    <title>Doc.Duck 관리자</title>
+	<%@ include file="adminCss.jsp" %>
 </head>
 <body>
  <div id="wrapper">
@@ -346,7 +343,6 @@
             </div>
             <!-- /.navbar-static-side -->
         </nav>
-
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">

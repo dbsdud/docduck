@@ -36,7 +36,7 @@ public class UserContoller {
 	}
 	//회원가입 처리
 	@RequestMapping(value="user/userRegProc", method=RequestMethod.POST)
-	public String userRegProc(HttpServletRequest req, Model model) throws Exception{
+	public String userRegProc(HttpServletRequest req, Model model, UserDTO uDTO) throws Exception{
 		String id = CmmUtil.nvl(req.getParameter("id"));
 		log.info(this.getClass() + " id : " + id);
 		String password = CmmUtil.nvl(req.getParameter("password"));
@@ -46,11 +46,11 @@ public class UserContoller {
 		String userTel = CmmUtil.nvl(req.getParameter("userTel"));
 		log.info(this.getClass() + " userTel : " + userTel);
 		
-		UserDTO uDTO = new UserDTO();
+		/*UserDTO uDTO = new UserDTO();
 		uDTO.setId(id);
 		uDTO.setPassword(password);
 		uDTO.setUserName(userName);
-		uDTO.setUserTel(userTel);
+		uDTO.setUserTel(userTel);*/
 		
 		int result = userService.insertUser(uDTO);
 		String msg="";
@@ -83,15 +83,15 @@ public class UserContoller {
 	}
 	// 로그인
 	@RequestMapping(value="user/loginProc", method=RequestMethod.POST)
-	public String loginProc(HttpServletRequest req, HttpSession session, Model model) throws Exception{
+	public String loginProc(HttpServletRequest req, HttpSession session, Model model, UserDTO uDTO) throws Exception{
 		String id = CmmUtil.nvl(req.getParameter("id"));
 		String password = CmmUtil.nvl(req.getParameter("password"));
 		log.info(this.getClass() + " id : " + id);
 		log.info(this.getClass() + " password : " + password);
 		
-		UserDTO uDTO = new UserDTO();
+		/*UserDTO uDTO = new UserDTO();
 		uDTO.setId(id);
-		uDTO.setPassword(password);
+		uDTO.setPassword(password);*/
 		
 		uDTO = userService.getUserLogin(uDTO);
 		String msg = "";
