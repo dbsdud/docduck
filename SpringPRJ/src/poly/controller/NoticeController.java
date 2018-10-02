@@ -33,6 +33,12 @@ public class NoticeController {
 	@Resource(name = "NoticeService")
 	private INoticeService noticeService;
 	
+	@RequestMapping(value="notice/noticeList")
+	public String noticeList(HttpServletRequest req, HttpServletResponse res, Model model, HttpSession session) throws Exception{
+		/*List<NoticeDTO> nList = noticeService.getNoticeList();*/
+		return "/notice/noticeList";
+	}
+	
 	/*
 	 * 함수명 위의 value="notice/NoticeList" => /notice/NoticeList.do로 호출되는 url은 무조건 이 함수가 실행된다.
 	 * method=RequestMethod.GET => 폼 전송방법을 지정하는 것으로 get방식은 GET, post방식은 POST이다.

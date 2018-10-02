@@ -10,3 +10,5 @@
 <link href="/Resources/user/vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
 <!-- Custom styles for this template -->
 <link href="/Resources/user/css/creative.min.css" rel="stylesheet">
+
+<script src="/Resources/user/vendor/jquery/jquery.min.js"></script>

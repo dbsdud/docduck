@@ -8,6 +8,27 @@
 <meta name="author" content="">
 <title>병원찾기</title>
 <%@ include file="/WEB-INF/view/mainCss.jsp" %>
+<script>
+/* $.ajax({
+	url:'/sido/sidoSearch.do',
+	type:'post',
+	dataType:'json',
+	success: function(msg){
+		console.log(msg.response.body.items.item);
+		var myItem=msg.response.body.items.item;
+		
+		for(var i=0; myItem.length; i++){
+			var contents='';
+			console.log(myItem.length);
+			contents += '<h3>' + i + '</h3>';
+			contents += '<h4>' + myItem[i].addr + '</h4>';
+			contents += '<h4>' + myItem[i].title+ '</h4>';
+			contents += '<h4>' + myItem[i].tel + '</h4>';
+			document.body.innerHTML += contents;
+		}
+	}
+}) */
+</script>
 </head>
 <body id="page-top">
 	<%@ include file="/WEB-INF/view/homeNav.jsp" %>
@@ -22,12 +43,13 @@
 			</div>
 		</div>
 	</header>
-	<section id="findHospitalMap">
+	<section>
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-8 mx-auto text-center">
-					지도 들어갈부분
-				</div>
+				<div id="map" style="width:100%;height:350px;"></div>
+				<%@ include file="findMapJs.jsp" %>
+				<p><em>지도 중심좌표가 변경되면 지도 정보가 표출됩니다</em></p>
+				<p id="result"></p>
 			</div>
 		</div>
 	</section>

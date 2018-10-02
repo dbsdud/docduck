@@ -7,6 +7,5 @@ import poly.dto.NoticeDTO;
 
 @Mapper("NoticeMapper")
 public interface NoticeMapper {
-
-	
+	/*public List<NoticeDTO> getNoticeList() throws Exception;*/
 }
