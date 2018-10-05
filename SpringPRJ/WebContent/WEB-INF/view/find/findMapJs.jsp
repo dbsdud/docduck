@@ -18,7 +18,7 @@ if (navigator.geolocation) {
 		lon = position.coords.longitude; // 경도
 	var locPosition = new daum.maps.LatLng(lat, lon), // 얻어온 좌표에 마커 생성
 		message = '<div style="padding:5px;">여기에 계신가요?</div>';
-	displayMarker(locPosition, message);
+		displayMarker(locPosition, message);
 	}); 
 } else {
 	var locPosition = new daum.maps.LatLng(33.450701, 126.570667),
@@ -28,14 +28,12 @@ if (navigator.geolocation) {
 function displayMarker(locPosition, message) {
 	var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png",
 		imageSize = new daum.maps.Size(24,35);
-	var markerImage= new daum.maps.MarkerImage(imageSrc, imageSize),
-		markerPosition = new daum.maps.LatLng(37.54699, 127.09598);
+	var markerImage= new daum.maps.MarkerImage(imageSrc, imageSize);
 	var marker = new daum.maps.Marker({
-		position : map.getCenter(),
 		image : markerImage,
 		clickable : true
 	});
-	var iwContent = '<div style="padding : 5px;">Hello World!</div><br>' + message,
+	var iwContent = '<div style="padding : 5px;">Hello World!</div><br>',
 		iwRemoveable = true;
 	var infowindow = new daum.maps.InfoWindow({
 		content : iwContent,
