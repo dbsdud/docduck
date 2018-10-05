@@ -310,3 +310,14 @@ header.masthead p {
 .btn-primary:active, .btn-primary:focus {
   box-shadow: 0 0 0 0.2rem rgba(240, 95, 64, 0.5) !important;
 }
+.board_list {
+    width: 100%;
+}
+.board_top_left {
+    float: left;
+}
+.board_top_left .ts_box {
+    vertical-align: bottom;
+    display: table-cell;
+    height: 38px;
+}

@@ -19,6 +19,20 @@
 			</div>
 		</div>
 	</header>
-	
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="board-list">
+					<div class="board-top">
+						<div class="board-top-left">
+							<div class="ts-box">
+								<p class="total">TOTAL </p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>		
+		</div>
+	</section>
 </body>
 </html>

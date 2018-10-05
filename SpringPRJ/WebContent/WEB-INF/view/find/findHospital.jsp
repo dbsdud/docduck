@@ -24,27 +24,6 @@
     .info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
     .info .link {color: #5085BB;}
 </style>
-<script>
-/* $.ajax({
-	url:'/sido/sidoSearch.do',
-	type:'post',
-	dataType:'json',
-	success: function(msg){
-		console.log(msg.response.body.items.item);
-		var myItem=msg.response.body.items.item;
-		
-		for(var i=0; myItem.length; i++){
-			var contents='';
-			console.log(myItem.length);
-			contents += '<h3>' + i + '</h3>';
-			contents += '<h4>' + myItem[i].addr + '</h4>';
-			contents += '<h4>' + myItem[i].title+ '</h4>';
-			contents += '<h4>' + myItem[i].tel + '</h4>';
-			document.body.innerHTML += contents;
-		}
-	}
-}) */
-</script>
 </head>
 <body id="page-top">
 	<%@ include file="/WEB-INF/view/homeNav.jsp" %>
@@ -59,6 +38,44 @@
 			</div>
 		</div>
 	</header>
+	<section>
+		<div class="container">
+			<div class="row text-center">
+				<div id="area" class="col-sm-6 form-group">
+					<select class="form-control">
+						<option value="n">지역 선택</option>
+						<option value="sido">시, 도</option>
+						<option value="gugun">구, 군</option>
+						<option value="dong">읍, 면, 동</option>
+					</select>
+				</div>
+				<div id="department" class="col-sm-6 form-group">
+					<select class="form-control">
+						<option value="n">진료 과목</option>
+						<option value="01">내과</option>
+						<option value="49">치과</option>
+						<option value="14">피부과</option>
+						<option value="12">안과</option>
+						<option value="05">정형외과</option>
+						<option value="08">성형외과</option>
+						<option value="80">한의원</option>
+						<option value="10">산부인과</option>
+						<option value="11">소아청소년과</option>
+						<option value="13">이비인후과</option>
+						<option value="05">정형외과</option>
+						<option value="04">외과</option>
+						<option value="02">신경과</option>
+						<option value="09">마취통증의학과</option>
+						<option value="21">재활의학과</option>
+						<option value="23">가정의학과</option>
+						<option value="16">영상/검진의학과</option>
+						<option value="15">비뇨기과</option>
+						<option value="">종합병원</option>
+					</select>
+				</div>
+			</div>
+		</div>
+	</section>
 	<section>
 		<div class="container">
 			<div class="row">
