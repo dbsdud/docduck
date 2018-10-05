@@ -46,7 +46,7 @@
 	<section>
 		<div class="container">
 			<div class="row">
-				<div id="map" style="width:100%;height:350px;"></div>
+				<div id="map" style="width:100%;height:400px;"></div>
 				<%@ include file="findMapJs.jsp" %>
 				<p><em>지도 중심좌표가 변경되면 지도 정보가 표출됩니다</em></p>
 				<p id="result"></p>
