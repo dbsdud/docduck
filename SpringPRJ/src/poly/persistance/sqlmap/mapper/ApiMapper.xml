@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="poly.persistance.mapper.ApiMapper">
+<insert id="insertApi" parameterType="ApiDTO">
+	INSERT INTO DOC_HOSP
+	(
+		yadmNm,
+		clCd,
+		clCdNm
+		sidoCd,
+		sidoCdNm,
+		sgguCd,
+		sgguCdNm,
+		emdongNm,
+		postNo,
+		addr,
+		telno,
+		hospUrl,
+		estbDd,
+		drTotCnt,
+		gdrCnt,
+		intnCnt,
+		resdntCnt,
+		sdrCnt,
+		xPos,
+		yPos,
+		REGDATE,
+		REGNO,
+		UPDDATE,
+		UPDNO
+	)
+	VALUES
+	(
+		#{yadmNm},
+	    #{clCd},
+	    #{clCdNm}
+	    #{sidoCd},
+	    #{sidoCdNm},
+	    #{sgguCd},
+	    #{sgguCdNm},
+	    #{emdongNm},
+	    #{postNo},
+	    #{addr},
+	    #{telno},
+	    #{hospUrl},
+	    #{estbDd},
+	    #{drTotCnt},
+	    #{gdrCnt},
+	    #{intnCnt},
+	    #{resdntCnt},
+	    #{sdrCnt},
+	    #{xPos},
+	    #{yPost},
+	    NOW(),
+	    #{REGNO}
+	)
+</insert>
+</mapper>

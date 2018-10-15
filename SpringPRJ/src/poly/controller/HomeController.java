@@ -14,8 +14,8 @@ public class HomeController {
 	public String home(HttpServletRequest req, HttpServletResponse res, Model model, HttpSession session) throws Exception{
 		return "/home";
 	}
-	@RequestMapping(value="/li")
+	/*@RequestMapping(value="/li")
 	public String li(HttpServletRequest req, HttpServletResponse res, Model model) throws Exception{
 		return "/li";
-	}
+	}*/
 }
