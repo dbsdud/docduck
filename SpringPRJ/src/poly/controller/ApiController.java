@@ -33,7 +33,7 @@ public class ApiController {
 	private Logger log = Logger.getLogger(this.getClass());
 	@Resource(name="ApiService")
 	private IApiService apiService;
-	/*@RequestMapping(value="/li")
+	@RequestMapping(value="/li")
 	public String li(HttpServletRequest req, HttpServletResponse res, Model model) throws Exception {
 		log.info(getClass() + "Start!!!");
 		BufferedReader br = null;
@@ -64,81 +64,166 @@ public class ApiController {
 	        JSONArray parse_item = (JSONArray) parse_items.get("item");
 	        
 	        JSONObject resultObj;
+	        
+	        String yadmNm="", clCdNm="", sidoCdNm="", sgguCdNm="", emdongNm="", addr="", telno="", hospUrl="", XPos="", YPos="";
+	        int clCd=0, sidoCd=0, sgguCd=0, postNo=0, estbDd=0, drTotCnt=0, gdrCnt=0, intnCnt=0, resdntCnt=0, sdrCnt=0;
 
-	        
-	        String yadmNm, clCdNm, sidoCdNm, sgguCdNm, emdongNm, addr, telno, hospUrl, xPos, yPos;
-	        int clCd, sidoCd, sgguCd, postNo, estbDd, drTotCnt, gdrCnt, intnCnt, resdntCnt, sdrCnt;
-
-	        
-	        
-	        
 	        for(int i =0 ; i<parse_item.size(); i++) {
-		        resultObj = (JSONObject)parse_item.get(i);
-
-		 
+				resultObj = (JSONObject) parse_item.get(i);
+				/*if(resultObj.equals("yadmNm")) {
+					yadmNm = resultObj.get("yadmNm").toString();
+					System.out.println("yadmNm : " + yadmNm);
+				}
+				if(resultObj.equals("clCd")) {
+					clCd = Integer.parseInt(resultObj.get("clCd").toString());
+					System.out.println("clCd : " + clCd);
+				}
+				if(resultObj.equals("clCdNm")) {
+					clCdNm = CmmUtil.nvl(resultObj.get("clCdNm").toString());
+					System.out.println("clCdNm : " + clCdNm);
+				}
+				if(resultObj.equals("sidoCd")) {
+					sidoCd = Integer.parseInt(CmmUtil.nvl(resultObj.get("sidoCd").toString()));
+					System.out.println("sidoCd : " + sidoCd);
+				}
+				if(resultObj.equals("sidoCdNm")) {
+					sidoCdNm = CmmUtil.nvl(resultObj.get("sidoCdNm").toString());
+					System.out.println("sidoCdNm : " + sidoCdNm);
+				}
+				if(resultObj.equals("sgguCd")) {
+					sgguCd = Integer.parseInt(CmmUtil.nvl(resultObj.get("sgguCd").toString()));
+					System.out.println("sgguCd : " + sgguCd);
+				}
+				if(resultObj.equals("sgguCdNm")) {
+					sgguCdNm = CmmUtil.nvl(resultObj.get("sgguCdNm").toString());
+					System.out.println("sgguCdNm : " + sgguCdNm);
+				}
+				if(resultObj.equals("emdongNm")) {
+					emdongNm = CmmUtil.nvl(resultObj.get("emdongNm").toString());
+					System.out.println("emdongNm : " + emdongNm);
+				}
+				if(resultObj.equals("postNo")) {
+					postNo = Integer.parseInt(CmmUtil.nvl(resultObj.get("postNo").toString()));
+					System.out.println("postNo : " + postNo);
+				}
+				if(resultObj.equals("addr")) {
+					addr = CmmUtil.nvl(resultObj.get("addr").toString());
+					System.out.println("addr : " + addr);
+				}
+				if(resultObj.equals("telno")) {
+					telno = CmmUtil.nvl(resultObj.get("telno").toString());
+					System.out.println("telno : " + telno);
+				}
+				if(resultObj.equals("hospUrl")) {
+					hospUrl = CmmUtil.nvl(resultObj.get("hospUrl").toString());
+					System.out.println("hospUrl : " + hospUrl);
+				}
+				if(resultObj.equals("estbDd")) {
+					estbDd = Integer.parseInt(CmmUtil.nvl(resultObj.get("estbDd").toString()));
+					System.out.println("estbDd : " + estbDd);
+				}
+				if(resultObj.equals("drTotCnt")) {
+					drTotCnt = Integer.parseInt(CmmUtil.nvl(resultObj.get("drTotCnt").toString()));
+					System.out.println("drTotCnt : " + drTotCnt);
+				}
+				if(resultObj.equals("gdrCnt")) {
+					gdrCnt = Integer.parseInt(CmmUtil.nvl(resultObj.get("gdrCnt").toString()));
+					System.out.println("gdrCnt : " + gdrCnt);
+				}
+				if(resultObj.equals("intnCnt")) {
+					intnCnt = Integer.parseInt(CmmUtil.nvl(resultObj.get("intnCnt").toString()));
+					System.out.println("intnCnt : " + intnCnt);
+				}
+				if(resultObj.equals("resdntCnt")) {
+					resdntCnt = Integer.parseInt(CmmUtil.nvl(resultObj.get("resdntCnt").toString()));
+					System.out.println("resdntCnt : " + resdntCnt);
+				}
+				if(resultObj.equals("sdrCnt")) {
+					sdrCnt = Integer.parseInt(CmmUtil.nvl(resultObj.get("sdrCnt").toString()));
+					System.out.println("sdrCnt : " + sdrCnt);
+				}
+				if(resultObj.equals("XPos")) {
+					XPos = CmmUtil.nvl(resultObj.get("XPos").toString());
+					System.out.println("XPos : " + XPos);
+				}
+				if(resultObj.equals("YPos")) {
+					YPos = CmmUtil.nvl(resultObj.get("YPos").toString());
+					System.out.println("YPos : " + YPos);
+				}
+				String regDate = CmmUtil.nvl(req.getParameter("regDate"));*/
+				
+				/*여기 해결해야됨*/
+				System.out.println("----------------------------------");
 				yadmNm = CmmUtil.nvl(resultObj.get("yadmNm").toString());
 				System.out.println("yadmNm : " + yadmNm);
 				clCd = Integer.parseInt(resultObj.get("clCd").toString());
 				System.out.println("clCd : " + clCd);
 				clCdNm = CmmUtil.nvl(resultObj.get("clCdNm").toString());
 				System.out.println("clCdNm : " + clCdNm);
-				sidoCd = Integer.parseInt(resultObj.get("sidoCd").toString());
+				sidoCd = Integer.parseInt(CmmUtil.nvl(resultObj.get("sidoCd").toString()));
 				System.out.println("sidoCd : " + sidoCd);
-				sidoCdNm = resultObj.get("sidoCdNm").toString();
+				sidoCdNm = CmmUtil.nvl(resultObj.get("sidoCdNm").toString());
 				System.out.println("sidoCdNm : " + sidoCdNm);
-				sgguCd = resultObj.get("sgguCd").hashCode();
+				sgguCd = Integer.parseInt(CmmUtil.nvl(resultObj.get("sgguCd").toString()));
 				System.out.println("sgguCd : " + sgguCd);
-				sgguCdNm = resultObj.get("sgguCdNm").toString();
+				sgguCdNm = CmmUtil.nvl(resultObj.get("sgguCdNm").toString());
 				System.out.println("sgguCdNm : " + sgguCdNm);
-				emdongNm = resultObj.get("emdongNm").toString();
-				System.out.println("emdongNm : " + emdongNm);
-				postNo = resultObj.get("postNo").hashCode();
+				if(resultObj.get("emdongNm").toString()==""||resultObj.get("emdongNm").toString()==null){
+					emdongNm = CmmUtil.nvl(resultObj.get("emdongNm").toString());
+					System.out.println("emdongNm : " + emdongNm);	
+				}
+				postNo = Integer.parseInt(CmmUtil.nvl(resultObj.get("postNo").toString()));
 				System.out.println("postNo : " + postNo);
-				addr = resultObj.get("addr").toString();
+				addr = CmmUtil.nvl(resultObj.get("addr").toString());
 				System.out.println("addr : " + addr);
-				telno = resultObj.get("telno").toString();
+				telno = CmmUtil.nvl(resultObj.get("telno").toString());
 				System.out.println("telno : " + telno);
-				hospUrl = resultObj.get("hospUrl").toString();
-				System.out.println("hospUrl : " + hospUrl);
-				estbDd = resultObj.get("estbDd").hashCode();
+				if(resultObj.equals("hospUrl")) {
+					hospUrl = CmmUtil.nvl(resultObj.get("hospUrl").toString());
+					System.out.println("hospUrl : " + hospUrl);	
+				}
+				estbDd = Integer.parseInt(CmmUtil.nvl(resultObj.get("estbDd").toString()));
 				System.out.println("estbDd : " + estbDd);
-				drTotCnt = resultObj.get("drTotCnt").hashCode();
+				drTotCnt = Integer.parseInt(CmmUtil.nvl(resultObj.get("drTotCnt").toString()));
 				System.out.println("drTotCnt : " + drTotCnt);
-				gdrCnt = resultObj.get("gdrCnt").hashCode();
+				gdrCnt = Integer.parseInt(CmmUtil.nvl(resultObj.get("gdrCnt").toString()));
 				System.out.println("gdrCnt : " + gdrCnt);
-				intnCnt = resultObj.get("intnCnt").hashCode();
+				intnCnt = Integer.parseInt(CmmUtil.nvl(resultObj.get("intnCnt").toString()));
 				System.out.println("intnCnt : " + intnCnt);
-				resdntCnt = resultObj.get("resdntCnt").hashCode();
+				resdntCnt = Integer.parseInt(CmmUtil.nvl(resultObj.get("resdntCnt").toString()));
 				System.out.println("resdntCnt : " + resdntCnt);
-				sdrCnt = resultObj.get("sdrCnt").hashCode();
-				System.out.println("sdrCnt : " + sdrCnt);
-				xPos = resultObj.get("xPos").toString();
-				System.out.println("xPos : " + xPos);
-				yPos = resultObj.get("yPos").toString();
-				System.out.println("yPos : " + yPos);
+				if(resultObj.equals("sdrCnt")) {
+					sdrCnt = Integer.parseInt(CmmUtil.nvl(resultObj.get("sdrCnt").toString()));
+					System.out.println("sdrCnt : " + sdrCnt);	
+				}
+				XPos = CmmUtil.nvl(resultObj.get("XPos").toString());
+				System.out.println("XPos : " + XPos);
+				YPos = CmmUtil.nvl(resultObj.get("YPos").toString());
+				System.out.println("YPos : " + YPos);	
 				String regDate = CmmUtil.nvl(req.getParameter("regDate"));
+				System.out.println("----------------------------------");
 				
 				ApiDTO aDTO = new ApiDTO();
-				aDTO.setAddr(addr);
 				aDTO.setYadmNm(yadmNm);
 				aDTO.setClCd(clCd);
 				aDTO.setClCdNm(clCdNm);
-				aDTO.setDrTotCnt(drTotCnt);
-				aDTO.setEmdongNm(emdongNm);
-				aDTO.setEstbDd(estbDd);
-				aDTO.setGdrCnt(gdrCnt);
-				aDTO.setHospUrl(hospUrl);
-				aDTO.setIntnCnt(intnCnt);
-				aDTO.setPostNo(postNo);
-				aDTO.setResdntCnt(resdntCnt);
-				aDTO.setSdrCnt(sdrCnt);
-				aDTO.setSgguCd(sgguCd);
-				aDTO.setSgguCdNm(sgguCdNm);
 				aDTO.setSidoCd(sidoCd);
 				aDTO.setSidoCdNm(sidoCdNm);
+				aDTO.setSgguCd(sgguCd);
+				aDTO.setSgguCdNm(sgguCdNm);
+				aDTO.setEmdongNm(emdongNm);
+				aDTO.setPostNo(postNo);
+				aDTO.setAddr(addr);
 				aDTO.setTelno(telno);
-				aDTO.setxPos(xPos);
-				aDTO.setyPos(yPos);
+				aDTO.setHospUrl(hospUrl);
+				aDTO.setEstbDd(estbDd);
+				aDTO.setDrTotCnt(drTotCnt);
+				aDTO.setGdrCnt(gdrCnt);
+				aDTO.setIntnCnt(intnCnt);
+				aDTO.setResdntCnt(resdntCnt);
+				aDTO.setSdrCnt(sdrCnt);
+				aDTO.setXPos(XPos);
+				aDTO.setYPos(YPos);
 				aDTO.setRegDate(regDate);
 			
 				int result2 = apiService.insertApi(aDTO);
@@ -148,8 +233,8 @@ public class ApiController {
 		}
 		log.info(getClass() + "End!!!");
 		return "/li";
-	}*/
-	@RequestMapping(value="/li")
+	}
+	/*@RequestMapping(value="/li")
 	public String li(HttpServletRequest req, HttpServletResponse res, Model model) throws Exception {
 		log.info("Start");
 		String url = "http://apis.data.go.kr/B551182/hospInfoService/getHospBasisList?pageNo=1&numOfRows=10&_type=json&ServiceKey=ZNn3FaZRn8RzHpElf%2BdJ9uFHlHmA9fzoYsyghDb5UZGYAxeF4tRc%2B4Ch%2BRHKo11qtYgzu6Dn%2FZz%2F9W5OpNWzfQ%3D%3D";
@@ -186,5 +271,5 @@ public class ApiController {
 		log.info(mList);
 	 		log.info("smallcg end:"+this.getClass());
 			return "/li";
-	}
+	}*/
 }

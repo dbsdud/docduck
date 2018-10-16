@@ -6,7 +6,7 @@
 	(
 		yadmNm,
 		clCd,
-		clCdNm
+		clCdNm,
 		sidoCd,
 		sidoCdNm,
 		sgguCd,
@@ -25,15 +25,13 @@
 		xPos,
 		yPos,
 		REGDATE,
-		REGNO,
-		UPDDATE,
-		UPDNO
+		REGNO
 	)
 	VALUES
 	(
 		#{yadmNm},
 	    #{clCd},
-	    #{clCdNm}
+	    #{clCdNm},
 	    #{sidoCd},
 	    #{sidoCdNm},
 	    #{sgguCd},
@@ -49,10 +47,10 @@
 	    #{intnCnt},
 	    #{resdntCnt},
 	    #{sdrCnt},
-	    #{xPos},
-	    #{yPost},
+	    #{XPos},
+	    #{YPos},
 	    NOW(),
-	    #{REGNO}
+	    #{hosp_no}
 	)
 </insert>
 </mapper>

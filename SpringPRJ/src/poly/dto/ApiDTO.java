@@ -1,6 +1,7 @@
 package poly.dto;
 
 public class ApiDTO {
+	private int hosp_no;
 	private String yadmNm;
 	private int clCd;
 	private String clCdNm;
@@ -19,11 +20,18 @@ public class ApiDTO {
 	private int intnCnt;
 	private int resdntCnt;
 	private int sdrCnt;
-	private String xPos;
-	private String yPos;
+	private String XPos;
+	private String YPos;
+	private String regNo;
 	private String regDate;
 	
 	
+	public int getHosp_no() {
+		return hosp_no;
+	}
+	public void setHosp_no(int hosp_no) {
+		this.hosp_no = hosp_no;
+	}
 	public String getYadmNm() {
 		return yadmNm;
 	}
@@ -132,17 +140,24 @@ public class ApiDTO {
 	public void setSdrCnt(int sdrCnt) {
 		this.sdrCnt = sdrCnt;
 	}
-	public String getxPos() {
-		return xPos;
+	public String getXPos() {
+		return XPos;
 	}
-	public void setxPos(String xPos) {
-		this.xPos = xPos;
+	public void setXPos(String XPos) {
+		this.XPos = XPos;
 	}
-	public String getyPos() {
-		return yPos;
+	public String getYPos() {
+		return YPos;
 	}
-	public void setyPos(String yPos) {
-		this.yPos = yPos;
+	public void setYPos(String YPos) {
+		this.YPos = YPos;
+	}
+	
+	public String getRegNo() {
+		return regNo;
+	}
+	public void setRegNo(String regNo) {
+		this.regNo = regNo;
 	}
 	public String getRegDate() {
 		return regDate;
