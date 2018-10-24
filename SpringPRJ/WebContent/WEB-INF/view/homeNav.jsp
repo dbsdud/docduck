@@ -7,6 +7,15 @@
 	String regNo = CmmUtil.nvl((String)session.getAttribute("regNo"));
 %>
 <script>
+	function loginSubmit(check){
+		if(check.id!=null){
+			if(check.id.value==""){
+				alert("아이디를 입력하지 않았습니다.")
+				check.id.focus()
+				return false;
+			}
+		}
+	}
 	function logout(){
 		alert("로그아웃 하였습니다.")
 		location.href="/user/logout.do"
@@ -45,15 +54,15 @@
 					<li class="nav-item">
 						<a class="nav-link js-scroll-trigger" href="/find/findHospital.do">병원찾기</a>
 					</li>
-					<li class="nav-item">
+					<!-- <li class="nav-item">
 						<a class="nav-link js-scroll-trigger" href="/find/findDrugstore.do">약국찾기</a>
-					</li>
+					</li> -->
 					<li class="nav-item">
 						<a class="nav-link js-scroll-trigger" href="/notice/noticeList.do">공지사항</a>
 					</li>
-					<li class="nav-item">
+					<!-- <li class="nav-item">
 						<a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
-					</li>
+					</li> -->
 				</ul>
 			</div>
 		</div>
@@ -70,43 +79,35 @@
     			</div>
     			<div class="modal-body">
     				<form action="/user/loginProc.do" method="post" accept-charset="UTF-8">
-    					<div class="form-control" style="margin: auto;">
-    						<div class="col-sm-12 text-center">
-    							<p>
-    								<input type="text" class="form-control" style="border: none;" name="id" placeholder="아이디">
-    							</p>
-    						</div>
-    						<div class="col-sm-12 text-center">
-    							<p>
-    								<input type="password" class="form-control" style="border: none;" name="password" placeholder="비밀번호">
-    							</p>
-    						</div>
-    					</div>
-    					<div class="col-sm-12 check_article">
-    						<div class="checkbox checkbox-styled">
-    							<label class="form-label">
-    								<input type="checkbox" name="auto_login" data-type="use" value="ok" checked="checked">
-    								<span class="agree_tit">
-    									로그인 상태유지
-    								</span>
-    							</label>
-    						</div>
-    					</div>
+					<div class="form-control" style="margin: auto;">
+						<div class="col-sm-12 text-center">
+							<p>
+								<input type="text" class="form-control" style="border: none;" name="id" placeholder="아이디">
+							</p>
+						</div>
+						<div class="col-sm-12 text-center">
+							<p>
+								<input type="password" class="form-control"	style="border: none;" name="password" placeholder="비밀번호">
+							</p>
+						</div>
+					</div>
+   					<div class="col-sm-12 text-center" style="padding-top : 12px;">
     					<p>
-    						<button class="btn btn-primary btn-block" style="font-size: 14px;">
-    							로그인
-    						</button>
-    					</p>
-    				</form>
-    				<div class="modal-footer" style="clear:both;">
-    					<div class="col-sm-6" style="text-align: left;">
-    						<a href="/user/userReg.do">회원가입</a>
-    					</div>
-    					<div class="col-sm-6" style="text-align: right;">
-    						<a href="#">내 계정 찾기</a>
-    					</div>
-    				</div>
-    			</div>
-    		</div>
-    	</div>
-    </div>
+   							<button class="btn btn-primary btn-block" onclick="if(!loginSubmit(this.form)){return false;}" style="font-size: 14px;">
+   								로그인
+   							</button>
+   						</p>
+   					</div>
+   				</form>
+   				<div class="modal-footer" style="clear:both;">
+   					<div class="col-sm-6" style="text-align: left;">
+   						<a href="/user/userReg.do">회원가입</a>
+   					</div>
+   					<div class="col-sm-6" style="text-align: right;">
+   						<a href="#">내 계정 찾기</a>
+   					</div>
+   				</div>
+   			</div>
+   		</div>
+   	</div>
+</div>

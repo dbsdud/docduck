@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <script>
-// 아이디 중복체크
+/* // 아이디 중복체크
 $(function(){
 	$("#idCheck").click(function(){
 		var idck = 0;
@@ -126,7 +126,7 @@ $(function(){
 	});
 });
 /* <!--전화번호 숫자입력함수 --> */
-$(function telvld(){
+/* $(function telvld(){
 	$('#userTel').keydown(function(e){
 		if((e.keyCode<48 || e.keyCode>57)&&e.keyCode!=8&&(e.keyCode<96||e.keyCode>105)){
 			alert("전화번호는 숫자만 입력해주세요.");
@@ -134,7 +134,7 @@ $(function telvld(){
 			return false;
 		}
 	});
-});
+}); */
 /* $(function(){
 	var telvld=
 	var userTel=$('#userTel');
@@ -143,4 +143,53 @@ $(function telvld(){
 		if(!)
 	})
 }) */
+function userSubmit(check){
+	// 아이디 입력여부
+	if(check.id != null){
+		if(check.id.value == ""){
+			alert("아이디를 입력하지 않았습니다.")
+			check.id.focus()
+			return false;
+		}
+	}
+	// 비밀번호 입력여부
+	if(check.pwd.value == ""){
+		alert("비밀번호를 입력하지 않았습니다.")
+		check.pwd.focus();
+		return false;
+	}
+	var pwCheck = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}$/;
+	if(!pwCheck.test(check.pwd.value)){
+		alert("비밀번호는 영어, 숫자, 특수문자 조합으로 해주세요.")
+		check.pwd.focus();
+		return false;
+	}
+	// 비밀번호 일치여부
+	if(check.pwd.value!=check.pwdCheck.value){
+		alert("비밀번호가 일치하지 않습니다.")
+		check.pwd.value=""
+		check.pwdCheck.value=""
+		check.pwd.focus()
+		return false;
+	}
+	// 이름 입력여부
+	if(check.userName.value==""){
+		alert("이름을 입력하지 않았습니다.")
+		check.userName.focus()
+		return false;
+	}
+	// 전화번호 입력여부 검사
+	if(check.userTel.value==""){
+		alert("전화번호를 입력하지 않았습니다.")
+		check.userTel.focus()
+		return false;
+	}
+	// 전화번호 유효성 검사
+	var telCheck=/^(01[1|6|7|8|9])[1-9]+[0-9]{6,7})|(010[1-9][0-9]{7})$/;
+	if(!telCheck.test(check.userTel.value)){
+		alert("전화번호 형식에 맞지 않습니다.");
+		check.userTel.focus()
+		return false;
+	}
+}
 </script>

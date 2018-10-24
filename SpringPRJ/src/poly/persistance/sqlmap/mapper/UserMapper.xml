@@ -19,7 +19,15 @@
 			#{userTel},
 			NOW()
 		)
+		<selectKey resultType="string" keyProperty="userNo" order="AFTER">
+			SELECT last_insert_id() FROM DUAL;
+		</selectKey>
 	</insert>
+	<update id="updateUserRegNo" parameterType="UserDTO">
+		UPDATE DOC_USER
+		SET REGNO=#{regNo}
+		WHERE USER_NO=#{regNo}
+	</update>
 	<!-- 중복체크 -->
 	<select id="getUserIdCheck" parameterType="string" resultType="int">
 		SELECT COUNT(*)
