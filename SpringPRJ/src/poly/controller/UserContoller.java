@@ -1,6 +1,9 @@
 package poly.controller;
 
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,6 +13,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -53,17 +57,13 @@ public class UserContoller {
 		uDTO.setUserTel(userTel);
 		
 		int result = userService.insertUser(uDTO);
-		log.info("---------");
 		UserDTO uDTO2 = new UserDTO();
 		System.out.println("userNo : " + uDTO.getUserNo());
 		uDTO2.setRegNo(uDTO.getUserNo());
 		int result2 = userService.updateUserRegNo(uDTO2);
 		
-		
 		String msg="";
 		String url="";
-		
-		
 		
 		if(result != 0) {
 			msg = "회원가입에 성공하였습니다.";
@@ -79,17 +79,22 @@ public class UserContoller {
 		return "/user/userAlert";
 	}
 	//회원 중복체크
-	@RequestMapping(value="user/userChecked")
+	@RequestMapping(value="user/idCheck.do")
 	@ResponseBody
-	public void getUserIdCheck(HttpServletRequest req, HttpServletResponse res) throws Exception{
+	public Map<Object, Object> idCheck(HttpServletRequest req, HttpServletResponse res) throws Exception{
 		String id = CmmUtil.nvl(req.getParameter("id"));
 		
-		int count=0;
+		int count = 0;
+		Map<Object, Object> map = new HashMap<Object, Object>();
+		
 		count = userService.getUserIdCheck(id);
-		log.info(this.getClass()+ " count : " + count);
-		System.out.println("count : " + count);
-		res.getWriter().println(count);
+		log.info(this.getClass() + "count : " + count);
+		map.put("cnt", count);
+		
+		return map;
 	}
+	
+	
 	// 로그인
 	@RequestMapping(value="user/loginProc", method=RequestMethod.POST)
 	public String loginProc(HttpServletRequest req, HttpSession session, Model model) throws Exception{
@@ -124,5 +129,42 @@ public class UserContoller {
 	public String logout(HttpSession session) throws Exception{
 		session.invalidate();
 		return "redirect:/home.do";
+	}
+	// 계정찾기
+	@RequestMapping(value="user/findAccount")
+	public String findAccount(HttpServletRequest req, HttpServletResponse res) throws Exception{
+		return "/user/findAccount";
+	}
+	// ID 찾기 기능
+	@RequestMapping(value="user/findAccountIdProc")
+	public String findAccountIdProc(HttpServletRequest req, Model model) throws Exception{
+		String userName = CmmUtil.nvl(req.getParameter("userName"));
+		log.info(this.getClass() + " userName : " + userName);
+		String userTel = CmmUtil.nvl(req.getParameter("userTel"));
+		log.info(this.getClass() + " userTel : " + userTel);
+		
+		UserDTO uDTO = new UserDTO();
+		uDTO.setUserName(userName);
+		uDTO.setUserTel(userTel);
+		
+		uDTO = userService.findAccountId(uDTO);
+		String msg = "";
+		String url = "";
+		
+		if(uDTO==null) {
+			msg = "입력하신 정보와 일치하는 회원이 없습니다.";
+			url = "/user/findAccount.do";
+			model.addAttribute("msg",msg);
+			model.addAttribute("url",url);
+			return "/alert";
+		} else {
+			return "/user/findAccountId";
+		}
+	}
+	// ID 찾기 화면
+	@RequestMapping(value="user/findAccountId")
+	public String findAccountId(HttpServletRequest req, HttpServletResponse res) throws Exception{
+		
+		return "/user/findAccountId";
 	}
 }

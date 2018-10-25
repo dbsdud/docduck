@@ -8,12 +8,12 @@
 %>
 <script>
 	function loginSubmit(check){
-		if(check.id!=null){
-			if(check.id.value==""){
-				alert("아이디를 입력하지 않았습니다.")
-				check.id.focus()
-				return false;
-			}
+		if(check.id.value==""){
+			alert("아이디를 입력하지 않았습니다.")
+			check.id.focus()
+			return false;
+		} else {
+			return true;
 		}
 	}
 	function logout(){
@@ -104,7 +104,7 @@
    						<a href="/user/userReg.do">회원가입</a>
    					</div>
    					<div class="col-sm-6" style="text-align: right;">
-   						<a href="#">내 계정 찾기</a>
+   						<a href="/user/findAccount.do">내 계정 찾기</a>
    					</div>
    				</div>
    			</div>

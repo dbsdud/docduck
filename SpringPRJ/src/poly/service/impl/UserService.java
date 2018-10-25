@@ -33,4 +33,9 @@ public class UserService implements IUserService {
 		return userMapper.updateUserRegNo(uDTO2);
 	}
 
+	@Override
+	public UserDTO findAccountId(UserDTO uDTO) throws Exception {
+		return userMapper.findAccountId(uDTO);
+	}
+
 }

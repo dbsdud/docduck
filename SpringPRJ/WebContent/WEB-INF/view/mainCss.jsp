@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<script src="/Resources/user/vendor/jquery/jquery.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script src="/Resources/user/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- Bootstrap core CSS -->
 <link href="/Resources/user/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <!-- Custom fonts for this template -->
@@ -11,4 +14,3 @@
 <!-- Custom styles for this template -->
 <link href="/Resources/user/css/creative.min.css" rel="stylesheet">
 
-<script src="/Resources/user/vendor/jquery/jquery.min.js"></script>

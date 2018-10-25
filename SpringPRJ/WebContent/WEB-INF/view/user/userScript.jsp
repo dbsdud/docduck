@@ -28,7 +28,8 @@ $(function(){
 			}
 		});
 	});
-});
+}); */
+/* 
 // 비밀번호 조합
 function checkUnion(str){
 	var reg1=/^[a-zA-Z0-9]{8,20}$/;//대문자 소만자 8 -20 자리 허용
@@ -71,8 +72,8 @@ $(function(){
 		}
 	});
 });
-
-$(function(){
+ */
+/* $(function(){
 	var pwdvld = /^[a-zA-Z0-9]{8,20}$/;//패스워드  영문 숫자 합쳐서 8자이상 함수 방식으로 다시함
 	var idvld = /[a-z0-9]{2,}@[a-z0-9-]{2,}\.[a-z0-9]{2,}/i;
 	var regname = /^[가-힝][A-Z][a-z]{2,}$/;
@@ -124,9 +125,9 @@ $(function(){
 			}
 		}
 	});
-});
-/* <!--전화번호 숫자입력함수 --> */
-/* $(function telvld(){
+}); */
+// 전화번호 숫자입력함수
+$(function telvld(){
 	$('#userTel').keydown(function(e){
 		if((e.keyCode<48 || e.keyCode>57)&&e.keyCode!=8&&(e.keyCode<96||e.keyCode>105)){
 			alert("전화번호는 숫자만 입력해주세요.");
@@ -134,15 +135,7 @@ $(function(){
 			return false;
 		}
 	});
-}); */
-/* $(function(){
-	var telvld=
-	var userTel=$('#userTel');
-	$('#userTel').keyup(function(e){
-		$('font[id=telcheck]').text('');
-		if(!)
-	})
-}) */
+}); 
 function userSubmit(check){
 	// 아이디 입력여부
 	if(check.id != null){
@@ -152,6 +145,11 @@ function userSubmit(check){
 			return false;
 		}
 	}
+	if(check.conf.value==0){
+		alert("아이디 중복확인을 해주세요.");
+		check.id.focus()
+		return false;
+	}
 	// 비밀번호 입력여부
 	if(check.pwd.value == ""){
 		alert("비밀번호를 입력하지 않았습니다.")
@@ -160,7 +158,7 @@ function userSubmit(check){
 	}
 	var pwCheck = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}$/;
 	if(!pwCheck.test(check.pwd.value)){
-		alert("비밀번호는 영어, 숫자, 특수문자 조합으로 해주세요.")
+		alert("비밀번호는 영어, 숫자, 특수문자 조합의 8자 이상으로 해주세요.")
 		check.pwd.focus();
 		return false;
 	}
@@ -185,11 +183,13 @@ function userSubmit(check){
 		return false;
 	}
 	// 전화번호 유효성 검사
-	var telCheck=/^(01[1|6|7|8|9])[1-9]+[0-9]{6,7})|(010[1-9][0-9]{7})$/;
+	var telCheck=/^((01[1|6|7|8|9])[1-9]+[0-9]{6,7})|(010[1-9][0-9]{7})$/;
 	if(!telCheck.test(check.userTel.value)){
 		alert("전화번호 형식에 맞지 않습니다.");
 		check.userTel.focus()
 		return false;
+	} else {
+		return true;
 	}
 }
 </script>

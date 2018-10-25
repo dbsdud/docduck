@@ -48,5 +48,13 @@
 	WHERE 
 		ID=#{id} AND PASSWORD=#{password}
 	</select>
-	
+	<!-- 아이디 찾기 -->
+	<select id="findAccountId" parameterType="UserDTO" resultType="UserDTO">
+	SELECT
+		ID AS id
+	FROM
+		DOC_USER
+	WHERE
+		USER_NAME=#{userName} AND USER_TEL=#{userTel}
+	</select>
 </mapper>

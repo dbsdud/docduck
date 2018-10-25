@@ -12,4 +12,6 @@ public interface UserMapper {
 	public UserDTO getUserLogin(UserDTO uDTO) throws Exception;
 	
 	public int updateUserRegNo(UserDTO uDTO2) throws Exception;
+	
+	public UserDTO findAccountId(UserDTO uDTO) throws Exception;
 }

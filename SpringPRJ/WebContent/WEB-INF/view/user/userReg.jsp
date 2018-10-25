@@ -8,6 +8,43 @@
 <meta name="author" content="">
 <title>회원가입</title>
 <%@ include file="/WEB-INF/view/mainCss.jsp" %>
+<script>
+//아이디 중복체크
+var idCheck=0;
+$(function(){
+	// idCheck 버튼을 클릭했을 때
+	$("#idCheck").click(function(){
+		var id = $("#id").val();
+		console.log(id);
+		$.ajax({
+			type : 'POST',
+			data : {'id':id},
+			url : "/user/idCheck.do",
+			dataType : "json",
+			success : function(data){
+				console.log(data);
+				if(data.cnt > 0){
+					alert("이미 사용중인 아이디입니다.");
+					$('#conf').val("0");
+					$("#id").focus();
+				} else if($("#id").val()=="") {
+					alert("아이디를 입력해주세요.");
+					$('#conf').val("0");
+					$("#id").focus();
+				} else {
+					alert("사용 가능한 아이디입니다.");
+					$("#conf").val("1");
+					$("#pwd").focus();
+					idCheck=1;
+				}
+			},
+			error : function(error){
+				alert("error : " + error);
+			}
+		});
+	});
+});
+</script>
 </head>
 <body id="page-top">
 	<%@ include file="/WEB-INF/view/homeNav.jsp" %>
