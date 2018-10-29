@@ -2,6 +2,7 @@ package poly.controller;
 
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -10,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -61,7 +61,7 @@ public class UserContoller {
 		System.out.println("userNo : " + uDTO.getUserNo());
 		uDTO2.setRegNo(uDTO.getUserNo());
 		int result2 = userService.updateUserRegNo(uDTO2);
-		
+		log.info(this.getClass() + " result2 : " + result2);
 		String msg="";
 		String url="";
 		
@@ -135,36 +135,48 @@ public class UserContoller {
 	public String findAccount(HttpServletRequest req, HttpServletResponse res) throws Exception{
 		return "/user/findAccount";
 	}
-	// ID 찾기 기능
-	@RequestMapping(value="user/findAccountIdProc")
-	public String findAccountIdProc(HttpServletRequest req, Model model) throws Exception{
+	// ID 찾기 기능 
+	@RequestMapping(value="user/findAccountId", method=RequestMethod.POST)
+	public @ResponseBody List<UserDTO> findAccountId(HttpServletRequest req) throws Exception {
+		log.info("findAccountId Start!!!");
 		String userName = CmmUtil.nvl(req.getParameter("userName"));
-		log.info(this.getClass() + " userName : " + userName);
 		String userTel = CmmUtil.nvl(req.getParameter("userTel"));
+		log.info(this.getClass() + " userName : " + userName);
 		log.info(this.getClass() + " userTel : " + userTel);
 		
 		UserDTO uDTO = new UserDTO();
 		uDTO.setUserName(userName);
 		uDTO.setUserTel(userTel);
+		log.info("getUserName : " + uDTO.getUserName());
+		log.info("getUserTel : " + uDTO.getUserTel());
 		
-		uDTO = userService.findAccountId(uDTO);
-		String msg = "";
-		String url = "";
-		
-		if(uDTO==null) {
-			msg = "입력하신 정보와 일치하는 회원이 없습니다.";
-			url = "/user/findAccount.do";
-			model.addAttribute("msg",msg);
-			model.addAttribute("url",url);
-			return "/alert";
-		} else {
-			return "/user/findAccountId";
-		}
+		List<UserDTO> uList = userService.findAccountId(uDTO);
+		log.info("id : " + uList.get(0).getId());
+		log.info("findAccountId end!!!");
+		return uList;
 	}
-	// ID 찾기 화면
-	@RequestMapping(value="user/findAccountId")
-	public String findAccountId(HttpServletRequest req, HttpServletResponse res) throws Exception{
+	// 비밀번호 찾기 기능
+	@RequestMapping(value="user/findAccountPw", method=RequestMethod.POST)
+	public @ResponseBody List<UserDTO> findAccountPw(HttpServletRequest req) throws Exception{
+		log.info("findaccountPw Start!!!");
+		String id = CmmUtil.nvl(req.getParameter("id"));
+		String userName = CmmUtil.nvl(req.getParameter("userName"));
+		String userTel = CmmUtil.nvl(req.getParameter("userTel"));
+		log.info("findPwId : " + id);
+		log.info("findPwName : " + userName);
+		log.info("findPwTel : " + userTel);
 		
-		return "/user/findAccountId";
+		UserDTO uDTO = new UserDTO();
+		uDTO.setId(id);
+		uDTO.setUserName(userName);
+		uDTO.setUserTel(userTel);
+		log.info("getId : " + uDTO.getId());
+		log.info("getUserName : " + uDTO.getUserName());
+		log.info("getUserTel : " + uDTO.getUserTel());
+		
+		List<UserDTO> uList = userService.findAccountPw(uDTO);
+		log.info("password : " + uList.get(0).getPassword());
+		log.info("findAccountPw End!!!");
+		return uList;
 	}
 }

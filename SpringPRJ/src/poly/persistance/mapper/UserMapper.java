@@ -1,5 +1,7 @@
 package poly.persistance.mapper;
 
+import java.util.List;
+
 import config.Mapper;
 import poly.dto.UserDTO;
 
@@ -13,5 +15,7 @@ public interface UserMapper {
 	
 	public int updateUserRegNo(UserDTO uDTO2) throws Exception;
 	
-	public UserDTO findAccountId(UserDTO uDTO) throws Exception;
+	public List<UserDTO> findAccountId(UserDTO uDTO) throws Exception;
+	
+	public List<UserDTO> findAccountPw(UserDTO uDTO) throws Exception;
 }

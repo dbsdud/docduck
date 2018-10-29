@@ -1,5 +1,8 @@
 package poly.service.impl;
 
+import java.util.HashMap;
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -34,8 +37,13 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public UserDTO findAccountId(UserDTO uDTO) throws Exception {
+	public List<UserDTO> findAccountId(UserDTO uDTO) throws Exception{
 		return userMapper.findAccountId(uDTO);
+	}
+
+	@Override
+	public List<UserDTO> findAccountPw(UserDTO uDTO) throws Exception {
+		return userMapper.findAccountPw(uDTO);
 	}
 
 }
