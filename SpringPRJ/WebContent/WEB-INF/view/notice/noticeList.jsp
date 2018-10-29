@@ -8,6 +8,7 @@
 </head>
 <body id="page-top">
 	<%@ include file="/WEB-INF/view/homeNav.jsp" %>
+	<input type="hidden" value="<%=userName %>" />
 	<header class="masthead text-center text-white d-flex">
 		<div class="container my-auto">
 			<div class="row">
@@ -22,17 +23,15 @@
 	<section>
 		<div class="container">
 			<div class="row">
-				<div class="board-list">
-					<div class="board-top">
-						<div class="board-top-left">
-							<div class="ts-box">
-								<p class="total">TOTAL </p>
-							</div>
-						</div>
+				<div class="col-lg-12 text-center">
+					<div id="menu1" class="tab-pane in active">
+					
 					</div>
 				</div>
 			</div>		
 		</div>
 	</section>
+	<%@ include file="/WEB-INF/view/homeFooter.jsp" %>
+	<%@ include file="/WEB-INF/view/mainJs.jsp" %>
 </body>
 </html>
