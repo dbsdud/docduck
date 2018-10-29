@@ -35,7 +35,7 @@ $(function(){
 					console.log(data);
 					var contents="";
 					$.each(data, function(key,value){
-						contents+="<div class='col-lg-12 text-center' style='background-color : #9f9f9f'>";
+						contents+="<div class='col-lg-12 text-center' style='background-color : #f8f9fa'>";
 						contents+="<h4>"+userName+" 회원님의 ID는</h4>";
 						contents+="<h3>"+value.id+"</h3>";
 						contents+="<h4>입니다.</h4>"
@@ -83,7 +83,7 @@ $(function(){
 					console.log(data);
 					var contents="";
 					$.each(data, function(key,value){
-						contents+="<div class='col-lg-12 text-center' style='background-color : #9f9f9f'>";
+						contents+="<div class='col-lg-12 text-center' style='background-color : #f8f9fa'>";
 						contents+="<h4>"+id+" 회원님의 비밀번호는</h4>";
 						contents+="<h3>"+value.password+"</h3>";
 						contents+="<h4>입니다.</h4>"
