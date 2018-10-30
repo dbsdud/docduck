@@ -5,8 +5,72 @@ package poly.dto;
  * @version 1.1 공지사항 DTO
  */
 public class NoticeDTO {
-
-	private String notice_seq; // 기본키, 순번
+	private String noticeNo;
+	private String noticeTitle;
+	private String noticeContent;
+	private String noticeWriter;
+	private String noticeCount;
+	private String regDate;
+	private String regNo;
+	private String updDate;
+	private String updNo;
+	
+	public String getNoticeNo() {
+		return noticeNo;
+	}
+	public void setNoticeNo(String noticeNo) {
+		this.noticeNo = noticeNo;
+	}
+	public String getNoticeTitle() {
+		return noticeTitle;
+	}
+	public void setNoticeTitle(String noticeTitle) {
+		this.noticeTitle = noticeTitle;
+	}
+	public String getNoticeContent() {
+		return noticeContent;
+	}
+	public void setNoticeContent(String noticeContent) {
+		this.noticeContent = noticeContent;
+	}
+	public String getNoticeWriter() {
+		return noticeWriter;
+	}
+	public void setNoticeWriter(String noticeWriter) {
+		this.noticeWriter = noticeWriter;
+	}
+	public String getNoticeCount() {
+		return noticeCount;
+	}
+	public void setNoticeCount(String noticeCount) {
+		this.noticeCount = noticeCount;
+	}
+	public String getRegDate() {
+		return regDate;
+	}
+	public void setRegDate(String regDate) {
+		this.regDate = regDate;
+	}
+	public String getRegNo() {
+		return regNo;
+	}
+	public void setRegNo(String regNo) {
+		this.regNo = regNo;
+	}
+	public String getUpdDate() {
+		return updDate;
+	}
+	public void setUpdDate(String updDate) {
+		this.updDate = updDate;
+	}
+	public String getUpdNo() {
+		return updNo;
+	}
+	public void setUpdNo(String updNo) {
+		this.updNo = updNo;
+	}
+	
+	/*private String notice_seq; // 기본키, 순번
 	private String title; // 제목
 	private String notice_yn; // 공지글 여부
 	private String contents; // 글 내용
@@ -105,6 +169,6 @@ public class NoticeDTO {
 
 	public void setChg_dt(String chg_dt) {
 		this.chg_dt = chg_dt;
-	}
+	}*/
 
 }

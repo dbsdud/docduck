@@ -12,8 +12,10 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import poly.dto.NoticeDTO;
 import poly.service.INoticeService;
@@ -33,9 +35,37 @@ public class NoticeController {
 	@Resource(name = "NoticeService")
 	private INoticeService noticeService;
 	
+	/*@RequestMapping(value="notice/noticeList")
+	public String noticeList(@ModelAttribute("NoticeDTO") NoticeDTO nDTO, HttpServletRequest req, HttpServletResponse res, Model model, HttpSession session, @RequestParam(defaultValue="1") int curPage) throws Exception{
+		log.info("noticeList Start!!!");
+		// 전체 리스트 개수
+		int listCnt = noticeService.getNoticeListCnt();
+		
+		Pagination pagination = new Pagination(listCnt, curPage);
+		nDTO.setStartIndex(pagination.getStartIndex());
+		nDTO.setCntPerPage(pagination.getPageSize());
+		
+		// 전체 리스트 출력
+		List<NoticeDTO> nList = noticeService.getNoticeList();
+		if(nList==null) {
+			nList = new ArrayList<NoticeDTO>();
+		}
+		model.addAttribute("nList",nList);
+		model.addAttribute("listCnt",listCnt);
+		model.addAttribute("pagination",pagination);
+		log.info("noticeList End!!!");
+		return "/notice/noticeList";
+	}*/
+	
 	@RequestMapping(value="notice/noticeList")
 	public String noticeList(HttpServletRequest req, HttpServletResponse res, Model model, HttpSession session) throws Exception{
-		/*List<NoticeDTO> nList = noticeService.getNoticeList();*/
+		log.info("noticeList Start!!!");
+		List<NoticeDTO> nList = noticeService.getNoticeList();
+		if(nList==null) {
+			nList = new ArrayList<NoticeDTO>();
+		}
+		model.addAttribute("nList",nList);
+		log.info("noticeList End!!!");
 		return "/notice/noticeList";
 	}
 	
@@ -45,12 +75,12 @@ public class NoticeController {
 	 * method => 기입안하면 GET, POST 모두 가능하나, 가급적 적어주는 것이 좋다.
 	 * */
 	
-	@RequestMapping(value="main")
+	/*@RequestMapping(value="main")
 	public String main(HttpServletRequest request, HttpServletResponse response, Model model, HttpSession session) throws Exception{
 		
 		System.out.println("main");
 		return "/index";
-	}
+	}*/
 	
 	/**
 	 * 게시판 리스트 보여주기

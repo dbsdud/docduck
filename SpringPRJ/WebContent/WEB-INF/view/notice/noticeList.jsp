@@ -1,9 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="poly.dto.NoticeDTO" %>
+<%@ page import="java.util.List" %>
+<%
+	List<NoticeDTO> nList=(List<NoticeDTO>)request.getAttribute("nList");
+%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>공지사항</title>
+<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.1/css/responsive.dataTables.min.css">
 <style>
 .results tr[visible='false'],
 .no-result{
@@ -16,12 +22,26 @@
 	padding:8px;
 	color:#ccc;
 }
+div.fw-container div.fw-body div.content {
+	margin-top: 5em;
+}
+div.fw-body h1 {
+	display: none;
+}
+div.fw-container {
+	z-index: 1;
+}
 </style>
 <%@ include file="/WEB-INF/view/mainCss.jsp" %>
+<script>
+$(document).ready( function () {
+    $('#noticeTable').DataTable();
+} );
+</script>
 </head>
 <body id="page-top">
 	<%@ include file="/WEB-INF/view/homeNav.jsp" %>
-	<input type="hidden" value="<%=userName %>" />
+	<input type="hidden" value="<%=userNo %>" />
 	<header class="masthead text-center text-white d-flex">
 		<div class="container my-auto">
 			<div class="row">
@@ -37,52 +57,60 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12 text-center">
-					<div class="form-group pull-right">
-						<input type="text" class="search form-control" placeholder="search...">
-					</div>
 					<span class="counter pull-right"></span>
-					<table class="table table-hover table-bordered results">
+					<table id="noticeTable" class="display table table-hover table-bordered results text-center">
 						<thead>
 							<tr>
 								<th style="width: 10%">No</th>
 								<th style="width: 50%">제목</th>
-								<th style="width: 20%">작성자</th>
-								<th style="width: 20%">작성일</th>
+								<th style="width: 15%">작성자</th>
+								<th style="width: 15%">작성일</th>
+								<th style="width: 10%">조회수</th>
 							</tr>
-							<tr class="warning no-result">
-								<td colspan="4">
+							<%-- <% if(nList.size()==0){ %>
+							<tr class="warning">
+								<td colspan="5">
 									<i class="fa fa-warning"></i>
-									<i> No result</i>
+									<i> 등록된 공지사항이 없습니다.</i>
 								</td>
 							</tr>
+							<% } else { %>
+							<tr class="warning no-result">
+								<td colspan="5">
+									<i class="fa fa-warning"></i>
+									<i> 검색 결과가 없습니다.</i>
+								</td>
+							</tr>
+							<% } %> --%>
 						</thead>
 						<tbody>
+						<% if(nList!=null) { %>
+							<% for(int i=0; i<nList.size(); i++) { %>
 							<tr>
-								<th scope="row">1</th>
-								<td>naver</td>
-								<td>Software Developer</td>
-								<td>대전</td>
+								<th scope="row"><%=nList.get(i).getNoticeNo() %></th>
+								<td><%=nList.get(i).getNoticeTitle() %></td>
+								<td><%=nList.get(i).getNoticeWriter() %></td>
+								<td><%=nList.get(i).getRegDate() %></td>
+								<td><%=nList.get(i).getRegDate() %></td>
 							</tr>
-							<tr>
-								<th scope="row">2</th>
-								<td>naver</td>
-								<td>Software Developer</td>
-								<td>대전</td>
-							</tr>
-							<tr>
-								<th scope="row">3</th>
-								<td>daum</td>
-								<td>Purchasing</td>
-								<td>대구</td>
-							</tr>
-							<tr>
-								<th scope="row">4</th>
-								<td>google</td>
-								<td>Sales</td>
-								<td>부산</td>
-							</tr>
+							<% } %>
+						<% } %>
 						</tbody>
 					</table>
+					<% if(regNo.equals("1")) { %>
+					<div class="col-sm-12">
+						<div class="form-group pull-right">
+							<button class="btn btn-primary btn-block" id="writeNotice">
+								작성
+							</button>
+						</div>
+					</div>
+					<% } %>
+					<div class="content">
+						<div class="demo">
+							<div id="demo4"></div>
+						</div>
+					</div>
 				</div>
 			</div>		
 		</div>
@@ -90,7 +118,8 @@
 	<%@ include file="/WEB-INF/view/homeFooter.jsp" %>
 	<%@ include file="/WEB-INF/view/mainJs.jsp" %>
 	<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-	<script>
+	<script src="/Resources/user/vendor/jquery/jquery.dataTables.min.js"></script>
+	<!-- <script>
 	$(document).ready(function(){
 		$(".search").keyup(function(){
 			var searchTerm = $(".search").val();
@@ -116,6 +145,6 @@
 			}
 		});
 	});
-	</script>
+	</script> -->
 </body>
 </html>

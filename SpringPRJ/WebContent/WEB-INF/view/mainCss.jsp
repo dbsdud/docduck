@@ -13,4 +13,4 @@
 <link href="/Resources/user/vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
 <!-- Custom styles for this template -->
 <link href="/Resources/user/css/creative.min.css" rel="stylesheet">
-
+<link href="/Resources/user/css/dataTables.min.css" rel="stylesheet">

@@ -4,6 +4,7 @@
 <%
 	String id = CmmUtil.nvl((String)session.getAttribute("id"));
 	String userName = CmmUtil.nvl((String)session.getAttribute("userName"));
+	String userNo = CmmUtil.nvl((String)session.getAttribute("userNo"));
 	String regNo = CmmUtil.nvl((String)session.getAttribute("regNo"));
 %>
 <script>
