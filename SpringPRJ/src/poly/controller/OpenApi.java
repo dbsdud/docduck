@@ -62,45 +62,46 @@ public class OpenApi {
 		        		}
 		        	}*/
 				yadmNm = resultObj.get("yadmNm").toString();
-				System.out.println("yadmNm : " + yadmNm);
+				/*System.out.println("yadmNm : " + yadmNm);*/
 				clCd = resultObj.get("clCd").hashCode();
-				System.out.println("clCd : " + clCd);
+				/*System.out.println("clCd : " + clCd);*/
 				clCdNm = resultObj.get("clCdNm").toString();
-				System.out.println("clCdNm : " + clCdNm);
+				/*System.out.println("clCdNm : " + clCdNm);*/
 				sidoCd = resultObj.get("sidoCd").hashCode();
-				System.out.println("sidoCd : " + sidoCd);
+				/*System.out.println("sidoCd : " + sidoCd);*/
 				sidoCdNm = resultObj.get("sidoCdNm").toString();
-				System.out.println("sidoCdNm : " + sidoCdNm);
+				/*System.out.println("sidoCdNm : " + sidoCdNm);*/
 				sgguCd = resultObj.get("sgguCd").hashCode();
-				System.out.println("sgguCd : " + sgguCd);
+				/*System.out.println("sgguCd : " + sgguCd);*/
 				sgguCdNm = resultObj.get("sgguCdNm").toString();
-				System.out.println("sgguCdNm : " + sgguCdNm);
+				/*System.out.println("sgguCdNm : " + sgguCdNm);*/
 				emdongNm = resultObj.get("emdongNm").toString();
-				System.out.println("emdongNm : " + emdongNm);
+				/*System.out.println("emdongNm : " + emdongNm);*/
 				postNo = resultObj.get("postNo").hashCode();
-				System.out.println("postNo : " + postNo);
+				/*System.out.println("postNo : " + postNo);*/
 				addr = resultObj.get("addr").toString();
-				System.out.println("addr : " + addr);
+				/*System.out.println("addr : " + addr);*/
 				telno = resultObj.get("telno").toString();
-				System.out.println("telno : " + telno);
+				/*System.out.println("telno : " + telno);*/
 				hospUrl = resultObj.get("hospUrl").toString();
-				System.out.println("hospUrl : " + hospUrl);
+				/*System.out.println("hospUrl : " + hospUrl);*/
 				estbDd = resultObj.get("estbDd").hashCode();
-				System.out.println("estbDd : " + estbDd);
+				/*System.out.println("estbDd : " + estbDd);*/
 				drTotCnt = resultObj.get("drTotCnt").hashCode();
-				System.out.println("drTotCnt : " + drTotCnt);
+				/*System.out.println("drTotCnt : " + drTotCnt);*/
 				gdrCnt = resultObj.get("gdrCnt").hashCode();
-				System.out.println("gdrCnt : " + gdrCnt);
+				/*System.out.println("gdrCnt : " + gdrCnt);*/
 				intnCnt = resultObj.get("intnCnt").hashCode();
-				System.out.println("intnCnt : " + intnCnt);
+				/*System.out.println("intnCnt : " + intnCnt);*/
 				resdntCnt = resultObj.get("resdntCnt").hashCode();
-				System.out.println("resdntCnt : " + resdntCnt);
+				/*System.out.println("resdntCnt : " + resdntCnt);*/
 				sdrCnt = resultObj.get("sdrCnt").hashCode();
-				System.out.println("sdrCnt : " + sdrCnt);
+				/*System.out.println("sdrCnt : " + sdrCnt);*/
 				xPos = resultObj.get("xPos").toString();
-				System.out.println("xPos : " + xPos);
+				/*System.out.println("xPos : " + xPos);*/
 				yPos = resultObj.get("yPos").toString();
-				System.out.println("yPos : " + yPos);
+				/*System.out.println("yPos : " + yPos);*/
+				System.out.println(i);
 			}
 		}catch(Exception e) {
 			System.out.println(e.getMessage());

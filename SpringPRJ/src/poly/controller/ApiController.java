@@ -130,146 +130,146 @@ public class ApiController {
 					System.out.println("----------------------------------");
 					if (resultObj.containsKey("yadmNm") == false) {
 						yadmNm = CmmUtil.nvl(resultObj.getOrDefault("yadmNm", "").toString());
-						System.out.println("yadmNm : " + yadmNm);
+						/*System.out.println("yadmNm : " + yadmNm);*/
 					} else {
 						yadmNm = CmmUtil.nvl(resultObj.get("yadmNm").toString());
-						System.out.println("yadmNm : " + yadmNm);
+						/*System.out.println("yadmNm : " + yadmNm);*/
 					}
 					if (resultObj.containsKey("clCd") == false) {
 						clCd = Integer.parseInt(CmmUtil.nvl(resultObj.getOrDefault("clCd", 0).toString()));
-						System.out.println("clCd : " + clCd);
+						/*System.out.println("clCd : " + clCd);*/
 					} else {
 						clCd = Integer.parseInt(CmmUtil.nvl(resultObj.get("clCd").toString()));
-						System.out.println("clCd : " + clCd);
+						/*System.out.println("clCd : " + clCd);*/
 					}
 					if (resultObj.containsKey("clCdNm") == false) {
 						clCdNm = CmmUtil.nvl(resultObj.getOrDefault("clCdNm", "").toString());
-						System.out.println("clCdNm : " + clCdNm);
+						/*System.out.println("clCdNm : " + clCdNm);*/
 					} else {
 						clCdNm = CmmUtil.nvl(resultObj.get("clCdNm").toString());
-						System.out.println("clCdNm : " + clCdNm);
+						/*System.out.println("clCdNm : " + clCdNm);*/
 					}
 					if (resultObj.containsKey("sidoCd") == false) {
 						sidoCd = Integer.parseInt(CmmUtil.nvl(resultObj.getOrDefault("sidoCd", 0).toString()));
-						System.out.println("sidoCd : " + sidoCd);
+						/*System.out.println("sidoCd : " + sidoCd);*/
 					} else {
 						sidoCd = Integer.parseInt(CmmUtil.nvl(resultObj.get("sidoCd").toString()));
-						System.out.println("sidoCd : " + sidoCd);
+						/*System.out.println("sidoCd : " + sidoCd);*/
 					}
 					if (resultObj.containsKey("sidoCdNm") == false) {
 						sidoCdNm = CmmUtil.nvl(resultObj.getOrDefault("sidoCdNm", "").toString());
-						System.out.println("sidoCdNm : " + sidoCdNm);
+						/*System.out.println("sidoCdNm : " + sidoCdNm);*/
 					} else {
 						sidoCdNm = CmmUtil.nvl(resultObj.get("sidoCdNm").toString());
-						System.out.println("sidoCdNm : " + sidoCdNm);
+						/*System.out.println("sidoCdNm : " + sidoCdNm);*/
 					}
 					if (resultObj.containsKey("sgguCd") == false) {
 						sgguCd = Integer.parseInt(CmmUtil.nvl(resultObj.getOrDefault("sgguCd", 0).toString()));
-						System.out.println("sgguCd : " + sgguCd);
+						/*System.out.println("sgguCd : " + sgguCd);*/
 					} else {
 						sgguCd = Integer.parseInt(CmmUtil.nvl(resultObj.get("sgguCd").toString()));
-						System.out.println("sgguCd : " + sgguCd);
+						/*System.out.println("sgguCd : " + sgguCd);*/
 					}
 					if (resultObj.containsKey("sgguCdNm") == false) {
 						sgguCdNm = CmmUtil.nvl(resultObj.getOrDefault("sgguCdNm", "").toString());
-						System.out.println("sgguCdNm : " + sgguCdNm);
+						/*System.out.println("sgguCdNm : " + sgguCdNm);*/
 					} else {
 						sgguCdNm = CmmUtil.nvl(resultObj.get("sgguCdNm").toString());
-						System.out.println("sgguCdNm : " + sgguCdNm);
+						/*System.out.println("sgguCdNm : " + sgguCdNm);*/
 					}
 					if (resultObj.containsKey("emdongNm") == false) {
 						emdongNm = CmmUtil.nvl(resultObj.getOrDefault("emdongNm", "").toString());
-						System.out.println("emdongNm : " + emdongNm);
+						/*System.out.println("emdongNm : " + emdongNm);*/
 					} else {
 						emdongNm = resultObj.get("emdongNm").toString();
-						System.out.println("emdongNm : " + emdongNm);
+						/*System.out.println("emdongNm : " + emdongNm);*/
 					}
 					if (resultObj.containsKey("postNo") == false) {
 						postNo = Integer.parseInt(CmmUtil.nvl(resultObj.getOrDefault("postNo", 0).toString()));
-						System.out.println("postNo : " + postNo);
+						/*System.out.println("postNo : " + postNo);*/
 					} else {
 						postNo = Integer.parseInt(CmmUtil.nvl(resultObj.get("postNo").toString()));
-						System.out.println("postNo : " + postNo);
+						/*System.out.println("postNo : " + postNo);*/
 					}
 					if (resultObj.containsKey("addr") == false) {
 						addr = CmmUtil.nvl(resultObj.getOrDefault("addr", "").toString());
-						System.out.println("addr : " + addr);
+						/*System.out.println("addr : " + addr);*/
 					} else {
 						addr = CmmUtil.nvl(resultObj.get("addr").toString());
-						System.out.println("addr : " + addr);
+						/*System.out.println("addr : " + addr);*/
 					}
 					if (resultObj.containsKey("telno") == false) {
 						telno = CmmUtil.nvl(resultObj.getOrDefault("telno", "").toString());
-						System.out.println("telno : " + telno);
+						/*System.out.println("telno : " + telno);*/
 					} else {
 						telno = CmmUtil.nvl(resultObj.get("telno").toString());
-						System.out.println("telno : " + telno);
+						/*System.out.println("telno : " + telno);*/
 					}
 					if (resultObj.containsKey("hospUrl") == false) {
 						hospUrl = CmmUtil.nvl(resultObj.getOrDefault("hospUrl", "").toString());
-						System.out.println("hospUrl : " + hospUrl);
+						/*System.out.println("hospUrl : " + hospUrl);*/
 					} else {
 						hospUrl = CmmUtil.nvl(resultObj.get("hospUrl").toString());
-						System.out.println("hospUrl : " + hospUrl);
+						/*System.out.println("hospUrl : " + hospUrl);*/
 					}
 					if (resultObj.containsKey("estbDd") == false) {
 						estbDd = Integer.parseInt(CmmUtil.nvl(resultObj.getOrDefault("estbDd", 0).toString()));
-						System.out.println("estbDd : " + estbDd);
+						/*System.out.println("estbDd : " + estbDd);*/
 					} else {
 						estbDd = Integer.parseInt(CmmUtil.nvl(resultObj.get("estbDd").toString()));
-						System.out.println("estbDd : " + estbDd);
+						/*System.out.println("estbDd : " + estbDd);*/
 					}
 					if (resultObj.containsKey("drTotCnt") == false) {
 						drTotCnt = Integer.parseInt(CmmUtil.nvl(resultObj.getOrDefault("drTotCnt", 0).toString()));
-						System.out.println("drTotCnt : " + drTotCnt);
+						/*System.out.println("drTotCnt : " + drTotCnt);*/
 					} else {
 						drTotCnt = Integer.parseInt(CmmUtil.nvl(resultObj.get("drTotCnt").toString()));
-						System.out.println("drTotCnt : " + drTotCnt);
+						/*System.out.println("drTotCnt : " + drTotCnt);*/
 					}
 					if (resultObj.containsKey("gdrCnt") == false) {
 						gdrCnt = Integer.parseInt(CmmUtil.nvl(resultObj.getOrDefault("gdrCnt", 0).toString()));
-						System.out.println("gdrCnt : " + gdrCnt);
+						/*System.out.println("gdrCnt : " + gdrCnt);*/
 					} else {
 						gdrCnt = Integer.parseInt(CmmUtil.nvl(resultObj.get("gdrCnt").toString()));
-						System.out.println("gdrCnt : " + gdrCnt);
+						/*System.out.println("gdrCnt : " + gdrCnt);*/
 					}
 					if (resultObj.containsKey("intnCnt") == false) {
 						intnCnt = Integer.parseInt(CmmUtil.nvl(resultObj.getOrDefault("intntCnt", 0).toString()));
-						System.out.println("intnCnt : " + intnCnt);
+						/*System.out.println("intnCnt : " + intnCnt);*/
 					} else {
 						intnCnt = Integer.parseInt(CmmUtil.nvl(resultObj.get("intnCnt").toString()));
-						System.out.println("intnCnt : " + intnCnt);
+						/*System.out.println("intnCnt : " + intnCnt);*/
 					}
 					if (resultObj.containsKey("resdntCnt") == false) {
 						resdntCnt = Integer.parseInt(CmmUtil.nvl(resultObj.getOrDefault("resdntCnt", 0).toString()));
-						System.out.println("resdntCnt : " + resdntCnt);
+						/*System.out.println("resdntCnt : " + resdntCnt);*/
 					} else {
 						resdntCnt = Integer.parseInt(CmmUtil.nvl(resultObj.get("resdntCnt").toString()));
-						System.out.println("resdntCnt : " + resdntCnt);
+						/*System.out.println("resdntCnt : " + resdntCnt);*/
 					}
 					if (resultObj.containsKey("sdrCnt") == false) {
 						sdrCnt = Integer.parseInt(CmmUtil.nvl(resultObj.getOrDefault("sdrCnt", 0).toString()));
-						System.out.println("sdrCnt : " + sdrCnt);
+						/*System.out.println("sdrCnt : " + sdrCnt);*/
 					} else {
 						sdrCnt = Integer.parseInt(CmmUtil.nvl(resultObj.get("sdrCnt").toString()));
-						System.out.println("sdrCnt : " + sdrCnt);
+						/*System.out.println("sdrCnt : " + sdrCnt);*/
 					}
 					if (resultObj.containsKey("XPos") == false) {
 						XPos = CmmUtil.nvl(resultObj.getOrDefault("XPos", "").toString());
-						System.out.println("XPos : " + XPos);
+						/*System.out.println("XPos : " + XPos);*/
 					} else {
 						XPos = CmmUtil.nvl(resultObj.get("XPos").toString());
-						System.out.println("XPos : " + XPos);
+						/*System.out.println("XPos : " + XPos);*/
 					}
 					if (resultObj.containsKey("XPos") == false) {
 						YPos = CmmUtil.nvl(resultObj.getOrDefault("YPos", "").toString());
-						System.out.println("YPos : " + YPos);
+						/*System.out.println("YPos : " + YPos);*/
 					} else {
 						YPos = CmmUtil.nvl(resultObj.get("YPos").toString());
-						System.out.println("YPos : " + YPos);
+						/*System.out.println("YPos : " + YPos);*/
 					}
 					String regDate = CmmUtil.nvl(req.getParameter("regDate"));
-					System.out.println("----------------------------------");
+					System.out.println(i);
 
 					ApiDTO aDTO = new ApiDTO();
 					aDTO.setYadmNm(yadmNm);

@@ -14,7 +14,14 @@ public class NoticeDTO {
 	private String regNo;
 	private String updDate;
 	private String updNo;
+	private String noticeSort;
 	
+	public String getNoticeSort() {
+		return noticeSort;
+	}
+	public void setNoticeSort(String noticeSort) {
+		this.noticeSort = noticeSort;
+	}
 	public String getNoticeNo() {
 		return noticeNo;
 	}

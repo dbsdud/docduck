@@ -69,6 +69,42 @@ public class NoticeController {
 		return "/notice/noticeList";
 	}
 	
+	@RequestMapping(value="notice/noticeReg")
+	public String noticeReg(HttpServletRequest req, Model model) throws Exception{
+		log.info(this.getClass() + " noticeReg Start!!!");
+		String noticeTitle=req.getParameter("noticeTitle");
+		String noticeContent=req.getParameter("noticeContent");
+		String noticeWriter=req.getParameter("noticeWriter");
+		String noticeSort=req.getParameter("noticeSort");
+		String regDate=req.getParameter("regDate");
+		String regNo=req.getParameter("regNo");
+		log.info(this.getClass()+" noticeTitle : " + noticeTitle);
+		log.info(this.getClass()+" noticeContent : " + noticeContent);
+		log.info(this.getClass()+" noticeWriter : " + noticeWriter);
+		log.info(this.getClass()+" noticeSort : " + noticeSort);
+		log.info(this.getClass()+" regDate : " + regDate);
+		log.info(this.getClass()+" regNo : " + regNo);
+		
+		NoticeDTO nDTO = new NoticeDTO();
+		nDTO.setNoticeTitle(noticeTitle);
+		nDTO.setNoticeContent(noticeContent);
+		nDTO.setNoticeWriter(noticeWriter);
+		nDTO.setNoticeSort(noticeSort);
+		nDTO.setRegDate(regDate);
+		nDTO.setRegNo(regNo);
+		
+		
+		log.info(this.getClass() + " noticeReg End!!!");
+		return "/notice/noticeReg";
+	}
+	@RequestMapping(value="notice/noticeRegProc", method=RequestMethod.POST)
+	public String insertNotice(HttpServletRequest req, Model model) throws Exception{
+		log.info(this.getClass() + " noticeRegProc Start!!!");
+		
+		log.info(this.getClass() + " noticeRegProc End!!!");
+		return "/alert";
+	}
+	
 	/*
 	 * 함수명 위의 value="notice/NoticeList" => /notice/NoticeList.do로 호출되는 url은 무조건 이 함수가 실행된다.
 	 * method=RequestMethod.GET => 폼 전송방법을 지정하는 것으로 get방식은 GET, post방식은 POST이다.

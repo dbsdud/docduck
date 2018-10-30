@@ -57,7 +57,6 @@ $(document).ready( function () {
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12 text-center">
-					<span class="counter pull-right"></span>
 					<table id="noticeTable" class="display table table-hover table-bordered results text-center">
 						<thead>
 							<tr>
