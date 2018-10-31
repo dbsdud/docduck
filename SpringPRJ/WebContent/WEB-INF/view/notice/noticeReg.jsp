@@ -28,8 +28,28 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12 text-center">
-					<form class="form-horizontal" method="post" action="/notice/noticeRegProc.do?">
-					
+					<form class="form-horizontal" method="post" action="/notice/noticeRegProc.do">
+						<div class="form-group">
+							<h4 class="section-heading">
+								제목
+							</h4>
+							<hr class="my-4">
+							<div class="col-sm-12">
+								<div class="input-group">
+									<input class="form-control" id="noticeTitle" name="noticeTitle" type="text" placeholder="제목을 입력하세요.">
+								</div>
+							</div>
+							<br>
+							<h4 class="section-heading">
+								비밀번호
+							</h4>
+							<hr class="my-4">
+							<div class="col-sm-12">
+								<div>
+								
+								</div>
+							</div>
+						</div>
 					</form>
 				</div>
 			</div>

@@ -99,9 +99,11 @@ $(document).ready( function () {
 					<% if(regNo.equals("1")) { %>
 					<div class="col-sm-12">
 						<div class="form-group pull-right">
-							<button class="btn btn-primary btn-block" id="writeNotice">
-								작성
-							</button>
+							<a href="/notice/noticeReg.do">
+								<button class="btn btn-primary btn-block" id="writeNotice">
+									작성
+								</button>
+							</a>
 						</div>
 					</div>
 					<% } %>

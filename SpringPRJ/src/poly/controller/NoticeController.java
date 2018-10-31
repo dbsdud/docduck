@@ -72,7 +72,7 @@ public class NoticeController {
 	@RequestMapping(value="notice/noticeReg")
 	public String noticeReg(HttpServletRequest req, Model model) throws Exception{
 		log.info(this.getClass() + " noticeReg Start!!!");
-		String noticeTitle=req.getParameter("noticeTitle");
+		/*String noticeTitle=req.getParameter("noticeTitle");
 		String noticeContent=req.getParameter("noticeContent");
 		String noticeWriter=req.getParameter("noticeWriter");
 		String noticeSort=req.getParameter("noticeSort");
@@ -91,7 +91,7 @@ public class NoticeController {
 		nDTO.setNoticeWriter(noticeWriter);
 		nDTO.setNoticeSort(noticeSort);
 		nDTO.setRegDate(regDate);
-		nDTO.setRegNo(regNo);
+		nDTO.setRegNo(regNo);*/
 		
 		
 		log.info(this.getClass() + " noticeReg End!!!");
