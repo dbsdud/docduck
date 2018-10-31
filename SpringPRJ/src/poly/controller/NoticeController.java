@@ -72,37 +72,64 @@ public class NoticeController {
 	@RequestMapping(value="notice/noticeReg")
 	public String noticeReg(HttpServletRequest req, Model model) throws Exception{
 		log.info(this.getClass() + " noticeReg Start!!!");
-		/*String noticeTitle=req.getParameter("noticeTitle");
-		String noticeContent=req.getParameter("noticeContent");
-		String noticeWriter=req.getParameter("noticeWriter");
-		String noticeSort=req.getParameter("noticeSort");
-		String regDate=req.getParameter("regDate");
-		String regNo=req.getParameter("regNo");
-		log.info(this.getClass()+" noticeTitle : " + noticeTitle);
-		log.info(this.getClass()+" noticeContent : " + noticeContent);
-		log.info(this.getClass()+" noticeWriter : " + noticeWriter);
-		log.info(this.getClass()+" noticeSort : " + noticeSort);
-		log.info(this.getClass()+" regDate : " + regDate);
-		log.info(this.getClass()+" regNo : " + regNo);
-		
-		NoticeDTO nDTO = new NoticeDTO();
-		nDTO.setNoticeTitle(noticeTitle);
-		nDTO.setNoticeContent(noticeContent);
-		nDTO.setNoticeWriter(noticeWriter);
-		nDTO.setNoticeSort(noticeSort);
-		nDTO.setRegDate(regDate);
-		nDTO.setRegNo(regNo);*/
-		
-		
+	
 		log.info(this.getClass() + " noticeReg End!!!");
 		return "/notice/noticeReg";
 	}
 	@RequestMapping(value="notice/noticeRegProc", method=RequestMethod.POST)
 	public String insertNotice(HttpServletRequest req, Model model) throws Exception{
 		log.info(this.getClass() + " noticeRegProc Start!!!");
+		String noticeTitle = req.getParameter("noticeTitle");
+		log.info(this.getClass() + " noticeTitle : " + noticeTitle);
+		String noticeContent = req.getParameter("noticeContent");
+		log.info(this.getClass() + " noticeContent : " + noticeContent);
+		String noticeWriter = req.getParameter("noticeWriter");
+		log.info(this.getClass() + " noticeWriter : " + noticeWriter);
+		String regNo = req.getParameter("regNo");
+		log.info(this.getClass() + " regNo" + regNo);
+		
+		NoticeDTO nDTO = new NoticeDTO();
+		nDTO.setNoticeTitle(noticeTitle);
+		nDTO.setNoticeContent(noticeContent);
+		nDTO.setNoticeWriter(noticeWriter);
+		nDTO.setRegNo(regNo);
+		
+		int result=noticeService.insertNotice(nDTO);
+		String msg="";
+		String url="";
+		if(result != 0) {
+			msg="공지사항을 등록했습니다.";
+			url="/notice/noticeList.do";
+		} else {
+			msg="공지사항 등록에 실패했습니다.";
+			url="/notice/noticeReg.do";
+		}
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
 		
 		log.info(this.getClass() + " noticeRegProc End!!!");
 		return "/alert";
+	}
+	@RequestMapping(value="notice/noticeDetail",method=RequestMethod.GET)
+	public String noticeDetail(HttpServletRequest req, HttpSession session, Model model) throws Exception {
+		log.info(this.getClass() + " noticeDetail Start!!!");
+		String noticeNo = CmmUtil.nvl(req.getParameter("noticeNo"));
+		log.info(this.getClass() + " noticeNo : " + noticeNo);
+		
+		NoticeDTO nDTO = new NoticeDTO();
+		nDTO.setNoticeNo(noticeNo);
+		log.info(this.getClass() + " noticeNo : " + noticeNo);
+		
+		NoticeDTO nDTO2 = noticeService.getNoticeDetail(nDTO);
+		
+		int updateCount=noticeService.updateNoticeCount(noticeNo);
+		log.info(updateCount);
+		log.info(this.getClass() + " noticeNo : " + noticeNo);
+		log.info(this.getClass() + " noticeCount : " + nDTO.getNoticeCount());
+		
+		model.addAttribute("nDTO",nDTO);
+		
+		return "/notice/noticeDetail";
 	}
 	
 	/*

@@ -87,10 +87,10 @@ $(document).ready( function () {
 							<% for(int i=0; i<nList.size(); i++) { %>
 							<tr>
 								<th scope="row"><%=nList.get(i).getNoticeNo() %></th>
-								<td><%=nList.get(i).getNoticeTitle() %></td>
+								<td><a href="/notice/noticeDetail.do?noticeNo=<%=nList.get(i).getNoticeNo() %>"><%=nList.get(i).getNoticeTitle() %></a></td>
 								<td><%=nList.get(i).getNoticeWriter() %></td>
 								<td><%=nList.get(i).getRegDate() %></td>
-								<td><%=nList.get(i).getRegDate() %></td>
+								<td><%=nList.get(i).getNoticeCount() %></td>
 							</tr>
 							<% } %>
 						<% } %>

@@ -45,6 +45,11 @@ $(function(){
 	});
 });
 </script>
+<script>
+function userRegCancel(){
+	location.href="/home.do";
+}
+</script>
 </head>
 <body id="page-top">
 	<%@ include file="/WEB-INF/view/homeNav.jsp" %>
@@ -116,16 +121,18 @@ $(function(){
 								</div>
 							</div>
 							<br>
-						</div>
-						<div class="col-sm-12 text-center">
-							<button class="btn btn-danger" type="reset">
-								취소하기
-							</button>
-							<button class="btn btn-primary" id="regSub" type="submit" onclick="if(!userSubmit(this.form)){return false;}">
-								회원가입
-							</button>
+							<div class="col-sm-12 text-center">
+								<button class="btn btn-primary" id="regSub" onclick="if(!userSubmit(this.form)){return false;}" style="width:30%">
+									회원가입
+								</button>
+							</div>							
 						</div>
 					</form>
+					<div class="col-sm-12 text-center">
+						<button class="btn btn-danger" onclick="userRegCancel()" style="width:30%">
+							취소하기
+						</button>
+					</div>
 				</div>
 			</div>
 		</div>

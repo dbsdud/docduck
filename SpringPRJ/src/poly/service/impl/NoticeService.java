@@ -20,4 +20,20 @@ public class NoticeService implements INoticeService{
 	public List<NoticeDTO> getNoticeList() throws Exception{
 		return noticeMapper.getNoticeList();
 	}
+
+	@Override
+	public int insertNotice(NoticeDTO nDTO) throws Exception {
+		return noticeMapper.insertNotice(nDTO);
+	}
+
+	@Override
+	public NoticeDTO getNoticeDetail(NoticeDTO nDTO) throws Exception {
+		return noticeMapper.getNoticeDetail(nDTO);
+	}
+
+	@Override
+	public int updateNoticeCount(String noticeNo) throws Exception {
+		return noticeMapper.updateNoticeCount(noticeNo);
+	}
+
 }
