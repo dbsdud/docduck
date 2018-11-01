@@ -10,28 +10,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>공지사항</title>
 <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.1/css/responsive.dataTables.min.css">
-<style>
-.results tr[visible='false'],
-.no-result{
-	display:none;
-}
-.results tr[visible='true']{
-	display:table-row;
-}
-.counter{
-	padding:8px;
-	color:#ccc;
-}
-div.fw-container div.fw-body div.content {
-	margin-top: 5em;
-}
-div.fw-body h1 {
-	display: none;
-}
-div.fw-container {
-	z-index: 1;
-}
-</style>
 <%@ include file="/WEB-INF/view/mainCss.jsp" %>
 <script>
 $(document).ready( function () {
@@ -41,7 +19,6 @@ $(document).ready( function () {
 </head>
 <body id="page-top">
 	<%@ include file="/WEB-INF/view/homeNav.jsp" %>
-	<input type="hidden" value="<%=userNo %>" />
 	<header class="masthead text-center text-white d-flex">
 		<div class="container my-auto">
 			<div class="row">
@@ -57,6 +34,8 @@ $(document).ready( function () {
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12 text-center">
+				<input type="hidden" value="<%=userNo %>" />
+				<input type="hidden" value="<%=regNo %>" />
 					<table id="noticeTable" class="display table table-hover table-bordered results text-center">
 						<thead>
 							<tr>
@@ -96,15 +75,14 @@ $(document).ready( function () {
 						<% } %>
 						</tbody>
 					</table>
-					<% if(regNo.equals("1")) { %>
+					<br>
+					<% if(userNo.equals("1")) { %>
 					<div class="col-sm-12">
-						<div class="form-group pull-right">
-							<a href="/notice/noticeReg.do">
-								<button class="btn btn-primary btn-block" id="writeNotice">
-									작성
-								</button>
-							</a>
-						</div>
+						<a href="/notice/noticeReg.do">
+							<button class="btn btn-primary btn-block pull-right" style="width:30%" id="writeNotice">
+								작성
+							</button>
+						</a>
 					</div>
 					<% } %>
 				</div>

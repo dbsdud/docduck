@@ -37,6 +37,7 @@
 	<!-- 로그인 -->
 	<select id="getUserLogin" parameterType="UserDTO" resultType="UserDTO">
 	SELECT
+		USER_NO AS userNo,
 		ID AS id,
 		PASSWORD AS password,
 		USER_NAME AS userName,

@@ -118,20 +118,92 @@ public class NoticeController {
 		
 		NoticeDTO nDTO = new NoticeDTO();
 		nDTO.setNoticeNo(noticeNo);
+		
 		log.info(this.getClass() + " noticeNo : " + noticeNo);
 		
 		NoticeDTO nDTO2 = noticeService.getNoticeDetail(nDTO);
 		
 		int updateCount=noticeService.updateNoticeCount(noticeNo);
-		log.info(updateCount);
-		log.info(this.getClass() + " noticeNo : " + noticeNo);
-		log.info(this.getClass() + " noticeCount : " + nDTO.getNoticeCount());
 		
-		model.addAttribute("nDTO",nDTO);
-		
+		model.addAttribute("nDTO2",nDTO2);
+		log.info(this.getClass() + " noticeDetail End!!!");
 		return "/notice/noticeDetail";
 	}
-	
+	@RequestMapping(value="notice/noticeDelete", method=RequestMethod.GET)
+	public String noticeDelete(HttpServletRequest req, Model model) throws Exception{
+		log.info(this.getClass() + " noticeDelete Start!!!");
+		String noticeNo = req.getParameter("noticeNo");
+		log.info(this.getClass() + " noticeNo : " + noticeNo);
+		int result = noticeService.deleteNotice(noticeNo);
+		
+		String msg="";
+		String url="";
+		if(result!=0) {
+			msg="삭제하였습니다.";
+			url="/notice/noticeList.do";
+		} else {
+			msg="삭제에 실패하였습니다.";
+			url="/notice/noticeList.do?noticeNo="+noticeNo;
+		}
+		model.addAttribute("msg",msg);
+		model.addAttribute("url",url);
+		log.info(this.getClass() + " noticeDelete End!!!");
+		
+		return "/alert";
+	}
+	@RequestMapping(value="notice/noticeUpdate",method=RequestMethod.GET)
+	public String noticeUpdate(HttpServletRequest req, Model model) throws Exception{
+		log.info(this.getClass() + " noticeUpdate Start!!!");
+		String noticeNo = req.getParameter("noticeNo");
+		log.info(this.getClass() + " noticeNo : " + noticeNo);
+		
+		NoticeDTO nDTO1 = new NoticeDTO();
+		nDTO1.setNoticeNo(noticeNo);
+		log.info(this.getClass() + " nDTO1.getNoticeNo : " + nDTO1.getNoticeNo());
+		
+		NoticeDTO nDTO = noticeService.getNoticeDetail(nDTO1);
+		log.info(this.getClass() + " noticeNo : " + nDTO.getNoticeNo());
+		
+		model.addAttribute("nDTO",nDTO);
+		log.info(this.getClass() + " noticeUpdate End!!!");
+		return "/notice/noticeUpdate";
+	}
+	@RequestMapping(value="notice/noticeUpdateProc",method=RequestMethod.POST)
+	public String noticeUpdateProc(HttpServletRequest req, Model model) throws Exception{
+		log.info(this.getClass() + " noticeUpdateProc Start!!!");
+		String noticeNo = req.getParameter("noticeNo");
+		log.info(this.getClass() + " noticeNo : " + noticeNo);
+		String noticeTitle = req.getParameter("noticeTitle");
+		log.info(this.getClass() + " noticeTitle : " + noticeTitle);
+		String noticeContent = req.getParameter("noticeContent");
+		String noticeWriter = req.getParameter("noticeWriter");
+		log.info(this.getClass() + " noticeWriter : " + noticeWriter);
+		String regNo = req.getParameter("regNo");
+		log.info(this.getClass() + " regNo : " + regNo);
+		
+		NoticeDTO nDTO = new NoticeDTO();
+		nDTO.setNoticeNo(noticeNo);
+		nDTO.setNoticeTitle(noticeTitle);
+		nDTO.setNoticeContent(noticeContent);
+		nDTO.setNoticeWriter(noticeWriter);
+		nDTO.setRegNo(regNo);
+		
+		int result = noticeService.updateNotice(nDTO);
+		log.info(this.getClass() + " result : " + result);
+		String msg="";
+		String url="";
+		if(result != 0) {
+			msg="수정에 성공하였습니다.";
+			url="/notice/noticeList.do";
+		} else {
+			msg="수정에 실패하였습니다.";
+			url="/notice/noticeUpdate.do?noticeNo="+noticeNo;
+		}
+		model.addAttribute("msg",msg);
+		model.addAttribute("url",url);
+		log.info(this.getClass() + " noticeUpdateProc End!!!");
+		return "/alert";
+	}
 	/*
 	 * 함수명 위의 value="notice/NoticeList" => /notice/NoticeList.do로 호출되는 url은 무조건 이 함수가 실행된다.
 	 * method=RequestMethod.GET => 폼 전송방법을 지정하는 것으로 get방식은 GET, post방식은 POST이다.

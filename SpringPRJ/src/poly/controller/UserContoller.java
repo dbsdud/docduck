@@ -120,6 +120,7 @@ public class UserContoller {
 		} else {
 			session.setAttribute("id", uDTO.getId());
 			session.setAttribute("userName", uDTO.getUserName());
+			session.setAttribute("userNo", uDTO.getUserNo());
 			session.setAttribute("regNo", uDTO.getRegNo());
 		}
 		return "redirect:/home.do";
