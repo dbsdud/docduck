@@ -4,6 +4,7 @@
 <%@ page import="poly.dto.UserDTO" %>
 <%@ page import="java.util.List" %>
 <%
+	List<UserDTO> uList=(List<UserDTO>)request.getAttribute("uList");
 	List<NoticeDTO> nList=(List<NoticeDTO>)request.getAttribute("nList");
 %>
 <html>
@@ -14,6 +15,7 @@
 <meta name="author" content="">
 <title>Doc.Duck 관리</title>
 <%@ include file="/WEB-INF/view/mainCss.jsp" %>
+<%-- <%@ include file="adminCss.jsp" %> --%>
 <script>
 $(document).ready(function(){
 	$('ul.tabs li').click(function(){
@@ -27,14 +29,33 @@ $(document).ready(function(){
 </script>
 <script>
 $(document).ready( function () {
-	$('#userTable').DataTable();
+	$('#userTable').DataTable({
+		"bAutoWidth" : false,
+		"lengthMenu" : [[10,25,50,100], [10,25,50,100]],
+		"pageLength" : 10,
+		columns:[
+			{title:'No'},
+			{title:"아이디"},
+			{title:"이름"}
+		]
+	});
 } );
 $(document).ready( function () {
 	$('#reviewTable').DataTable();
 } );
 $(document).ready( function () {
-	$('#noticeTable').DataTable();
+	$('#noticeTable').DataTable({
+		"bAutoWidth" : false,
+		"lengthMenu" : [[10,25,50,100], [10,25,50,100]],
+		"pageLength" : 10,
+		columns:[
+			{title:'No'},
+			{title:"제목"},
+			{title:"등록일"}
+		]
+	});
 } );
+
 </script>
 <style>
 ul.tabs{
@@ -97,36 +118,58 @@ ul.tabs li.current{
 				</div>
 				<div class="col-lg-12">
 					<div id="tab-1" class="tab-content current">
-						<table id="userTable">
+						<table id="userTable" class="text-center display table-hover table-bordered" style="width:100%;">
 							<thead>
 								<tr>
 									<th style="width:10%;">No</th>
-									<th style="width:60%;">아이디</th>
-									<th>이름</th>
+									<th style="width:45%;">아이디</th>
+									<th style="width:45%;">이름</th>
 								</tr>
 							</thead>
+							<tbody>
+							<% if(uList!=null) { %>
+								<% for(int i=0; i<uList.size(); i++) { %>
+								<tr>
+									<th scope="row"><%= uList.get(i).getUserNo() %></th>
+									<td><a href="/admin/adminUserDetail.do?userNo=<%=uList.get(i).getUserNo() %>"><%=uList.get(i).getId() %></a></td>
+									<td><%=uList.get(i).getUserName() %></td>
+								</tr>
+								<% } %>
+							<% } %>
+							</tbody>
 						</table>
 					</div>
 					<div id="tab-2" class="tab-content">
-						<table id="reviewTable">
+						<table id="reviewTable" class="display table table-hover table-bordered results text-center">
 							<thead>
 								<tr>
 									<th style="width:10%;">No</th>
-									<th style="width:450%;">내용</th>
+									<th style="width:400%;">내용</th>
 									<th>등록일</th>
 								</tr>
 							</thead>						
 						</table>
 					</div>
 					<div id="tab-3" class="tab-content">
-						<table id="noticeTable">
+						<table id="noticeTable" class="text-center display table-hover table-bordered" style="width:100%;">
 							<thead>
 								<tr>
 									<th style="width:10%;">No</th>
-									<th style="width:450%">제목</th>
-									<th>등록일</th>
+									<th style="width:65%;">제목</th>
+									<th style="width:25%;">등록일</th>
 								</tr>
-							</thead>						
+							</thead>
+							<tbody>
+							<% if(nList!=null) { %>
+								<% for(int i=0; i<nList.size(); i++) { %>
+								<tr>
+									<th scope="row"><%= nList.get(i).getNoticeNo() %></th>
+									<td><a href="/notice/noticeDetail.do?noticeNo=<%=nList.get(i).getNoticeNo() %>"><%=nList.get(i).getNoticeTitle() %></a></td>
+									<td><%=nList.get(i).getRegDate() %></td>
+								</tr>
+								<% } %>
+							<% } %>
+							</tbody>						
 						</table>
 					</div>
 				</div>

@@ -46,4 +46,19 @@ public class UserService implements IUserService {
 		return userMapper.findAccountPw(uDTO);
 	}
 
+	@Override
+	public List<UserDTO> getUserList() throws Exception {
+		return userMapper.getUserList();
+	}
+
+	@Override
+	public UserDTO getAdminUserDetail(UserDTO uDTO) throws Exception {
+		return userMapper.getAdminUserDetail(uDTO);
+	}
+
+	@Override
+	public int userKick(String userNo) throws Exception {
+		return userMapper.userKick(userNo);
+	}
+
 }

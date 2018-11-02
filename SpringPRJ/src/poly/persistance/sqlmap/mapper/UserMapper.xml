@@ -67,4 +67,35 @@
 	WHERE
 		ID=#{id} AND USER_NAME=#{userName} AND USER_TEL=#{userTel}
 	</select>
+	<!-- 회원 목록 -->
+	<select id="getUserList" resultType="UserDTO">
+		SELECT 
+			USER_NO AS userNo,
+			ID AS id,
+			USER_NAME AS userName
+		FROM
+			DOC_USER
+	</select>
+	<!-- 상세회원정보(관리자) -->
+	<select id="getAdminUserDetail" parameterType="UserDTO" resultType="UserDTO">
+		SELECT
+			USER_NO AS userNo,
+			ID AS id,
+			PASSWORD AS password,
+			USER_NAME AS userName,
+			USER_TEL AS userTel,
+			REGDATE AS regDate
+		FROM
+			DOC_USER
+		WHERE
+			USER_NO=#{userNo}
+	</select>
+	<!-- 회원탈퇴(관리자) -->
+	<delete id="userKick" parameterType="string">
+		DELETE
+		FROM
+			DOC_USER
+		WHERE
+			USER_NO=#{userNo}
+	</delete>
 </mapper>

@@ -19,4 +19,9 @@ public interface UserMapper {
 	
 	public List<UserDTO> findAccountPw(UserDTO uDTO) throws Exception;
 	
+	public List<UserDTO> getUserList() throws Exception;
+
+	public UserDTO getAdminUserDetail(UserDTO uDTO) throws Exception;
+	
+	public int userKick(String userNo) throws Exception;
 }

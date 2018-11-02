@@ -18,5 +18,10 @@ public interface IUserService {
 	public List<UserDTO> findAccountId(UserDTO uDTO) throws Exception;
 	// 비밀번호 찾기
 	public List<UserDTO> findAccountPw(UserDTO uDTO) throws Exception;
-	
+	// 회원 목록
+	public List<UserDTO> getUserList() throws Exception;
+	// 상세회원정보(관리자)
+	public UserDTO getAdminUserDetail(UserDTO uDTO) throws Exception;
+	// 회원탈퇴(관리자)
+	public int userKick(String userNo) throws Exception;
 }

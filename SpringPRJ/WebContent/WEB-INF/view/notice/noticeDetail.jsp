@@ -46,7 +46,7 @@ function noticeUpdate(noticeNo){
 					<p>
 						<%= nDTO2.getNoticeContent() %>
 					</p>
-					<input type="hidden" value="<%= userNo %>" />
+					<input type="hidden" id="userNo" value="<%= userNo %>" />
 					<br>
 					<% if(userNo.equals("1")) { %>
 					<div class="col-sm-12">
