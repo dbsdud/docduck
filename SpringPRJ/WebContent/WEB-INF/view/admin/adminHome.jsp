@@ -41,7 +41,16 @@ $(document).ready( function () {
 	});
 } );
 $(document).ready( function () {
-	$('#reviewTable').DataTable();
+	$('#reviewTable').DataTable({
+		"bAutoWidth" : false,
+		"lengthMenu" : [[10,25,50,100], [10,25,50,100]],
+		"pageLength" : 10,
+		columns:[
+			{title:'No'},
+			{title:"내용"},
+			{title:"등록일"}
+		]
+	});
 } );
 $(document).ready( function () {
 	$('#noticeTable').DataTable({
@@ -144,8 +153,8 @@ ul.tabs li.current{
 							<thead>
 								<tr>
 									<th style="width:10%;">No</th>
-									<th style="width:400%;">내용</th>
-									<th>등록일</th>
+									<th style="width:65%;">내용</th>
+									<th style="width:25%">등록일</th>
 								</tr>
 							</thead>						
 						</table>

@@ -81,5 +81,7 @@ function userKick(userNo){
 			</div>
 		</div>
 	</section>
+	<%@ include file="/WEB-INF/view/homeFooter.jsp" %>
+	<%@ include file="/WEB-INF/view/mainJs.jsp" %>
 </body>
 </html>
