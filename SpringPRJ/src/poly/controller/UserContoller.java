@@ -119,6 +119,7 @@ public class UserContoller {
 			return "/alert";
 		} else {
 			session.setAttribute("id", uDTO.getId());
+			session.setAttribute("password", uDTO.getPassword());
 			session.setAttribute("userName", uDTO.getUserName());
 			session.setAttribute("userNo", uDTO.getUserNo());
 			session.setAttribute("regNo", uDTO.getRegNo());
@@ -180,5 +181,28 @@ public class UserContoller {
 		log.info("findAccountPw End!!!");
 		return uList;
 	}
-	
+	// 마이페이지 입장
+	@RequestMapping(value="user/myPage")
+	public String myPage(HttpServletRequest req, Model model) throws Exception {
+		log.info(this.getClass() + " myPage Start!!!");
+		log.info(this.getClass() + " myPage End!!!");
+		return "/user/myPage";
+	}
+	// 마이페이지 상세
+	@RequestMapping(value="user/myPageDetail",method=RequestMethod.GET)
+	public String myPageDetail(HttpServletRequest req, HttpSession session, Model model) throws Exception{
+		log.info(this.getClass() + " myPageDetail Start!!");
+		String userNo = CmmUtil.nvl(req.getParameter("userNo"));
+		log.info(this.getClass() + " userNo : " + userNo);
+		
+		UserDTO uDTO = new UserDTO();
+		uDTO.setUserNo(userNo);
+		log.info(this.getClass() + " userNo : " + userNo);
+		
+		UserDTO uDTO2 = userService.getUserDetail(uDTO);
+		model.addAttribute("uDTO2", uDTO2);
+		
+		log.info(this.getClass() + " myPageDetail End!!");
+		return "/user/myPageDetail";
+	}
 }

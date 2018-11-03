@@ -3,6 +3,7 @@
     pageEncoding="UTF-8"%>
 <%
 	String id = CmmUtil.nvl((String)session.getAttribute("id"));
+	String password = CmmUtil.nvl((String)session.getAttribute("password"));
 	String userName = CmmUtil.nvl((String)session.getAttribute("userName"));
 	String userNo = CmmUtil.nvl((String)session.getAttribute("userNo"));
 	String regNo = CmmUtil.nvl((String)session.getAttribute("regNo"));
@@ -41,7 +42,7 @@
 					<%} else {%>
 					<li class="nav-item">
 						<!-- 마이페이지 연동 -->
-						<a class="nav-link" href="#"><%= userName + "님 환영합니다." %></a>
+						<a class="nav-link" href="/user/myPage.do"><%= userName + "님 환영합니다." %></a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" onclick="logout();">Logout</a>

@@ -98,4 +98,18 @@
 		WHERE
 			USER_NO=#{userNo}
 	</delete>
+	<!-- 상세회원정보(회원) -->
+	<select id="getUserDetail" parameterType="UserDTO" resultType="UserDTO">
+		SELECT
+			USER_NO AS userNo,
+			ID AS id,
+			PASSWORD AS password,
+			USER_NAME AS userName,
+			USER_TEL AS userTel,
+			REGDATE AS regDate
+		FROM
+			DOC_USER
+		WHERE
+			USER_NO=#{userNo}
+	</select>
 </mapper>

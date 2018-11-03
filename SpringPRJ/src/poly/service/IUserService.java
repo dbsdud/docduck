@@ -24,4 +24,6 @@ public interface IUserService {
 	public UserDTO getAdminUserDetail(UserDTO uDTO) throws Exception;
 	// 회원탈퇴(관리자)
 	public int userKick(String userNo) throws Exception;
+	// 상세회원정보
+	public UserDTO getUserDetail(UserDTO uDTO) throws Exception;
 }
