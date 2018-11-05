@@ -84,6 +84,7 @@
 				<p><em>지도 중심좌표가 변경되면 지도 정보가 표출됩니다</em></p>
 				<p id="result"></p>
 			</div>
+			
 		</div>
 	</section>
 	<section id="findHospitalList">
