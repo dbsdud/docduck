@@ -26,4 +26,6 @@ public interface IUserService {
 	public int userKick(String userNo) throws Exception;
 	// 상세회원정보
 	public UserDTO getUserDetail(UserDTO uDTO) throws Exception;
+	// 회원정보수정(회원)
+	public int updInfo(UserDTO uDTO) throws Exception;
 }

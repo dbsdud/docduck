@@ -26,4 +26,6 @@ public interface UserMapper {
 	public int userKick(String userNo) throws Exception;
 	
 	public UserDTO getUserDetail(UserDTO uDTO) throws Exception;
+	
+	public int updInfo(UserDTO uDTO) throws Exception;
 }

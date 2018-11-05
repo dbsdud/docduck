@@ -31,9 +31,10 @@ function displayMarker(locPosition, message) {
 	var markerImage= new daum.maps.MarkerImage(imageSrc, imageSize);
 	var marker = new daum.maps.Marker({
 		image : markerImage,
-		clickable : true
+		position: locPosition,
+		clickable : true,
 	});
-	var iwContent = '<div style="padding : 5px;">Hello World!</div><br>',
+	var iwContent = message,
 		iwRemoveable = true;
 	var infowindow = new daum.maps.InfoWindow({
 		content : iwContent,

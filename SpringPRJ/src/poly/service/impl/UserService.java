@@ -66,4 +66,9 @@ public class UserService implements IUserService {
 		return userMapper.getUserDetail(uDTO);
 	}
 
+	@Override
+	public int updInfo(UserDTO uDTO) throws Exception {
+		return userMapper.updInfo(uDTO);
+	}
+
 }

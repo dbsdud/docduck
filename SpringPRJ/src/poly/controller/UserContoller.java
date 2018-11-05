@@ -205,4 +205,33 @@ public class UserContoller {
 		log.info(this.getClass() + " myPageDetail End!!");
 		return "/user/myPageDetail";
 	}
+	
+	@RequestMapping(value="user/updInfoProc", method=RequestMethod.POST)
+	public String updInfoProc(HttpServletRequest req, Model model, HttpSession session) throws Exception{
+		log.info(this.getClass() + " updInfoProc Start!!!");
+		String userNo = req.getParameter("userNo");
+		log.info(this.getClass() + " userNo : " + userNo);
+		String password = req.getParameter("updPassword");
+		log.info(this.getClass() + " password : " + password);
+		
+		UserDTO uDTO = new UserDTO();
+		uDTO.setUserNo(userNo);
+		log.info(this.getClass() + " userNo : " + userNo);
+		uDTO.setPassword(password);
+		
+		int result = userService.updInfo(uDTO);
+		String msg="";
+		String url="";
+		if(result!=0) {
+			msg="비밀번호를 변경하였습니다.";
+			url="/home.do";
+		} else {
+			msg="비밀번호 변경에 실패하였습니다.";
+			url="/user/myPageDetail.do?userNo=" + userNo;
+		}
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		log.info(this.getClass() + " updInfoProc End!!!");
+		return "/alert";
+	}
 }

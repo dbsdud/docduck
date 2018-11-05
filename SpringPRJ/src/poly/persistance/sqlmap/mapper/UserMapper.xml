@@ -112,4 +112,13 @@
 		WHERE
 			USER_NO=#{userNo}
 	</select>
+	<!-- 회원정보수정(회원) -->
+	<update id="updInfo" parameterType="UserDTO">
+	UPDATE 
+		DOC_USER
+	SET 
+		PASSWORD=#{password}
+	WHERE 
+		USER_NO=#{userNo}
+	</update>
 </mapper>

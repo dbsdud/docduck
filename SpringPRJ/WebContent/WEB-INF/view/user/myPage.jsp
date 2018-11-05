@@ -64,8 +64,12 @@ function myPageCancel(){
 				myPagePass.focus()
 				return false;
 			} else if(myPagePass.value==password.value){
-				location.href="/user/myPageDetail.do?userNo="+userNo;
+				location.href="/user/myPageDetail.do?userNo="+document.getElementById("userNo").value;
 				return true;
+			} else if(myPagePass.value!=password.value){
+				alert("비밀번호가 다릅니다.")
+				myPagePass.focus()
+				return false;
 			}
 		}
 	</script>
