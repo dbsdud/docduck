@@ -21,6 +21,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.google.gson.JsonParser;
+
 import poly.dto.ApiDTO;
 import poly.service.IApiService;
 import poly.service.impl.ApiService;
@@ -33,7 +35,38 @@ public class ApiController {
 	private Logger log = Logger.getLogger(this.getClass());
 	@Resource(name = "ApiService")
 	private IApiService apiService;
-
+	/*@RequestMapping(value="/li2")
+	public String li2(HttpServletRequest req, HttpServletResponse res, Model model) throws Exception{
+		log.info(this.getClass() + "li2 Start!!!");
+		BufferedReader br = null;
+		int pageNo=1;
+		try {
+			while(true) {
+				String urlstr = "http://apis.data.go.kr/" + "B552657/HsptlAsembySearchService/getHsptlMdcncListInfoInqire?pageNo=" + pageNo
+						+ "&numOfRows=1000&type=json$"
+						+ "ServiceKey=ZNn3FaZRn8RzHpElf%2BdJ9uFHlHmA9fzoYsyghDb5UZGYAxeF4tRc%2B4Ch%2BRHKo11qtYgzu6Dn%2FZz%2F9W5OpNWzfQ%3D%3D";
+				URL url = new URL(urlstr);
+				HttpURLConnection urlconnection = (HttpURLConnection) url.openConnection();
+				br = new BufferedReader(new InputStreamReader(urlconnection.getInputStream(), "UTF-8"));
+				String result="";
+				String line;
+				while((line=br.readLine()) != null) {
+					result = result.concat(line);
+				}
+				JSONParser parser = new JSONParser();
+				JSONObject obj = (JSONObject) parser.parse(result);
+				JSONObject parse_response = (JSONObject) obj.get("response");
+				JSONObject parse_body = (JSONObject) parse_response.get("body");
+				JSONObject parse_items = (JSONObject) parse_body.get("items");
+				JSONArray parse_item = (JSONArray) parse_items.get("item");
+				JSONObject resultObj;
+				String dutyAddr="",
+			}
+		}
+		
+		log.info(this.getClass() + "li2 End!!!");
+		return "/li2";
+	}*/
 	@RequestMapping(value = "/li")
 	public String li(HttpServletRequest req, HttpServletResponse res, Model model) throws Exception {
 		log.info(getClass() + "Start!!!");

@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="poly.dto.ApiDTO" %>
+<%
+	ApiDTO aDTO = (ApiDTO)request.getAttribute("aDTO");
+%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -24,6 +28,7 @@
     .info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
     .info .link {color: #5085BB;}
 </style>
+<%@ include file="findHospitalAPI.jsp" %>
 </head>
 <body id="page-top">
 	<%@ include file="/WEB-INF/view/homeNav.jsp" %>
@@ -41,6 +46,38 @@
 	<section>
 		<div class="container">
 			<div class="row text-center">
+				<div class="col-sm-4 form-group">
+					<select name="sidoCd" id="sidoCd" title="시/도 선택" class="form-control">
+						<option>시/도 선택</option>
+						<option value="110000">서울</option>
+						<option value="210000">부산</option>
+						<option value="220000">인천</option>
+						<option value="230000">대구</option>
+						<option value="240000">광주</option>
+						<option value="250000">대전</option>
+						<option value="260000">울산</option>
+						<option value="310000">경기</option>
+						<option value="320000">강원</option>
+						<option value="330000">충북</option>
+						<option value="340000">충남</option>
+						<option value="350000">전북</option>
+						<option value="360000">전남</option>
+						<option value="370000">경북</option>
+						<option value="380000">경남</option>
+						<option value="390000">제주</option>
+						<option value="410000">세종</option>
+					</select>
+				</div>
+				<div class="col-sm-4 form-group">
+					<select name="sgguCd" id="sgguCd" title="시/군/구 선택" class="form-control">
+						<option>시/군/구 선택</option>
+					</select>
+				</div>					
+				<div class="col-sm-4 form-group">
+					<select name="emdongNm" id="emdongNm" title="읍/면/동/로 선택" class="form-control">
+						<option>읍/면/동/로 선택</option>
+					</select>
+				</div>
 				<div id="area" class="col-sm-6 form-group">
 					<select class="form-control">
 						<option value="n">지역 선택</option>
@@ -84,7 +121,6 @@
 				<p><em>지도 중심좌표가 변경되면 지도 정보가 표출됩니다</em></p>
 				<p id="result"></p>
 			</div>
-			
 		</div>
 	</section>
 	<section id="findHospitalList">
