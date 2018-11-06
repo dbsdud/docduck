@@ -27,6 +27,12 @@ public class FindController {
 		return "/find/findHospital";
 	}
 	@RequestMapping(value="sido/sidoSearch")
+	public @ResponseBody List<Object> sidoSearch(HttpServletRequest req) throws Exception {
+		log.info(this.getClass() + " sidoSearch Start!!!");
+		log.info(this.getClass() + " sidoSearch End!!!");
+		return null;
+	}
+	/*@RequestMapping(value="sido/sidoSearch")
 	public @ResponseBody List<Object> sidoSearch(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		log.info(this.getClass() + " sidoSearch Start!!!");
 		String url = "http://apis.data.go.kr/B551182/hospInfoService/getHospBasisList?pageNo=1&numOfRows=10&_type=json&ServiceKey=ZNn3FaZRn8RzHpElf%2BdJ9uFHlHmA9fzoYsyghDb5UZGYAxeF4tRc%2B4Ch%2BRHKo11qtYgzu6Dn%2FZz%2F9W5OpNWzfQ%3D%3D";
@@ -136,6 +142,6 @@ public class FindController {
 		}
 		log.info(this.getClass() + " dongSearch End!!!");
 		return mList;
-	}
+	}*/
 }
 

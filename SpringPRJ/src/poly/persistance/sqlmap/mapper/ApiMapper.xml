@@ -53,4 +53,78 @@
 	    #{hosp_no}
 	)
 </insert>
+<insert id="insertApi2" parameterType="ApiDTO">
+	INSERT INTO DOC_HOSP_2
+	(
+		dutyAddr,
+		dutyDiv,
+		dutyDivNam,
+		dutyEmcls,
+		dutyEmclsName,
+		dutyEryn,
+		dutyEtc,
+		dutyMapimg,
+		dutyName,
+		dutyTel1,
+		dutyTel3,
+		dutyTime1c,
+		dutyTime2c,
+		dutyTime3c,
+		dutyTime4c,
+		dutyTime5c,
+		dutyTime6c,
+		dutyTime7c,
+		dutyTime8c,
+		dutyTime1s,
+		dutyTime2s,
+		dutyTime3s,
+		dutyTime4s,
+		dutyTime5s,
+		dutyTime6s,
+		dutyTime7s,
+		dutyTime8s,
+		hpid,
+		postCdn1,
+		postCdn2,
+		wgs84Lon,
+		wgs84Lat,
+		dutyInf
+	)
+	VALUES
+	(
+		#{dutyAddr},
+		#{dutyDiv},
+		#{dutyDivNam},
+		#{dutyEmcls},
+		#{dutyEmclsName},
+		#{dutyEryn},
+		#{dutyEtc},
+		#{dutyMapimg},
+		#{dutyName},
+		#{dutyTel1},
+		#{dutyTel3},
+		#{dutyTime1c},
+		#{dutyTime2c},
+		#{dutyTime3c},
+		#{dutyTime4c},
+		#{dutyTime5c},
+		#{dutyTime6c},
+		#{dutyTime7c},
+		#{dutyTime8c},
+		#{dutyTime1s},
+		#{dutyTime2s},
+		#{dutyTime3s},
+		#{dutyTime4s},
+		#{dutyTime5s},
+		#{dutyTime6s},
+		#{dutyTime7s},
+		#{dutyTime8s},
+		#{hpid},
+		#{postCdn1},
+		#{postCdn2},
+		#{wgs84Lon},
+		#{wgs84Lat},
+		#{dutyInf}
+	)
+</insert>
 </mapper>

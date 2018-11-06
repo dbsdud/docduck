@@ -17,5 +17,10 @@ public class ApiService implements IApiService {
 	public int insertApi(ApiDTO aDTO) throws Exception {
 		return apiMapper.insertApi(aDTO);
 	}
+
+	@Override
+	public int insertApi2(ApiDTO aDTO) throws Exception {
+		return apiMapper.insertApi2(aDTO);
+	}
 	
 }
