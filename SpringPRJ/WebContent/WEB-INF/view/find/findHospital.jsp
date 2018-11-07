@@ -35,23 +35,6 @@
     .bAddr {padding:5px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
 </style>
 <%@ include file="findHospitalAPI.jsp" %>
-<!-- <script>
-$(document).ready( function () {
-    $('#hospTable').DataTable({
-    	"bAutoWidth" : false,
-    	"lengthMenu" : [[10,25,50,100], [10,25,50,100]],
-    	"pageLength" : 10,
-    	columns:[
-			{title:'No'},
-			{title:"병원명"},
-			{title:"주소"}
-		]
-    });
-} );
-</script> -->
-<script>
-var sido = new Array('')
-</script>
 </head>
 <body id="page-top">
 	<%@ include file="/WEB-INF/view/homeNav.jsp" %>
@@ -138,74 +121,15 @@ var sido = new Array('')
 		<div class="container">
 			<div class="row">
 				<div class="map_wrap">
-				<div id="map" style="width:100%;height:400px;"></div>
-				<%-- <script>
-					var mapContainer = document.getElementById('map'), // 지도를 표시할 div
-			    	mapOption = { 
-				        center: new daum.maps.LatLng(37.549808, 126.842297), // 지도의 중심좌표
-				        level: 5 // 지도의 확대 레벨
-				    };
-					var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-					<% for(int i=0; i<aList.size(); i++){ %>
-						var positions = [
-						<% String hospPositionLat = aList.get(i).getWgs84Lat(); %>
-						<% String hospPositionLon = aList.get(i).getWgs84Lon(); %>
-							{
-								title : '<%=aList.get(i).getDutyName()%>',
-								latlng: new daum.maps.LatLng(<%=hospPositionLat%>,<%=hospPositionLon%>)
-							}
-						];
-						var imageSrc = 'http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png',
-							imageSize = new daum.maps.Size(24,35);
-						var markerImage= new daum.maps.MarkerImage(imageSrc, imageSize),
-							markerPosition = new daum.maps.LatLng(<%=hospPositionLat%>,<%=hospPositionLon%>);
-						var position = new daum.maps.LatLng(<%=hospPositionLat%>,<%=hospPositionLon%>);
-						var marker<%=i%> = new daum.maps.Marker({
-							position:position,
-							clickable:true
-						});
-						marker<%=i%>.setMap(map);
-						var iwContent = "<div style='width:320px;'>"+<%=aList.get(i).getDutyName()%>+"</div>",
-							iwRemoveable = true;
-						var infowindow<%=i%> = new daum.maps.InfoWindow({
-							content:iwContent,
-							removable:iwRemovealbe
-						});
-						daum.maps.event.addListener(marker<%=i%>,'click',function(){
-							infowindow<%=i%>.open(map,marker<%=i%>);
-						});
-					<% } %>
-				</script> --%>
-				<%@ include file="findMapJs.jsp" %>
-				<div class="hAddr">
-					<!-- <span class="title">지도중심기준 행정동 주소정보</span> -->
-					<span class="title">지도중심기준 법정동 주소정보</span>
-        			<span id="centerAddr"></span>
-				</div>
-				<p><em>지도 중심좌표가 변경되면 지도 정보가 표출됩니다</em></p>
-				<p id="result"></p>
-				<%-- <div class="col-lg-12 text-center">
-					<table id="hospTable" class="text-center display table-hover table-bordered">
-						<thead>
-							<tr>
-								<th style="width:10%;">No</th>
-								<th style="width:45%;">병원명</th>
-								<th style="width:45%;">주소</th>
-							</tr>
-						</thead>
-						<tbody>
-						<% if(aList!=null){ %>
-							<% for(int i=0; i<aList.size(); i++){ %>
-							<tr>
-								<th scope="row"><%=aList.get(i).getItem_no() %></th>
-								<td><%=aList.get(i).getDutyName() %></td>
-								<td><%=aList.get(i).getDutyAddr() %></td>
-							</tr>
-							<% } %>
-						<% } %>
-						</tbody>
-					</table>
-				</div> --%>
+					<div id="map" style="width: 100%; height: 400px;"></div>
+					<%@ include file="findMapJs.jsp"%>
+					<div class="hAddr">
+						<span class="title">지도중심기준 행정동 주소정보</span> <span id="centerAddr"></span>
+					</div>
+					<p>
+						<em>지도 중심좌표가 변경되면 지도 정보가 표출됩니다</em>
+					</p>
+					<p id="result"></p>
 				</div>
 			</div>
 		</div>
