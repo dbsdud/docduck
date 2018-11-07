@@ -1,5 +1,7 @@
 package poly.service.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -21,6 +23,11 @@ public class ApiService implements IApiService {
 	@Override
 	public int insertApi2(ApiDTO aDTO) throws Exception {
 		return apiMapper.insertApi2(aDTO);
+	}
+
+	@Override
+	public List<ApiDTO> getHospList() throws Exception {
+		return apiMapper.getHospList();
 	}
 	
 }

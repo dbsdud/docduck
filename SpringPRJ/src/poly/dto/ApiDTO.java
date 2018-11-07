@@ -26,6 +26,7 @@ public class ApiDTO {
 	private String regNo;
 	private String regDate;
 	// 중앙의료정보원
+	private String item_no;
 	private String dutyAddr;
 	private String dutyDiv;
 	private String dutyDivNam;
@@ -59,6 +60,13 @@ public class ApiDTO {
 	private String wgs84Lon;
 	private String wgs84Lat;
 	private String dutyInf;
+	
+	public String getItem_no() {
+		return item_no;
+	}
+	public void setItem_no(String item_no) {
+		this.item_no = item_no;
+	}
 	public String getDutyAddr() {
 		return dutyAddr;
 	}

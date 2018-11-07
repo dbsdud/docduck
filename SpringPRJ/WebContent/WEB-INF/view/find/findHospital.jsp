@@ -1,8 +1,9 @@
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="poly.dto.ApiDTO" %>
 <%
-	ApiDTO aDTO = (ApiDTO)request.getAttribute("aDTO");
+	List<ApiDTO> aList = (List<ApiDTO>)request.getAttribute("aList");
 %>
 <html>
 <head>
@@ -27,8 +28,30 @@
     .info .img {position: absolute;top: 6px;left: 5px;width: 73px;height: 71px;border: 1px solid #ddd;color: #888;overflow: hidden;}
     .info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
     .info .link {color: #5085BB;}
+    .map_wrap {position:relative;width:100%;height:350px;}
+    .title {font-weight:bold;display:block;}
+    .hAddr {position:absolute;left:10px;top:10px;border-radius: 2px;background:#fff;background:rgba(255,255,255,0.8);z-index:1;padding:5px;}
+    #centerAddr {display:block;margin-top:2px;font-weight: normal;}
+    .bAddr {padding:5px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
 </style>
 <%@ include file="findHospitalAPI.jsp" %>
+<!-- <script>
+$(document).ready( function () {
+    $('#hospTable').DataTable({
+    	"bAutoWidth" : false,
+    	"lengthMenu" : [[10,25,50,100], [10,25,50,100]],
+    	"pageLength" : 10,
+    	columns:[
+			{title:'No'},
+			{title:"병원명"},
+			{title:"주소"}
+		]
+    });
+} );
+</script> -->
+<script>
+var sido = new Array('')
+</script>
 </head>
 <body id="page-top">
 	<%@ include file="/WEB-INF/view/homeNav.jsp" %>
@@ -70,12 +93,10 @@
 				</div>
 				<div class="col-sm-4 form-group">
 					<select name="sgguCd" id="sgguCd" title="시/군/구 선택" class="form-control">
-						<option>시/군/구 선택</option>
 					</select>
 				</div>					
 				<div class="col-sm-4 form-group">
 					<select name="emdongNm" id="emdongNm" title="읍/면/동/로 선택" class="form-control">
-						<option>읍/면/동/로 선택</option>
 					</select>
 				</div>
 				<div id="area" class="col-sm-6 form-group">
@@ -116,10 +137,76 @@
 	<section>
 		<div class="container">
 			<div class="row">
+				<div class="map_wrap">
 				<div id="map" style="width:100%;height:400px;"></div>
+				<%-- <script>
+					var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+			    	mapOption = { 
+				        center: new daum.maps.LatLng(37.549808, 126.842297), // 지도의 중심좌표
+				        level: 5 // 지도의 확대 레벨
+				    };
+					var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+					<% for(int i=0; i<aList.size(); i++){ %>
+						var positions = [
+						<% String hospPositionLat = aList.get(i).getWgs84Lat(); %>
+						<% String hospPositionLon = aList.get(i).getWgs84Lon(); %>
+							{
+								title : '<%=aList.get(i).getDutyName()%>',
+								latlng: new daum.maps.LatLng(<%=hospPositionLat%>,<%=hospPositionLon%>)
+							}
+						];
+						var imageSrc = 'http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png',
+							imageSize = new daum.maps.Size(24,35);
+						var markerImage= new daum.maps.MarkerImage(imageSrc, imageSize),
+							markerPosition = new daum.maps.LatLng(<%=hospPositionLat%>,<%=hospPositionLon%>);
+						var position = new daum.maps.LatLng(<%=hospPositionLat%>,<%=hospPositionLon%>);
+						var marker<%=i%> = new daum.maps.Marker({
+							position:position,
+							clickable:true
+						});
+						marker<%=i%>.setMap(map);
+						var iwContent = "<div style='width:320px;'>"+<%=aList.get(i).getDutyName()%>+"</div>",
+							iwRemoveable = true;
+						var infowindow<%=i%> = new daum.maps.InfoWindow({
+							content:iwContent,
+							removable:iwRemovealbe
+						});
+						daum.maps.event.addListener(marker<%=i%>,'click',function(){
+							infowindow<%=i%>.open(map,marker<%=i%>);
+						});
+					<% } %>
+				</script> --%>
 				<%@ include file="findMapJs.jsp" %>
+				<div class="hAddr">
+					<!-- <span class="title">지도중심기준 행정동 주소정보</span> -->
+					<span class="title">지도중심기준 법정동 주소정보</span>
+        			<span id="centerAddr"></span>
+				</div>
 				<p><em>지도 중심좌표가 변경되면 지도 정보가 표출됩니다</em></p>
 				<p id="result"></p>
+				<%-- <div class="col-lg-12 text-center">
+					<table id="hospTable" class="text-center display table-hover table-bordered">
+						<thead>
+							<tr>
+								<th style="width:10%;">No</th>
+								<th style="width:45%;">병원명</th>
+								<th style="width:45%;">주소</th>
+							</tr>
+						</thead>
+						<tbody>
+						<% if(aList!=null){ %>
+							<% for(int i=0; i<aList.size(); i++){ %>
+							<tr>
+								<th scope="row"><%=aList.get(i).getItem_no() %></th>
+								<td><%=aList.get(i).getDutyName() %></td>
+								<td><%=aList.get(i).getDutyAddr() %></td>
+							</tr>
+							<% } %>
+						<% } %>
+						</tbody>
+					</table>
+				</div> --%>
+				</div>
 			</div>
 		</div>
 	</section>

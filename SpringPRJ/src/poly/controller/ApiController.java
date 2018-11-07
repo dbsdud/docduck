@@ -272,8 +272,8 @@ public class ApiController {
 					int result2 = apiService.insertApi2(aDTO);
 				}
 				pageNo++;
-				log.info(this.getClass() + " pageNo : " + pageNo);
-				if(pageNo>72) {
+				/*log.info(this.getClass() + " pageNo : " + pageNo);*/
+				if(pageNo>70) {
 					break;
 				}
 			}
