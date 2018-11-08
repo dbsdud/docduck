@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3b51662875dac592f716746c1575ee20&libraries=services"></script>
 <script src="http://dmaps.daum.net/map_js_init/v3.js" type="text/javascript"></script>
-<!-- <script>
+<script>
 /* 전국 병원지도 */
 function geoAddr(allSido){
 	var sidoGeo=[];
@@ -11,6 +11,7 @@ function geoAddr(allSido){
 	var geocoder = new daum.maps.services.Geocoder();
 	var callback = function(result, status){
 		counter++;
+		console.log(counter)
 		if(status === daum.maps.services.Status.OK){
 			var cy = result[0].y;
 			var cx = result[0].x;
@@ -25,7 +26,7 @@ function geoAddr(allSido){
 		return result;
 	}
 	for(var i = 0; i < total; i++){
-		geocoder.addressSearch(allSido[i].ctprvnNm, callback);
+		geocoder.addressSearch(allSido[i].sidoCdNm, callback);
 	}
 };
 
@@ -51,7 +52,7 @@ function geoAddrGugun(addr,allGugun,pos){
 		return result;
 	}
 	for(var i = 0; i < total; i++){
-		geocoder.addressSearch(addr+" "+allGugun[i].signguNm, callback);
+		geocoder.addressSearch(addr+" "+allGugun[i].sgguCdNm, callback);
 	}
 };
 
@@ -77,16 +78,188 @@ function geoAddrDong(addr, addrG, allDong, pos){
 		return result;
 	}
 	for(var i=0; i<total; i++){
-		geocoder.addressSearch(addr + " " + addrG + " " + allDong[i].adongNm, callback);
+		geocoder.addressSearch(addr + " " + addrG + " " + allDong[i].emdongNm, callback);
 	}
 };
-</script> -->
-<script>
+function allHospMap(sidoGeo,allSido){
+	var mapContainer = document.getElementById('map'),
+		mapOption = {
+			center : new daum.maps.LatLng(37.54961852825523,126.8426243815202),
+			level : 5
+		};
+	var map = new daum.maps.Map(mapContainer, mapOption);
+	var positions = sidoGeo;
+	var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
+	$.each(position,function(i){
+		var imageSize = new daum.maps.Size(24,35);
+		var markerImage = new daum.maps.MarkerImage(imageSrc, imageSize);
+		var marker = new daum.maps.Marker({
+			map:map,
+			position:positions[i].latlng,
+			title:positions[i].title,
+			image:markerImage
+		});
+		daum.maps.event.addListener(marker,'click',function(){
+			allHospGugun(marker,allSido);
+		})
+	})
+}
+function allHospGugun(marker,allSido){
+	var addr="";
+	if(marker.Xd=="강원"){
+		addr="강원도";
+	}else if(marker.Xd=="경기"){
+		addr="경기도";
+	}else if(marker.Xd=="경북"){
+		addr="경상북도";
+	}else if(marker.Xd=="대전"){
+		addr="대전광역시";
+	}else if(marker.Xd=="대구"){
+		addr="대구광역시";
+	}else if(marker.Xd=="서울"){
+		addr="서울특별시";
+	}else if(marker.Xd=="인천"){
+		addr="인천광역시";
+	}else if(marker.Xd=="부산"){
+		addr="부산광역시";
+	}else if(marker.Xd=="세종특별자치시"){
+		addr="세종특별자치시";
+	}else if(marker.Xd=="전북"){
+		addr="전라북도";
+	}else if(marker.Xd=="울산"){
+		addr="울산광역시";
+	}else if(marker.Xd=="제주특별자치도"){
+		addr="제주특별자치도";
+	}else if(marker.Xd=="전남"){
+		addr="전라남도";
+	}else if(marker.Xd=="전남"){
+		addr="전라남도";
+	}else if(marker.Xd=="충남"){
+		addr="충청남도";
+	}else if(marker.Xd=="충북"){
+		addr="충청북도";
+	}
+	var sidoMap=$('#sidoMapVal').val(marker.Xd);
+	var sidoCode="";
+	var allGugun=[];
+	for(var i=0; i<allSido.length; i++){
+		if(addr==allSido[i].sidoCdNm){
+			sidoCode=allSido[i].sidoCd;
+			pos=marker.getPosition();
+			$.ajax({
+				url:"/gugun/gugunSearch.do",
+				type:'get',
+				data:{
+					'sido':sidoCode
+				},
+				success:function(data){
+					$.each(data,function(key,value){
+						allGugun.push({
+							sgguCdNm:value.sgguCdNm,
+							sgguCd:value.sgguCd,
+							sidoCode:sidoCode
+						})
+					})
+					geoAddrGugun(addr,allGugun,pos);
+					allHospGugunAjax(allGugun,addr);
+				},
+				error:function(error){
+					alert(error);
+				}
+			})
+		}
+	}
+}
+function allHospGugunMap(allGugun,gugunGeo,pos,addr){
+	var mapContainer = document.getElementById('map'),
+	mapOption={
+		center:pos,
+		level:5
+	};
+	var map = new daum.maps.Map(mapContainer,mapOption);
+	var positions=gugunGeo;
+	var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+	$.each(positions,function(i){
+		var imageSize = new daum.maps.Size(24,35);
+		var markerImage = new daum.maps.MarkerImage(imageSrc,imageSize);
+		var marker = new daum.maps.Marker({
+			map:map,
+			position:position[i].latlng,
+			title:position[i].title,
+			image:markerImage
+		});
+		daum.maps.event.addListener(marker,'click',function(){
+			allHospDong(marker,allGugun,addr);
+		})
+		marker.setMap(map);
+	});
+}
+function allHospDong(marker,allGugun,addr){
+	var gugunCode="";
+	var addrG='';
+	var allDong=[];
+	var beforeStr = marker.Xd;
+	var afterStr = beforeStr.split(' ');
+	var gugunNm='';
+	if(afterStr[1] != null && afterStr[2] == null){
+		gugunNm=afterStr[1];
+	} else if(afterStr[1]!=null&&afterStr[2]!=null){
+		gugunNm = afterStr[1]+" "+afterStr[2];
+	}
+	for(var i = 0; i<allGugun.length;i++){
+		if(gugunNm==allGugun[i].sgguCdNm){
+			addrG=gugunNm;
+			gugunCode=allGugun[i].sgguCd;
+			pos=marker.getPosition();
+			$.ajax({
+				url:"/dong/dongSearch.do",
+				type:'get',
+				data:{
+					'gugun':gugunCode
+				},
+				success:function(data){
+					$.each(data,function(key,value){
+						allDong.push({
+							emdongNm:value.emdongNm
+						})
+					})
+					geoAddrDong(addr,addrG,allDong,pos);
+					allHospDongAjax(gugunCode,allDong,addrG,addr);
+				},
+				error:function(error){
+					
+				}
+			})
+		}
+	}
+}
+function allHospDongMap(allDong,dongGeo,pos){
+	var mapContainer = document.getElementById('map'),
+		mapOption = {
+			center:pos,
+			level:5
+		};
+	var map = new daum.maps.Map(mapContainer,mapOption);
+	var positions=dongGeo;
+	var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+	$.each(positions,function(i){
+		var imageSize = new daum.maps.Size(24,35);
+		var markerImage = new daum.maps.MarkerImage(imageSrc,imageSize);
+		var marker = new daum.maps.Marker({
+			map:map,
+			position:positions[i].latlng,
+			title:positions[i].title,
+			image:markerImage
+		});
+	});
+}
+</script>
+<%-- <script>
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 	    mapOption = { 
-	        <%-- <% for(int i=0; i<aList.size(); i++){ %>
+	        <% for(int i=0; i<aList.size(); i++){ %>
 			center: new daum.maps.LatLng(<%=aList.get(i).getWgs84Lat()%>,<%=aList.get(i).getWgs84Lon()%>), // 지도의 중심좌표
-			<% } %> --%>
+			<% } %>
 			center: new daum.maps.LatLng(37.54961852825523,126.8426243815202),
 	        level: 5 // 지도의 확대 레벨
 	    };
@@ -150,7 +323,7 @@ function geoAddrDong(addr, addrG, allDong, pos){
 	        }
 	    }    
 	}
-	<%-- <% for(int i=0; i<aList.size(); i++){ %>
+	<% for(int i=0; i<aList.size(); i++){ %>
 	var positions=[
 		{
 			title:'<%=aList.get(i).getDutyName()%>',
@@ -174,8 +347,8 @@ function geoAddrDong(addr, addrG, allDong, pos){
 	        title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
 	        image : markerImage // 마커 이미지 
 	    });
-	} --%>
-	<%-- <% for(int i=0; i<aList.size(); i++){ %>
+	}
+	<% for(int i=0; i<aList.size(); i++){ %>
 	var positions = CmmUtil.nvl[
 		<% String hospPositionLat = aList.get(i).getWgs84Lat(); %>
 		<% String hospPositionLon = aList.get(i).getWgs84Lon(); %>
@@ -203,7 +376,7 @@ function geoAddrDong(addr, addrG, allDong, pos){
 	daum.maps.event.addListener(marker<%=i%>,'click',function(){
 		infowindow<%=i%>.open(map,marker<%=i%>);
 	});
-	<% } %> --%>
+	<% } %>
 	
 	
 	/* Geolocation Marker Create Start!!! */
@@ -284,4 +457,4 @@ function geoAddrDong(addr, addrG, allDong, pos){
 	    var resultDiv = document.getElementById('result');
 	    resultDiv.innerHTML = message; 
 	});
-</script>
+</script> --%>

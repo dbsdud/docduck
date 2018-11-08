@@ -35,6 +35,248 @@ public class ApiController {
 	private Logger log = Logger.getLogger(this.getClass());
 	@Resource(name = "ApiService")
 	private IApiService apiService;
+	@RequestMapping(value="/insertSido")
+	public String inserSido(HttpServletRequest req, HttpServletResponse res, Model model) throws Exception{
+		log.info(this.getClass() + " insertSido Start!!!");
+		BufferedReader br = null;
+
+		int pageNo = 1;
+
+		try {
+			while (true) {
+				String urlstr = "http://apis.data.go.kr/" + "B551182/hospInfoService/getHospBasisList?pageNo=" + pageNo
+						+ "&numOfRows=1000&_type=json&"
+						+ "ServiceKey=ZNn3FaZRn8RzHpElf%2BdJ9uFHlHmA9fzoYsyghDb5UZGYAxeF4tRc%2B4Ch%2BRHKo11qtYgzu6Dn%2FZz%2F9W5OpNWzfQ%3D%3D";
+				URL url = new URL(urlstr);
+				HttpURLConnection urlconnection = (HttpURLConnection) url.openConnection();
+				urlconnection.setRequestMethod("GET");
+				br = new BufferedReader(new InputStreamReader(urlconnection.getInputStream(), "UTF-8"));
+				String result = "";
+				String line;
+				while ((line = br.readLine()) != null) {
+					result = result.concat(line);
+				}
+				JSONParser parser = new JSONParser();
+				JSONObject obj = (JSONObject) parser.parse(result);
+
+				// Top레벨 단계인 response 키를 가지고 데이터를 파싱합니다.
+				JSONObject parse_response = (JSONObject) obj.get("response");
+				// response 로 부터 body 찾아옵니다.
+				JSONObject parse_body = (JSONObject) parse_response.get("body");
+				// body 로 부터 items 받아옵니다.
+				JSONObject parse_items = (JSONObject) parse_body.get("items");
+				// items로 부터 itemlist 를 받아오기 itemlist : 뒤에 [ 로 시작하므로 jsonarray이다
+				JSONArray parse_item = (JSONArray) parse_items.get("item");
+
+				JSONObject resultObj;
+				
+				int sidoCd=0;
+				String sidoCdNm="";
+				
+				for(int i=0; i<parse_item.size(); i++) {
+					resultObj = (JSONObject)parse_item.get(i);
+					if (resultObj.containsKey("sidoCd") == false) {
+						sidoCd = Integer.parseInt(CmmUtil.nvl(resultObj.getOrDefault("sidoCd", 0).toString()));
+						/*System.out.println("sidoCd : " + sidoCd);*/
+					} else {
+						sidoCd = Integer.parseInt(CmmUtil.nvl(resultObj.get("sidoCd").toString()));
+						/*System.out.println("sidoCd : " + sidoCd);*/
+					}
+					if(resultObj.containsKey("sidoCdNm")==false) {
+						sidoCdNm = CmmUtil.nvl(resultObj.getOrDefault("sidoCdNm", "").toString());
+					} else {
+						sidoCdNm = CmmUtil.nvl(resultObj.get("sidoCdNm").toString());
+					}
+					ApiDTO aDTO = new ApiDTO();
+					aDTO.setSidoCd(sidoCd);
+					aDTO.setSidoCdNm(sidoCdNm);
+					
+					int result2 = apiService.insertSido(aDTO);
+				}
+				pageNo++;
+				if(pageNo>72) {
+					break;
+				}
+			} 
+		}catch(Exception e) {
+				System.out.println(e.getMessage());
+			}
+		log.info(this.getClass() + " insertSido End!!!");
+		return "/insertSido";
+	}
+	@RequestMapping(value="/insertGugun")
+	public String insertGugun(HttpServletRequest req, HttpServletResponse res, Model model) throws Exception{
+		log.info(this.getClass() + " insertGugun Start!!!");
+		BufferedReader br = null;
+
+		int pageNo = 71;
+
+		try {
+			while (true) {
+				String urlstr = "http://apis.data.go.kr/" + "B551182/hospInfoService/getHospBasisList?pageNo=" + pageNo
+						+ "&numOfRows=1000&_type=json&"
+						+ "ServiceKey=ZNn3FaZRn8RzHpElf%2BdJ9uFHlHmA9fzoYsyghDb5UZGYAxeF4tRc%2B4Ch%2BRHKo11qtYgzu6Dn%2FZz%2F9W5OpNWzfQ%3D%3D";
+				URL url = new URL(urlstr);
+				HttpURLConnection urlconnection = (HttpURLConnection) url.openConnection();
+				urlconnection.setRequestMethod("GET");
+				br = new BufferedReader(new InputStreamReader(urlconnection.getInputStream(), "UTF-8"));
+				String result = "";
+				String line;
+				while ((line = br.readLine()) != null) {
+					result = result.concat(line);
+				}
+				JSONParser parser = new JSONParser();
+				JSONObject obj = (JSONObject) parser.parse(result);
+
+				// Top레벨 단계인 response 키를 가지고 데이터를 파싱합니다.
+				JSONObject parse_response = (JSONObject) obj.get("response");
+				// response 로 부터 body 찾아옵니다.
+				JSONObject parse_body = (JSONObject) parse_response.get("body");
+				// body 로 부터 items 받아옵니다.
+				JSONObject parse_items = (JSONObject) parse_body.get("items");
+				// items로 부터 itemlist 를 받아오기 itemlist : 뒤에 [ 로 시작하므로 jsonarray이다
+				JSONArray parse_item = (JSONArray) parse_items.get("item");
+
+				JSONObject resultObj;
+				
+				int sidoCd=0, sgguCd=0;
+				String sidoCdNm="", sgguCdNm="";
+				
+				for(int i=0; i<parse_item.size(); i++) {
+					resultObj = (JSONObject)parse_item.get(i);
+					if (resultObj.containsKey("sidoCd") == false) {
+						sidoCd = Integer.parseInt(CmmUtil.nvl(resultObj.getOrDefault("sidoCd", 0).toString()));
+						/*System.out.println("sidoCd : " + sidoCd);*/
+					} else {
+						sidoCd = Integer.parseInt(CmmUtil.nvl(resultObj.get("sidoCd").toString()));
+						/*System.out.println("sidoCd : " + sidoCd);*/
+					}
+					if(resultObj.containsKey("sidoCdNm")==false) {
+						sidoCdNm = CmmUtil.nvl(resultObj.getOrDefault("sidoCdNm", "").toString());
+					} else {
+						sidoCdNm = CmmUtil.nvl(resultObj.get("sidoCdNm").toString());
+					}
+					if (resultObj.containsKey("sgguCd") == false) {
+						sgguCd = Integer.parseInt(CmmUtil.nvl(resultObj.getOrDefault("sgguCd", 0).toString()));
+						/*System.out.println("sidoCd : " + sidoCd);*/
+					} else {
+						sgguCd = Integer.parseInt(CmmUtil.nvl(resultObj.get("sgguCd").toString()));
+						/*System.out.println("sidoCd : " + sidoCd);*/
+					}
+					if(resultObj.containsKey("sgguCdNm")==false) {
+						sgguCdNm = CmmUtil.nvl(resultObj.getOrDefault("sgguCdNm", "").toString());
+					} else {
+						sgguCdNm = CmmUtil.nvl(resultObj.get("sgguCdNm").toString());
+					}
+					ApiDTO aDTO = new ApiDTO();
+					aDTO.setSidoCd(sidoCd);
+					aDTO.setSidoCdNm(sidoCdNm);
+					aDTO.setSgguCd(sgguCd);
+					aDTO.setSgguCdNm(sgguCdNm);
+					
+					int result2 = apiService.insertGugun(aDTO);
+				}
+				pageNo++;
+				if(pageNo>73) {
+					break;
+				}
+			} 
+		}catch(Exception e) {
+				System.out.println(e.getMessage());
+			}
+		log.info(this.getClass() + " insertGugun End!!!");
+		return "/insertGugun";
+	}
+	@RequestMapping(value="/insertDong")
+	public String insertDong(HttpServletRequest req, HttpServletResponse res, Model model) throws Exception{
+		log.info(this.getClass() + " insertDong Start!!!");
+		BufferedReader br = null;
+
+		int pageNo = 61;
+
+		try {
+			while (true) {
+				String urlstr = "http://apis.data.go.kr/" + "B551182/hospInfoService/getHospBasisList?pageNo=" + pageNo
+						+ "&numOfRows=1000&_type=json&"
+						+ "ServiceKey=ZNn3FaZRn8RzHpElf%2BdJ9uFHlHmA9fzoYsyghDb5UZGYAxeF4tRc%2B4Ch%2BRHKo11qtYgzu6Dn%2FZz%2F9W5OpNWzfQ%3D%3D";
+				URL url = new URL(urlstr);
+				HttpURLConnection urlconnection = (HttpURLConnection) url.openConnection();
+				urlconnection.setRequestMethod("GET");
+				br = new BufferedReader(new InputStreamReader(urlconnection.getInputStream(), "UTF-8"));
+				String result = "";
+				String line;
+				while ((line = br.readLine()) != null) {
+					result = result.concat(line);
+				}
+				JSONParser parser = new JSONParser();
+				JSONObject obj = (JSONObject) parser.parse(result);
+
+				// Top레벨 단계인 response 키를 가지고 데이터를 파싱합니다.
+				JSONObject parse_response = (JSONObject) obj.get("response");
+				// response 로 부터 body 찾아옵니다.
+				JSONObject parse_body = (JSONObject) parse_response.get("body");
+				// body 로 부터 items 받아옵니다.
+				JSONObject parse_items = (JSONObject) parse_body.get("items");
+				// items로 부터 itemlist 를 받아오기 itemlist : 뒤에 [ 로 시작하므로 jsonarray이다
+				JSONArray parse_item = (JSONArray) parse_items.get("item");
+
+				JSONObject resultObj;
+				
+				int sidoCd=0, sgguCd=0;
+				String sidoCdNm="", sgguCdNm="", emdongNm="";
+				
+				for(int i=0; i<parse_item.size(); i++) {
+					resultObj = (JSONObject)parse_item.get(i);
+					if (resultObj.containsKey("sidoCd") == false) {
+						sidoCd = Integer.parseInt(CmmUtil.nvl(resultObj.getOrDefault("sidoCd", 0).toString()));
+						/*System.out.println("sidoCd : " + sidoCd);*/
+					} else {
+						sidoCd = Integer.parseInt(CmmUtil.nvl(resultObj.get("sidoCd").toString()));
+						/*System.out.println("sidoCd : " + sidoCd);*/
+					}
+					if(resultObj.containsKey("sidoCdNm")==false) {
+						sidoCdNm = CmmUtil.nvl(resultObj.getOrDefault("sidoCdNm", "").toString());
+					} else {
+						sidoCdNm = CmmUtil.nvl(resultObj.get("sidoCdNm").toString());
+					}
+					if (resultObj.containsKey("sgguCd") == false) {
+						sgguCd = Integer.parseInt(CmmUtil.nvl(resultObj.getOrDefault("sgguCd", 0).toString()));
+						/*System.out.println("sidoCd : " + sidoCd);*/
+					} else {
+						sgguCd = Integer.parseInt(CmmUtil.nvl(resultObj.get("sgguCd").toString()));
+						/*System.out.println("sidoCd : " + sidoCd);*/
+					}
+					if(resultObj.containsKey("sgguCdNm")==false) {
+						sgguCdNm = CmmUtil.nvl(resultObj.getOrDefault("sgguCdNm", "").toString());
+					} else {
+						sgguCdNm = CmmUtil.nvl(resultObj.get("sgguCdNm").toString());
+					}
+					if (resultObj.containsKey("emdongNm") == false) {
+						emdongNm = CmmUtil.nvl(resultObj.getOrDefault("emdongNm", "").toString());
+						/*System.out.println("emdongNm : " + emdongNm);*/
+					} else {
+						emdongNm = resultObj.get("emdongNm").toString();
+						/*System.out.println("emdongNm : " + emdongNm);*/
+					}
+					ApiDTO aDTO = new ApiDTO();
+					aDTO.setSidoCd(sidoCd);
+					aDTO.setSidoCdNm(sidoCdNm);
+					aDTO.setSgguCd(sgguCd);
+					aDTO.setSgguCdNm(sgguCdNm);
+					aDTO.setEmdongNm(emdongNm);
+					int result2 = apiService.insertDong(aDTO);
+				}
+				pageNo++;
+				if(pageNo>73) {
+					break;
+				}
+			} 
+		}catch(Exception e) {
+				System.out.println(e.getMessage());
+			}
+		log.info(this.getClass() + " insertDong End!!!");
+		return "/insertDong";
+	}
 	@RequestMapping(value="/li2")
 	public String li2(HttpServletRequest req, HttpServletResponse res, Model model) throws Exception{
 		log.info(this.getClass() + " li2 Start!!!");

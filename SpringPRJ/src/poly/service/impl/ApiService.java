@@ -29,5 +29,20 @@ public class ApiService implements IApiService {
 	public List<ApiDTO> getHospList() throws Exception {
 		return apiMapper.getHospList();
 	}
+
+	@Override
+	public int insertSido(ApiDTO aDTO) throws Exception {
+		return apiMapper.insertSido(aDTO);
+	}
+
+	@Override
+	public int insertGugun(ApiDTO aDTO) throws Exception {
+		return apiMapper.insertGugun(aDTO);
+	}
+
+	@Override
+	public int insertDong(ApiDTO aDTO) throws Exception {
+		return apiMapper.insertDong(aDTO);
+	}
 	
 }

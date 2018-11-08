@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="poly.persistance.mapper.FindMapper">
+<select id="getGugunList" resultType="GugunDTO">
+SELECT
+	sidoCd AS sidoCd,
+	sidoCdNm AS sidoCdNm,
+	sgguCd AS sgguCd,
+	sgguCdNm AS sgguCdNm
+FROM
+	GUGUN
+WHERE
+	sidoCd = #{sidoCd}
+</select>
+<select id="getDongList" resultType="DongDTO">
+SELECT
+	sidoCd AS sidoCd,
+	sidoCdNm AS sidoCdNm,
+	sgguCd AS sgguCd,
+	sgguCdNm AS sgguCdNm,
+	emdongNm AS emdongNm
+FROM
+	DONG
+WHERE
+	sgguCd=#{sgguCd}
+</select>
+</mapper>

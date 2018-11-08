@@ -127,6 +127,49 @@
 		#{dutyInf}
 	)
 </insert>
+<insert id="insertSido" parameterType="ApiDTO">
+	INSERT INTO SIDO(
+		sidoCd,
+		sidoCdNm
+	)
+	VALUES
+	(
+		#{sidoCd},
+		#{sidoCdNm}
+	)
+</insert>
+<insert id="insertGugun" parameterType="ApiDTO">
+	INSERT INTO GUGUN(
+		sidoCd,
+		sidoCdNm,
+		sgguCd,
+		sgguCdNm
+	)
+	VALUES
+	(
+		#{sidoCd},
+		#{sidoCdNm},
+		#{sgguCd},
+		#{sgguCdNm}
+	)
+</insert>
+<insert id="insertDong" parameterType="ApiDTO">
+	INSERT INTO DONG(
+		sidoCd,
+		sidoCdNm,
+		sgguCd,
+		sgguCdNm,
+		emdongNm
+	)
+	VALUES
+	(
+		#{sidoCd},
+		#{sidoCdNm},
+		#{sgguCd},
+		#{sgguCdNm},
+		#{emdongNm}
+	)
+</insert>
 <select id="getHospList" resultType="ApiDTO">
 	SELECT
 		ITEM_NO AS item_no,

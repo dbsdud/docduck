@@ -53,7 +53,7 @@
 		<div class="container">
 			<div class="row text-center">
 				<div class="col-sm-4 form-group">
-					<select name="sidoCd" id="sidoCd" title="시/도 선택" class="form-control">
+					<select name="sido" id="sido" title="시/도 선택" class="form-control">
 						<option>시/도 선택</option>
 						<option value="110000">서울</option>
 						<option value="210000">부산</option>
@@ -75,22 +75,16 @@
 					</select>
 				</div>
 				<div class="col-sm-4 form-group">
-					<select name="sgguCd" id="sgguCd" title="시/군/구 선택" class="form-control">
+					<select name="gugun" id="gugun" title="시/군/구 선택" class="form-control">
+						<option>시/군/구 선택</option>
 					</select>
 				</div>					
 				<div class="col-sm-4 form-group">
-					<select name="emdongNm" id="emdongNm" title="읍/면/동/로 선택" class="form-control">
+					<select name="dong" id="dong" title="읍/면/동/로 선택" class="form-control">
+						<option>읍/면/동 선택</option>
 					</select>
 				</div>
-				<div id="area" class="col-sm-6 form-group">
-					<select class="form-control">
-						<option value="n">지역 선택</option>
-						<option value="sido">시, 도</option>
-						<option value="gugun">구, 군</option>
-						<option value="dong">읍, 면, 동</option>
-					</select>
-				</div>
-				<div id="department" class="col-sm-6 form-group">
+				<div id="department" class="col-sm-12 form-group">
 					<select class="form-control">
 						<option value="n">진료 과목</option>
 						<option value="01">내과</option>
@@ -114,6 +108,9 @@
 						<option value="">종합병원</option>
 					</select>
 				</div>
+				<input type="hidden" id="sidoVal" value="" />
+				<input type="hidden" id="gugunVal" value="" />
+				<input type="hidden" id="dongVal" value="" />
 			</div>
 		</div>
 	</section>
