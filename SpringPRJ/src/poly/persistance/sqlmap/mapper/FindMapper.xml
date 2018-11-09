@@ -24,4 +24,14 @@ FROM
 WHERE
 	sgguCd=#{sgguCd}
 </select>
+<select id="getHospSearch" resultType="ApiDTO">
+SELECT
+	HOSP_NO AS hosp_no,
+	yadmNm,
+	telno
+FROM
+	DOC_HOSP
+WHERE
+	sidoCd=#{sidoCd} and sgguCd=#{sgguCd} and emdongNm=#{emdongNm}
+</select>
 </mapper>

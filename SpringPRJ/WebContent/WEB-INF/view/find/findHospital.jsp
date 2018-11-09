@@ -13,6 +13,53 @@
 <meta name="author" content="">
 <title>병원찾기</title>
 <%@ include file="/WEB-INF/view/mainCss.jsp" %>
+
+<script>
+$(document).ready( function () {
+	$('#myTable').DataTable({
+		"bAutoWidth" : false,
+		"lengthMenu" : [[10,25,50,100], [10,25,50,100]],
+		"pageLength" : 10,
+		columns:[
+			{title:'No'},
+			{title:"병원명"},
+			{title:"전화번호"}
+		]
+	});
+} );
+$(function(){
+
+	// 병원찾기
+	$('#findHosp').click(function(){
+		var sido = $("#sido").val();
+		var gugun = $("#gugun").val();
+		var dong = $("#dong").val();
+		if(sido==''&&gugun==''&&dong==''){
+			alert("유효하지 않은 검색조건입니다.")
+			$("#sido").focus();
+			return false;
+		} else {
+			$.ajax({
+				url : "/find/findHospSearch.do",
+				type : 'POST',
+				data : {
+					'sido' : sido,
+					'gugun' : gugun,
+					'dong' : dong
+				},
+				success : function(data){
+					var contents="";
+					$.each(data, function(key,value){
+						contents+="<div id='myTable'></div>";
+					});
+					$('#showFindTable').html(contents);
+				}
+			})
+		}
+	});
+})
+
+</script>
 <style>
     .wrap {position: absolute;left: 0;bottom: 40px;width: 288px;height: 132px;margin-left: -144px;text-align: left;overflow: hidden;font-size: 12px;font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;line-height: 1.5;}
     .wrap * {padding: 0;margin: 0;}
@@ -84,7 +131,7 @@
 						<option>읍/면/동 선택</option>
 					</select>
 				</div>
-				<div id="department" class="col-sm-12 form-group">
+				<div id="department" class="col-sm-6 form-group">
 					<select class="form-control">
 						<option value="n">진료 과목</option>
 						<option value="01">내과</option>
@@ -108,13 +155,23 @@
 						<option value="">종합병원</option>
 					</select>
 				</div>
+				<div class="col-sm-6 form-group text-center">
+					<button class="btn btn-primary" id="findHosp" style="width:50%;">
+						검색
+					</button>
+				</div>
 				<input type="hidden" id="sidoVal" value="" />
 				<input type="hidden" id="gugunVal" value="" />
 				<input type="hidden" id="dongVal" value="" />
 			</div>
 		</div>
-	</section>
-	<section>
+		<div class="container">
+			<div class="row">
+				<div id="showFindTable">
+				
+				</div>
+			</div>
+		</div>
 		<div class="container">
 			<div class="row">
 				<div class="map_wrap">

@@ -34,7 +34,6 @@ function gugunFind(sidoCode){
 			var gugunCon="";
 			gugunCon+='<option>시/군/구 선택</option>'
 			$.each(data,function(key,value){
-				
 				gugunCon+='<option value='+value.sgguCd+'>'+value.sgguCdNm+'</option>'
 			})
 			console.log(gugunCon);

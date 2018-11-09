@@ -7,6 +7,7 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.json.simple.JSONArray;
@@ -53,6 +54,28 @@ public class FindController {
 		dList = findService.getDongList(gugun);
 		log.info(this.getClass() + " dongSearch End!!!");
 		return dList;
+	}
+	@RequestMapping(value="find/findHospSearch")
+	public @ResponseBody List<ApiDTO> findHospSearch(HttpServletRequest req, HttpServletResponse res, Model model, HttpSession session) throws Exception{
+		log.info(this.getClass() + " findHospSearch Start!!!");
+		String sido = req.getParameter("sido");
+		int sidoCd = Integer.parseInt(sido);
+		String gugun = req.getParameter("gugun");
+		int sgguCd = Integer.parseInt(gugun);
+		String emdongNm = req.getParameter("dong");
+		log.info(this.getClass() + " sido : " + sido);
+		log.info(this.getClass() + " gugun : " + gugun);
+		log.info(this.getClass() + " dong : " + emdongNm);
+		
+		ApiDTO aDTO = new ApiDTO();
+		aDTO.setSidoCd(sidoCd);
+		aDTO.setSgguCd(sgguCd);
+		aDTO.setEmdongNm(emdongNm);
+		
+		List<ApiDTO> aList = new ArrayList<>();
+		aList = findService.getHospSearch(aDTO);
+		log.info(this.getClass() + " findHospSearch End!!!");
+		return aList;
 	}
 }
 

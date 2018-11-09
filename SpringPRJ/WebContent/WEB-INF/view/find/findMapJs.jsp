@@ -4,7 +4,7 @@
 <script src="http://dmaps.daum.net/map_js_init/v3.js" type="text/javascript"></script>
 <script>
 /* 전국 병원지도 */
-function geoAddr(allSido){
+/* function geoAddr(allSido){
 	var sidoGeo=[];
 	var total = allSido.length;
 	var counter = 0;
@@ -14,7 +14,9 @@ function geoAddr(allSido){
 		console.log(counter)
 		if(status === daum.maps.services.Status.OK){
 			var cy = result[0].y;
+			console.log(cy)
 			var cx = result[0].x;
+			console.log(cx)
 			sidoGeo.push({
 				title : result[0].address_name,
 				latlng : new daum.maps.LatLng(cy, cx)
@@ -80,8 +82,8 @@ function geoAddrDong(addr, addrG, allDong, pos){
 	for(var i=0; i<total; i++){
 		geocoder.addressSearch(addr + " " + addrG + " " + allDong[i].emdongNm, callback);
 	}
-};
-function allHospMap(sidoGeo,allSido){
+}; */
+/* function allHospMap(sidoGeo,allSido){ */
 	var mapContainer = document.getElementById('map'),
 		mapOption = {
 			center : new daum.maps.LatLng(37.54961852825523,126.8426243815202),
@@ -103,8 +105,8 @@ function allHospMap(sidoGeo,allSido){
 			allHospGugun(marker,allSido);
 		})
 	})
-}
-function allHospGugun(marker,allSido){
+/* } */
+/* function allHospGugun(marker,allSido){
 	var addr="";
 	if(marker.Xd=="강원"){
 		addr="강원도";
@@ -252,7 +254,7 @@ function allHospDongMap(allDong,dongGeo,pos){
 			image:markerImage
 		});
 	});
-}
+} */
 </script>
 <%-- <script>
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div
