@@ -10,5 +10,6 @@
 		<typeAlias type="poly.dto.SidoDTO" alias="SidoDTO"/>
 		<typeAlias type="poly.dto.GugunDTO" alias="GugunDTO"/>
 		<typeAlias type="poly.dto.DongDTO" alias="DongDTO"/>
+		<typeAlias type="poly.dto.ReviewDTO" alias="ReviewDTO"/>
     </typeAliases>
 </configuration>

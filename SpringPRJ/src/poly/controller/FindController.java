@@ -22,6 +22,7 @@ import poly.dto.ApiDTO;
 import poly.dto.DongDTO;
 import poly.dto.GugunDTO;
 import poly.service.IFindService;
+import poly.util.CmmUtil;
 import poly.util.HttpUtil;
 import poly.util.StringUtil;
 
@@ -76,6 +77,20 @@ public class FindController {
 		aList = findService.getHospSearch(aDTO);
 		log.info(this.getClass() + " findHospSearch End!!!");
 		return aList;
+	}
+	@RequestMapping(value="find/findHospitalDetail")
+	public String findHospitalDetail(HttpServletRequest req, HttpSession session, Model model) throws Exception{
+		log.info(this.getClass() + " findHospitalDetail Start!!!");
+		String hospNo = CmmUtil.nvl(req.getParameter("hosp_no"));
+		int hosp_no = Integer.parseInt(hospNo);
+		log.info(this.getClass() + " int hosp_no : " + hosp_no);
+		log.info(this.getClass() + " hospNo : " + hospNo);
+		
+		ApiDTO aDTO = new ApiDTO();
+		aDTO.setHosp_no(hosp_no);
+		log.info(this.getClass() + " aDTO.setHosp_no : " + aDTO.getHosp_no());
+		log.info(this.getClass() + " findHospitalDetail End!!!");
+		return "/find/findHospitalDetail";
 	}
 }
 

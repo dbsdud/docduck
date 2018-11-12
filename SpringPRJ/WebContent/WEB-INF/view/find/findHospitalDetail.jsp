@@ -3,7 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	/* ApiDTO aDTO = (ApiDTO)request.getAttribute("aDTO"); */
+	ApiDTO aDTO = (ApiDTO)request.getAttribute("aDTO");
 %>
 <html>
 <head>
@@ -27,8 +27,8 @@
 	<section>
 		<div class="container">
 			<div class="row">
-				<%-- <input type="text" value="<%=aDTO.getYPos() %>" />
-				<input type="text" value="<%=aDTO.getXPos() %>" /> --%>
+				<%-- <input type="text" id="YPos" value="<%=aDTO.getYPos() %>" />
+				<input type="text" id="XPos" value="<%=aDTO.getXPos() %>" /> --%>
 				<div id="map" style="width: 100%; height:400px;">
 				
 				</div>

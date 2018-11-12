@@ -28,7 +28,8 @@ WHERE
 SELECT
 	HOSP_NO AS hosp_no,
 	yadmNm,
-	telno
+	telno,
+	addr
 FROM
 	DOC_HOSP
 WHERE

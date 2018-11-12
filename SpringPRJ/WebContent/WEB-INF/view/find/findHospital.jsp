@@ -15,7 +15,7 @@
 <%@ include file="/WEB-INF/view/mainCss.jsp" %>
 
 <script>
-$(document).ready( function () {
+/* $(document).ready( function () {
 	$('#myTable').DataTable({
 		"bAutoWidth" : false,
 		"lengthMenu" : [[10,25,50,100], [10,25,50,100]],
@@ -26,15 +26,17 @@ $(document).ready( function () {
 			{title:"전화번호"}
 		]
 	});
-} );
+} ); */
 $(function(){
-
 	// 병원찾기
 	$('#findHosp').click(function(){
 		var sido = $("#sido").val();
 		var gugun = $("#gugun").val();
 		var dong = $("#dong").val();
-		if(sido==''&&gugun==''&&dong==''){
+		var sidoVal = $('#sidoVal').val();
+		var gugunVal = $('#gugunVal').val();
+		var dongVal = $('#dongVal').val();
+		if(sidoVal==''||gugunVal==''){
 			alert("유효하지 않은 검색조건입니다.")
 			$("#sido").focus();
 			return false;
@@ -50,7 +52,11 @@ $(function(){
 				success : function(data){
 					var contents="";
 					$.each(data, function(key,value){
-						contents+="<div id='myTable'></div>";
+						contents+="<tr>";
+						contents+="<td style='overflow:hidden; text-overflow:ellipsis; white-space:nowrap;'><a href='/find/findHospitalDetail.do?hosp_no="+value.hosp_no+"'>"+value.yadmNm+"</a></td>";
+						contents+="<td style='overflow:hidden; text-overflow:ellipsis; white-space:nowrap;'>"+value.addr+"</td>";
+						contents+="<td>"+value.telno+"</td>";
+						contents+="</tr>";
 					});
 					$('#showFindTable').html(contents);
 				}
@@ -99,7 +105,7 @@ $(function(){
 	<section>
 		<div class="container">
 			<div class="row text-center">
-				<div class="col-sm-4 form-group">
+				<div class="col-sm-3 form-group">
 					<select name="sido" id="sido" title="시/도 선택" class="form-control">
 						<option>시/도 선택</option>
 						<option value="110000">서울</option>
@@ -121,17 +127,17 @@ $(function(){
 						<option value="410000">세종</option>
 					</select>
 				</div>
-				<div class="col-sm-4 form-group">
+				<div class="col-sm-3 form-group">
 					<select name="gugun" id="gugun" title="시/군/구 선택" class="form-control">
 						<option>시/군/구 선택</option>
 					</select>
 				</div>					
-				<div class="col-sm-4 form-group">
+				<div class="col-sm-3 form-group">
 					<select name="dong" id="dong" title="읍/면/동/로 선택" class="form-control">
 						<option>읍/면/동 선택</option>
 					</select>
 				</div>
-				<div id="department" class="col-sm-6 form-group">
+				<!-- <div id="department" class="col-sm-6 form-group">
 					<select class="form-control">
 						<option value="n">진료 과목</option>
 						<option value="01">내과</option>
@@ -154,9 +160,9 @@ $(function(){
 						<option value="15">비뇨기과</option>
 						<option value="">종합병원</option>
 					</select>
-				</div>
-				<div class="col-sm-6 form-group text-center">
-					<button class="btn btn-primary" id="findHosp" style="width:50%;">
+				</div> -->
+				<div class="col-sm-3 form-group text-center">
+					<button class="btn btn-primary" id="findHosp" style="width:100%;">
 						검색
 					</button>
 				</div>
@@ -167,43 +173,33 @@ $(function(){
 		</div>
 		<div class="container">
 			<div class="row">
-				<div id="showFindTable">
-				
-				</div>
+				<table class="col-lg-12 table-hover table-bordered">
+					<thead class="text-center">
+						<tr>
+							<th style="width:20%;">병원명</th>
+							<th style="width:65%;">주소</th>
+							<th style="width:15%;">전화번호</th>
+						</tr>
+					</thead>
+					<tbody id="showFindTable">
+						<tr class="text-center">
+							<th colspan="3">조회된 검색결과가 없습니다.</th>
+						</tr>
+					</tbody>
+				</table>
 			</div>
 		</div>
 		<div class="container">
 			<div class="row">
-				<div class="map_wrap">
-					<div id="map" style="width: 100%; height: 400px;"></div>
+				<div id="map" style="width: 100%; height: 400px;"></div>
 					<%@ include file="findMapJs.jsp"%>
-					<div class="hAddr">
-						<span class="title">지도중심기준 행정동 주소정보</span> <span id="centerAddr"></span>
-					</div>
-					<p>
-						<em>지도 중심좌표가 변경되면 지도 정보가 표출됩니다</em>
-					</p>
-					<p id="result"></p>
-				</div>
-			</div>
-		</div>
-	</section>
-	<section id="findHospitalList">
-		<div class="container">
-			<div class="row text-center">
-			<!-- for문 돌려서 병원리스트 -->
-				<div class="col-sm-3">
-					1번
-				</div>
-				<div class="col-sm-3">
-					2번
-				</div>
-				<div class="col-sm-3">
-					3번
-				</div>
-				<div class="col-sm-3">
-					4번
-				</div>
+				<!-- <div class="hAddr">
+					<span class="title">지도중심기준 행정동 주소정보</span> <span id="centerAddr"></span>
+				</div> -->
+				<p>
+					<em>지도 중심좌표가 변경되면 지도 정보가 표출됩니다</em>
+				</p>
+				<p id="result"></p>
 			</div>
 		</div>
 	</section>
