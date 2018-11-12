@@ -515,7 +515,7 @@ public class ApiController {
 				}
 				pageNo++;
 				/*log.info(this.getClass() + " pageNo : " + pageNo);*/
-				if(pageNo>70) {
+				if(pageNo>72) {
 					break;
 				}
 			}

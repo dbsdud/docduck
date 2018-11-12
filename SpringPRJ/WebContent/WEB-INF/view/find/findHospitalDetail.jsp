@@ -18,7 +18,7 @@
 			<div class="row">
 				<div class="col-lg-10 mx-auto">
 					<h1 class="text-uppercase">
-						<strong>리뷰</strong>
+						<strong>병원상세정보</strong>
 					</h1>
 				</div>
 			</div>
