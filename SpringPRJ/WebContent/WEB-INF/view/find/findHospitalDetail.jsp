@@ -136,6 +136,10 @@
 					<hr class="my-4">
 				</div>
 				<div class="col-sm-12">
+					<h5 class="section-heading title">상세주소</h5>
+					<span class="col-sm-12 pull-left"><%= aDTO2.getAddr() %></span>
+				</div>
+				<div class="col-sm-12" style="padding-top:5%;">
 					<h5 class="section-heading title">진료시간</h5>
 					<span class="col-sm-6 pull-left title">평일</span>
 					<span class="col-sm-6 pull-left title">토</span>
@@ -166,10 +170,6 @@
 					<% } else { %>
 					<span class="col-sm-12"><%= aDTO3.getDutyInf() %></span>
 					<% } %>
-				</div>
-				<div class="col-sm-12" style="padding-top:5%;">
-					<h5 class="section-heading title">상세주소</h5>
-					<span class="col-sm-12 pull-left"><%= aDTO2.getAddr() %></span>
 				</div>
 			</div>			
 		</div>
