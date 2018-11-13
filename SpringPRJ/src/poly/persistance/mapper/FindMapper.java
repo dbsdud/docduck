@@ -12,4 +12,6 @@ public interface FindMapper {
 	public List<GugunDTO> getGugunList(String sido) throws Exception;
 	public List<DongDTO> getDongList(String gugun) throws Exception;
 	public List<ApiDTO> getHospSearch(ApiDTO aDTO) throws Exception;
+	public ApiDTO getFindHospitalDetail_1(ApiDTO aDTO) throws Exception;
+	public ApiDTO getFindHospitalDetail_2(ApiDTO aDTO) throws Exception;
 }

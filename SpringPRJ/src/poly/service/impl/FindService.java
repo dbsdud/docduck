@@ -28,5 +28,13 @@ public class FindService implements IFindService {
 	public List<ApiDTO> getHospSearch(ApiDTO aDTO) throws Exception {
 		return findMapper.getHospSearch(aDTO);
 	}
+	@Override
+	public ApiDTO getFindHospitalDetail_1(ApiDTO aDTO) throws Exception {
+		return findMapper.getFindHospitalDetail_1(aDTO);
+	}
+	@Override
+	public ApiDTO getFindHospitalDetail_2(ApiDTO aDTO) throws Exception {
+		return findMapper.getFindHospitalDetail_2(aDTO);
+	}
 
 }

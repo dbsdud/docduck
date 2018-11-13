@@ -53,7 +53,7 @@ $(function(){
 					var contents="";
 					$.each(data, function(key,value){
 						contents+="<tr>";
-						contents+="<td style='overflow:hidden; text-overflow:ellipsis; white-space:nowrap;'><a href='/find/findHospitalDetail.do?hosp_no="+value.hosp_no+"'>"+value.yadmNm+"</a></td>";
+						contents+="<td style='overflow:hidden; text-overflow:ellipsis; white-space:nowrap;'><a href='/find/findHospitalDetail.do?hosp_no="+value.hosp_no+"&telno="+value.telno+"'>"+value.yadmNm+"</a></td>";
 						contents+="<td style='overflow:hidden; text-overflow:ellipsis; white-space:nowrap;'>"+value.addr+"</td>";
 						contents+="<td>"+value.telno+"</td>";
 						contents+="</tr>";

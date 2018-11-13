@@ -82,12 +82,25 @@ public class FindController {
 	public String findHospitalDetail(HttpServletRequest req, HttpSession session, Model model) throws Exception{
 		log.info(this.getClass() + " findHospitalDetail Start!!!");
 		String hospNo = CmmUtil.nvl(req.getParameter("hosp_no"));
+		String telno = CmmUtil.nvl(req.getParameter("telno"));
 		int hosp_no = Integer.parseInt(hospNo);
-		log.info(this.getClass() + " int hosp_no : " + hosp_no);
 		log.info(this.getClass() + " hospNo : " + hospNo);
+		log.info(this.getClass() + " telno : " + telno);
+		
+		String dutyTel1 = telno;
+		log.info(this.getClass() + " dutyTel1 : " + dutyTel1);
 		
 		ApiDTO aDTO = new ApiDTO();
 		aDTO.setHosp_no(hosp_no);
+		aDTO.setTelno(telno);
+		aDTO.setDutyTel1(dutyTel1);
+		
+		ApiDTO aDTO2 = findService.getFindHospitalDetail_1(aDTO);
+		model.addAttribute("aDTO2",aDTO2);
+		
+		ApiDTO aDTO3 = findService.getFindHospitalDetail_2(aDTO);
+		model.addAttribute("aDTO3",aDTO3);
+		
 		log.info(this.getClass() + " aDTO.setHosp_no : " + aDTO.getHosp_no());
 		log.info(this.getClass() + " findHospitalDetail End!!!");
 		return "/find/findHospitalDetail";
