@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import poly.dto.NoticeDTO;
+import poly.dto.ReviewDTO;
 import poly.dto.UserDTO;
 import poly.service.INoticeService;
+import poly.service.IReviewService;
 import poly.service.IUserService;
 import poly.util.CmmUtil;
 
@@ -28,6 +30,8 @@ public class AdminController {
 	private INoticeService noticeService;
 	@Resource(name = "UserService")
 	private IUserService userService;
+	@Resource(name = "ReviewService")
+	private IReviewService reviewService;
 	
 	@RequestMapping(value="admin/adminHome")
 	public String adminHome(HttpServletRequest req, HttpServletResponse res, Model model, HttpSession session) throws Exception {
@@ -40,8 +44,13 @@ public class AdminController {
 		if(nList == null) {
 			nList = new ArrayList<NoticeDTO>();
 		}
+		List<ReviewDTO> rList = reviewService.getReviewList();
+		if(rList == null) {
+			rList = new ArrayList<ReviewDTO>();
+		}
 		model.addAttribute("uList", uList);
 		model.addAttribute("nList", nList);
+		model.addAttribute("rList", rList);
 		log.info(this.getClass() + " adminHome End!!!");
 		return "/admin/adminHome";
 	}

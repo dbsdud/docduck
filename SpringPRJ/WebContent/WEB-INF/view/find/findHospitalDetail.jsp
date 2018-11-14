@@ -119,7 +119,7 @@
 					});
 					marker.setMap(map);
 					var content = '<div class="customoverlay">' +
-								'<a href="/review/reviewDetail.do?hosp_no='+hosp_no+'">' + 
+								'<a href="/review/reviewListHosp.do?hosp_no='+hosp_no+'">' + 
 								'<span class="title">'+title+'</span>' +
 								'</a>' + 
 								'</div>';

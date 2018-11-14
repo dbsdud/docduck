@@ -1,3 +1,4 @@
+<%@page import="poly.dto.ReviewDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="poly.dto.NoticeDTO" %>
@@ -6,6 +7,7 @@
 <%
 	List<UserDTO> uList=(List<UserDTO>)request.getAttribute("uList");
 	List<NoticeDTO> nList=(List<NoticeDTO>)request.getAttribute("nList");
+	List<ReviewDTO> rList=(List<ReviewDTO>)request.getAttribute("rList");
 %>
 <html>
 <head>
@@ -156,7 +158,18 @@ ul.tabs li.current{
 									<th style="width:65%;">내용</th>
 									<th style="width:25%">등록일</th>
 								</tr>
-							</thead>						
+							</thead>
+							<tbody>
+							<% if(rList!=null) { %>
+								<% for(int i=0; i<rList.size(); i++) { %>
+								<tr>
+									<th scope="row"><%= rList.get(i).getReviewNo() %></th>
+									<td><a href="/review/reviewDetail.do?reviewNo=<%=rList.get(i).getReviewNo() %>"><%=rList.get(i).getReviewContent() %></a></td>
+									<td><%=rList.get(i).getRegDate() %></td>
+								</tr>
+								<% } %>
+							<% } %>
+							</tbody>							
 						</table>
 					</div>
 					<div id="tab-3" class="tab-content">
