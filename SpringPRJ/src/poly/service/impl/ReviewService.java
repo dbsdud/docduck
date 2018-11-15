@@ -27,6 +27,17 @@ public class ReviewService implements IReviewService{
 		return reviewMapper.getReviewListHosp(rDTO);
 	}
 
+	@Override
+	public int insertReview(ReviewDTO rDTO) throws Exception {
+		return reviewMapper.insertReview(rDTO);
+	}
+
+	@Override
+	public ReviewDTO getReviewDetail(ReviewDTO rDTO) throws Exception {
+		return reviewMapper.getReviewDetail(rDTO);
+	}
+
+
 	/*@Override
 	public ApiDTO getReviewDetail(ApiDTO aDTO) throws Exception {
 		return reviewMapper.getReviewDetail(aDTO);

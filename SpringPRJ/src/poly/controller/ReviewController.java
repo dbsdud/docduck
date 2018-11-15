@@ -19,6 +19,7 @@ import poly.dto.ReviewDTO;
 import poly.dto.UserDTO;
 import poly.service.IApiService;
 import poly.service.IReviewService;
+import poly.service.impl.ReviewService;
 import poly.util.CmmUtil;
 
 @Controller
@@ -52,8 +53,70 @@ public class ReviewController {
 	}
 	
 	@RequestMapping(value="review/reviewReg")
-	public String reviewReg(HttpServletRequest req, Model model) throws Exception{
+	public String reviewReg(HttpServletRequest req, HttpSession session,Model model) throws Exception{
+		String hospNo=CmmUtil.nvl(req.getParameter("hosp_no"));
+		log.info(this.getClass() + " hospNo : " + hospNo);
+		ReviewDTO rDTO = new ReviewDTO();
+		rDTO.setHospNo(hospNo);
+		model.addAttribute("rDTO",rDTO);
 		return "/review/reviewReg";
 	}
 	
+	@RequestMapping(value="review/reviewRegProc", method=RequestMethod.POST)
+	public String insertReview(HttpServletRequest req, Model model) throws Exception{
+		log.info(this.getClass() + " reviewRegProc Start!!!");
+		String hospNo=CmmUtil.nvl(req.getParameter("hosp_no"));
+		log.info(this.getClass() + " hospNo : " + hospNo);
+		String reviewTreat = CmmUtil.nvl(req.getParameter("treatVal"));
+		log.info(this.getClass() + " reviewTreat : " + reviewTreat);
+		String reviewService1 = CmmUtil.nvl(req.getParameter("serviceVal"));
+		log.info(this.getClass() + " reviewService : " + reviewService1);
+		String reviewFacil = CmmUtil.nvl(req.getParameter("facilVal"));
+		log.info(this.getClass() + " reviewFacil : " + reviewFacil);
+		String reviewContent = CmmUtil.nvl(req.getParameter("reviewContent"));
+		String id = CmmUtil.nvl(req.getParameter("id"));
+		log.info(this.getClass() + " id : " + id);
+		String regNo = CmmUtil.nvl(req.getParameter("regNo"));
+		log.info(this.getClass() + " regNo : " + regNo);
+		
+		ReviewDTO rDTO = new ReviewDTO();
+		rDTO.setHospNo(hospNo);
+		rDTO.setReviewTreat(reviewTreat);
+		rDTO.setReviewService(reviewService1);
+		rDTO.setReviewFacil(reviewFacil);
+		rDTO.setReviewContent(reviewContent);
+		rDTO.setId(id);
+		rDTO.setRegNo(regNo);
+		
+		int result = reviewService.insertReview(rDTO);
+		String msg="";
+		String url="";
+		if(result!=0) {
+			msg="리뷰를 등록했습니다.";
+			url="/review/reviewListHosp.do?hosp_no="+hospNo;
+		} else {
+			msg="리뷰 등록에 실패했습니다.";
+			url="/review/reviewReg.do";
+		}
+		model.addAttribute(rDTO);
+		model.addAttribute("msg",msg);
+		model.addAttribute("url",url);
+		log.info(this.getClass() + " reviewRegProc End!!!");
+		return "/alert";
+	}
+	@RequestMapping(value="review/reviewUpdate",method=RequestMethod.GET)
+	public String reviewUpdate(HttpServletRequest req, Model model) throws Exception{
+		log.info(this.getClass() + " reviewUpdate Start!!!");
+		String reviewNo = req.getParameter("reviewNo");
+		log.info(this.getClass() + " reviewNo : " + reviewNo);
+		
+		ReviewDTO rDTO1 = new ReviewDTO();
+		rDTO1.setReviewNo(reviewNo);
+		
+		ReviewDTO rDTO = reviewService.getReviewDetail(rDTO1);
+		
+		model.addAttribute("rDTO",rDTO);
+		log.info(this.getClass() + " reviewUpdate End!!!");
+		return "/review/reviewUpdate";
+	}
 }

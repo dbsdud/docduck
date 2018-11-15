@@ -28,6 +28,11 @@
 	background:#f0f4fc;
 }
 </style>
+<script>
+function reviewUpdate(reviewNo){
+	location.href="/review/reviewUpdate.do?reviewNo="+reviewNo;
+}
+</script>
 </head>
 <body id="page-top">
 	<%@ include file="/WEB-INF/view/homeNav.jsp" %>
@@ -46,7 +51,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12 text-center">
-					<input type="hidden" value="<%= id %>" />
+					<input type="hidden" id="id" name="id" value="<%= id %>" />
 					<input type="hidden" value="<%= userNo %>" />
 					<input type="hidden" value="<%= regNo %>" />
 					<h5>
@@ -64,12 +69,19 @@
 					<span class="col-sm-4 pull-left"><%= rList.get(i).getReviewFacil() %></span>
 				</div>
 				<div class="col-sm-12">
-					<span class="col-sm-12"><%= rList.get(i).getReviewContent() %></span>
+					<span class="col-sm-6"><%= rList.get(i).getReviewContent() %></span>
 				</div>
-				<div class="col-sm-12 pull-left">
-					<span class="col-sm-12"><%= rList.get(i).getId() %> | <%=rList.get(i).getRegDate() %></span>
+				<div class="col-sm-6 pull-left">
+					<span class="col-sm-6"><%= rList.get(i).getId() %> | <%=rList.get(i).getRegDate() %></span>
 				</div>
-				<div class="col-sm-12 shared-pad"></div>
+				<% if(rList.get(i).getRegNo().equals(userNo)) { %>
+				<div class="col-sm-6">
+					<button class="btn btn-primary pull-right" style="width:30%;" onclick="reviewUpdate('<%=rList.get(i).getReviewNo()%>');">
+						수정
+					</button>
+				</div>
+				<% } %>
+				<div class="col-sm-12 shared-pad" style="margin-top:1%;"></div>
 				<% } %>
 				<br>
 				<% if(!userNo.equals("")) { %>

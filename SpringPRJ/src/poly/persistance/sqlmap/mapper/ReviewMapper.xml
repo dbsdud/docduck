@@ -53,4 +53,16 @@
 	WHERE
 		HOSP_NO = #{hospNo}
 </select>
+<select id="getReviewDetail" parameterType="ReviewDTO" resultType="ReviewDTO">
+	SELECT
+		REVIEW_CONTENT AS reviewContent
+		REGDATE AS regDate,
+		REGNO AS regNo,
+		UPDDATE AS updDate,
+		UPDNO AS updNo
+	FROM
+		DOC_REVIEW
+	WHERE
+		REVIEW_NO=#{reviewNo}
+</select>
 </mapper>

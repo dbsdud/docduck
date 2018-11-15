@@ -12,4 +12,6 @@ public interface ReviewMapper {
 	/*public ApiDTO getReviewDetail(ApiDTO aDTO) throws Exception;*/
 	public List<ReviewDTO> getReviewList() throws Exception;
 	public List<ReviewDTO> getReviewListHosp(ReviewDTO rDTO) throws Exception;
+	public int insertReview(ReviewDTO rDTO) throws Exception;
+	public ReviewDTO getReviewDetail(ReviewDTO rDTO) throws Exception;
 }
