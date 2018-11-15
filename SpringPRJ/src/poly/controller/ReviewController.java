@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
@@ -43,10 +44,16 @@ public class ReviewController {
 			rList = new ArrayList<ReviewDTO>();
 		}
 		
+		model.addAttribute("rDTO",rDTO);
 		model.addAttribute("rList",rList);
 		
 		log.info(this.getClass() + " reviewListHosp End!!!");
 		return "/review/reviewListHosp";
+	}
+	
+	@RequestMapping(value="review/reviewReg")
+	public String reviewReg(HttpServletRequest req, Model model) throws Exception{
+		return "/review/reviewReg";
 	}
 	
 }

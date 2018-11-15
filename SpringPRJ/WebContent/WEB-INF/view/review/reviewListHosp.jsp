@@ -15,7 +15,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>리뷰</title>
-<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.1/css/responsive.dataTables.min.css">
 <%@ include file="/WEB-INF/view/mainCss.jsp" %>
 <style>
 .review-detail-row{
@@ -54,7 +53,6 @@
 						병원후기
 					</h5>
 					<hr class="my-4">
-					
 				</div>
 				<% for(int i=0; i<rList.size(); i++) { %>
 				<div class="col-sm-12 text-center review-detail-row">
@@ -73,15 +71,16 @@
 				</div>
 				<div class="col-sm-12 shared-pad"></div>
 				<% } %>
-				<%-- <% if(!userNo.equals("")) { %>
-					<div class="col-sm-12">
-						<a href="/review/reviewReg.do?hosp_no=<%=rDTO.getHospNo() %>">
-							<button class="btn btn-primary btn-block pull-right" style="width:30%;" id="writeReview">
-								작성
-							</button>
-						</a>
-					</div>
-				<% } %> --%>
+				<br>
+				<% if(!userNo.equals("")) { %>
+				<div class="col-sm-12">
+					<a href="/review/reviewReg.do?hosp_no=<%=rDTO.getHospNo() %>">
+						<button class="btn btn-primary btn-block pull-right" style="width:30%;" id="writeReview">
+							작성
+						</button>
+					</a>
+				</div>
+				<% } %>
 			</div>			
 		</div>
 	</section>
