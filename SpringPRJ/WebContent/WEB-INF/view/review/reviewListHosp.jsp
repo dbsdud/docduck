@@ -14,6 +14,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
 <title>리뷰</title>
 <%@ include file="/WEB-INF/view/mainCss.jsp" %>
 <style>
@@ -30,7 +33,7 @@
 </style>
 <script>
 function reviewUpdate(reviewNo){
-	location.href="/review/reviewUpdate.do?reviewNo="+reviewNo;
+	location.href="/review/reviewUpdate.do?hosp_no="+<%= rDTO.getHospNo()%>+"&reviewNo="+reviewNo;
 }
 </script>
 </head>

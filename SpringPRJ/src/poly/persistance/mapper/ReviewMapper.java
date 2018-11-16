@@ -14,4 +14,6 @@ public interface ReviewMapper {
 	public List<ReviewDTO> getReviewListHosp(ReviewDTO rDTO) throws Exception;
 	public int insertReview(ReviewDTO rDTO) throws Exception;
 	public ReviewDTO getReviewDetail(ReviewDTO rDTO) throws Exception;
+	public int updateReview(ReviewDTO rDTO) throws Exception;
+	public int reviewDel(String reviewNo) throws Exception;
 }

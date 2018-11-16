@@ -14,7 +14,7 @@
 	<header class="masthead text-center text-white d-flex">
 		<div class="container my-auto">
 			<div class="row">
-				<div class="col-lg-10 mx-auto">
+				<div class="col-lg-12 mx-auto">
 					<h1 class="text-uppercase">
 						<strong>가까운 병원과 약국을 찾아보세요!</strong>
 					</h1>
@@ -83,12 +83,12 @@
         	</div>
 		</div>
 	</section>
-	<section class="bg-dark text-white">
+	<!-- <section class="bg-dark text-white">
 		<div class="container text-center">
 			<h2 class="mb-4">Free Download at Start Bootstrap!</h2>
 			<a class="btn btn-light btn-xl sr-button" href="http://startbootstrap.com/template-overviews/creative/">Download Now!</a>
 		</div>
-	</section>
+	</section> -->
 	<%@ include file="homeFooter.jsp" %>
     <%@ include file="mainJs.jsp" %>
   </body>

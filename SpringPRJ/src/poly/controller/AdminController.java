@@ -91,4 +91,40 @@ public class AdminController {
 		log.info(this.getClass() + " userKick End!!!");
 		return "/alert";
 	}
+	@RequestMapping(value="admin/adminReviewDetail", method=RequestMethod.GET)
+	public String adminReviewDetail(HttpServletRequest req, Model model) throws Exception{
+		log.info(this.getClass() + " adminReviewDetail Start!!!");
+		String reviewNo = CmmUtil.nvl(req.getParameter("reviewNo"));
+		log.info(this.getClass() + " reviewNo : " + reviewNo);
+		
+		ReviewDTO rDTO = new ReviewDTO();
+		rDTO.setReviewNo(reviewNo);
+		
+		ReviewDTO rDTO2 = reviewService.getReviewDetail(rDTO);
+		model.addAttribute("rDTO2", rDTO2);
+		
+		log.info(this.getClass() + " adminReviewDetail End!!!");
+		return "/admin/adminReviewDetail";
+	}
+	@RequestMapping(value="admin/reviewDel", method=RequestMethod.GET)
+	public String reviewDel(HttpServletRequest req, Model model) throws Exception{
+		log.info(this.getClass() + " reviewDel Start!!!");
+		String reviewNo = CmmUtil.nvl(req.getParameter("reviewNo"));
+		log.info(this.getClass() + " reviewNo : " + reviewNo);
+		
+		int result = reviewService.reviewDel(reviewNo);
+		String msg="";
+		String url="";
+		if(result!=0) {
+			msg="리뷰를 삭제하였습니다.";
+			url="/admin/adminHome.do";
+		} else {
+			msg="삭제에 실패하였습니다.";
+			url="/admin/adminReviewDetail.do?reviewNo="+reviewNo;
+		}
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		log.info(this.getClass() + " reviewDel End!!!");
+		return "/alert";
+	}
 }

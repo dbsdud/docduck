@@ -37,6 +37,16 @@ public class ReviewService implements IReviewService{
 		return reviewMapper.getReviewDetail(rDTO);
 	}
 
+	@Override
+	public int updateReview(ReviewDTO rDTO) throws Exception {
+		return reviewMapper.updateReview(rDTO);
+	}
+
+	@Override
+	public int reviewDel(String reviewNo) throws Exception {
+		return reviewMapper.reviewDel(reviewNo);
+	}
+
 
 	/*@Override
 	public ApiDTO getReviewDetail(ApiDTO aDTO) throws Exception {

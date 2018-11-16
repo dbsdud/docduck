@@ -105,12 +105,15 @@ public class ReviewController {
 		return "/alert";
 	}
 	@RequestMapping(value="review/reviewUpdate",method=RequestMethod.GET)
-	public String reviewUpdate(HttpServletRequest req, Model model) throws Exception{
+	public String reviewUpdate(HttpServletRequest req, HttpSession session, Model model) throws Exception{
 		log.info(this.getClass() + " reviewUpdate Start!!!");
+		String hospNo = req.getParameter("hosp_no");
+		log.info(this.getClass() + " hospNo : " + hospNo);
 		String reviewNo = req.getParameter("reviewNo");
 		log.info(this.getClass() + " reviewNo : " + reviewNo);
 		
 		ReviewDTO rDTO1 = new ReviewDTO();
+		rDTO1.setHospNo(hospNo);
 		rDTO1.setReviewNo(reviewNo);
 		
 		ReviewDTO rDTO = reviewService.getReviewDetail(rDTO1);
@@ -118,5 +121,47 @@ public class ReviewController {
 		model.addAttribute("rDTO",rDTO);
 		log.info(this.getClass() + " reviewUpdate End!!!");
 		return "/review/reviewUpdate";
+	}
+	@RequestMapping(value="review/reviewUpdateProc",method=RequestMethod.POST)
+	public String reviewUpdateProc(HttpServletRequest req, Model model) throws Exception{
+		log.info(this.getClass() + " reviewUpdateProc Start!!!");
+		String hospNo = req.getParameter("hosp_no");
+		log.info(this.getClass() + " hospNo : " + hospNo);
+		String reviewNo = req.getParameter("reviewNo");
+		log.info(this.getClass() + " reviewNo : " + reviewNo);
+		String reviewTreat = req.getParameter("treatVal");
+		log.info(this.getClass() + " reviewTreat : " + reviewTreat);
+		String reviewService1 = req.getParameter("serviceVal");
+		log.info(this.getClass() + "reviewService : " + reviewService1);
+		String reviewFacil = req.getParameter("facilVal");
+		log.info(this.getClass() + " reviewFacil : " + reviewFacil);
+		String reviewContent = req.getParameter("reviewContent");
+		String regNo = req.getParameter("regNo");
+		log.info(this.getClass() + " regNo : " + regNo);
+		
+		ReviewDTO rDTO = new ReviewDTO();
+		rDTO.setHospNo(hospNo);
+		rDTO.setReviewNo(reviewNo);
+		rDTO.setReviewTreat(reviewTreat);
+		rDTO.setReviewService(reviewService1);
+		rDTO.setReviewFacil(reviewFacil);
+		rDTO.setReviewContent(reviewContent);
+		rDTO.setRegNo(regNo);
+		
+		int result = reviewService.updateReview(rDTO);
+		String msg="";
+		String url="";
+		if(result!=0) {
+			msg="리뷰를 수정하였습니다.";
+			url="/review/reviewListHosp.do?hosp_no=" + hospNo;
+		} else {
+			msg="수정에 실패하였습니다.";
+			url="/review/reviewUpdate.do?hosp_no="+hospNo+"&reviewNo="+reviewNo;
+		}
+		model.addAttribute("rDTO",rDTO);
+		model.addAttribute("msg",msg);
+		model.addAttribute("url",url);
+		log.info(this.getClass() + " reviewUpdateProc End!!!");
+		return "/alert";
 	}
 }

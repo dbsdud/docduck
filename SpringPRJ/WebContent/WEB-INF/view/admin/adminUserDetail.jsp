@@ -7,7 +7,10 @@
 %>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>상세회원정보</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>회원 상세 정보</title>
 <%@ include file="/WEB-INF/view/mainCss.jsp" %>
 <script>
 function prev(){
@@ -31,7 +34,7 @@ function userKick(userNo){
 			<div class="row">
 				<div class="col-lg-10 mx-auto">
 					<h1 class="text-uppercase">
-						<strong>상세회원정보</strong>
+						<strong>회원 상세 정보</strong>
 					</h1>
 				</div>
 			</div>

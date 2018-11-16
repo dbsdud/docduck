@@ -164,7 +164,7 @@ ul.tabs li.current{
 								<% for(int i=0; i<rList.size(); i++) { %>
 								<tr>
 									<th scope="row"><%= rList.get(i).getReviewNo() %></th>
-									<td><a href="/review/reviewDetail.do?reviewNo=<%=rList.get(i).getReviewNo() %>"><%=rList.get(i).getReviewContent() %></a></td>
+									<td><a href="/admin/adminReviewDetail.do?reviewNo=<%=rList.get(i).getReviewNo() %>"><%=rList.get(i).getReviewContent() %></a></td>
 									<td><%=rList.get(i).getRegDate() %></td>
 								</tr>
 								<% } %>

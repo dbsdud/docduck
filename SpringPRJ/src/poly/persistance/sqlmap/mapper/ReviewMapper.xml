@@ -55,7 +55,10 @@
 </select>
 <select id="getReviewDetail" parameterType="ReviewDTO" resultType="ReviewDTO">
 	SELECT
-		REVIEW_CONTENT AS reviewContent
+		REVIEW_NO AS reviewNo,
+		HOSP_NO AS hospNo,
+		ID AS id,
+		REVIEW_CONTENT AS reviewContent,
 		REGDATE AS regDate,
 		REGNO AS regNo,
 		UPDDATE AS updDate,
@@ -65,4 +68,24 @@
 	WHERE
 		REVIEW_NO=#{reviewNo}
 </select>
+<update id="updateReview" parameterType="ReviewDTO">
+	UPDATE
+		DOC_REVIEW
+	SET
+		REVIEW_TREAT=#{reviewTreat},
+		REVIEW_SERVICE=#{reviewService},
+		REVIEW_FACIL=#{reviewFacil},
+		REVIEW_CONTENT=#{reviewContent},
+		UPDDATE=now(),
+		UPDNO=#{regNo}
+	WHERE
+		REVIEW_NO=#{reviewNo}
+</update>
+<delete id="reviewDel" parameterType="string">
+	DELETE
+	FROM
+		DOC_REVIEW
+	WHERE
+		REVIEW_NO=#{reviewNo}
+</delete>
 </mapper>

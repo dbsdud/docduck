@@ -193,7 +193,7 @@ public class NoticeController {
 		String msg="";
 		String url="";
 		if(result != 0) {
-			msg="수정에 성공하였습니다.";
+			msg="공지사항을 수정하였습니다.";
 			url="/notice/noticeList.do";
 		} else {
 			msg="수정에 실패하였습니다.";

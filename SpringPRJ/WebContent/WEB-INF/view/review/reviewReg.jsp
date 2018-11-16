@@ -11,6 +11,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
 <title>리뷰 작성</title>
 <%@ include file="/WEB-INF/view/mainCss.jsp" %>
 <!-- bar-rating -->
@@ -36,7 +39,10 @@
 </script>
 <script>
 function reviewRegCancel(){
-	location.href="/review/reviewListHosp.do?hosp_no="+hospNo;
+	var reviewRegCancel = confirm("수정을 취소하시겠습니까?");
+	if(reviewRegCancel==true){
+		location.href="/review/reviewListHosp.do?hosp_no="+hospNo;	
+	}
 }
 </script>
 <style>
