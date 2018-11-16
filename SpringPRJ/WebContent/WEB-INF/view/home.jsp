@@ -8,6 +8,7 @@
 <meta name="author" content="">
 <title>Doc.Duck's Home</title>
 <%@ include file="mainCss.jsp" %>
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 </head>
 <body id="page-top">
 	<%@ include file="homeNav.jsp" %>

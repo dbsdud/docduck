@@ -23,6 +23,7 @@
 		location.href="/user/logout.do"
 	}
 </script>
+
 <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       	<div class="container">
@@ -100,6 +101,26 @@
    							</button>
    						</p>
    					</div>
+   					<!-- <div class="col-sm-12">
+	   					<a id="kakao-login-btn">
+   						<a href="http://developers.kakako.com/logout"></a>
+   					</div>
+					<script type='text/javascript'>
+						//<![CDATA[
+						// 사용할 앱의 JavaScript 키를 설정해 주세요.
+						Kakao.init('3b51662875dac592f716746c1575ee20');
+						// 카카오 로그인 버튼을 생성합니다.
+						Kakao.Auth.createLoginButton({
+							container : '#kakao-login-btn',
+							success : function(authObj) {
+								alert(JSON.stringify(authObj));
+							},
+							fail : function(err) {
+								alert(JSON.stringify(err));
+							}
+						});
+						//]]>
+					</script> -->
    				</form>
    				<div class="modal-footer" style="clear:both;">
    					<div class="col-sm-6" style="text-align: left;">
@@ -108,7 +129,7 @@
    					<div class="col-sm-6" style="text-align: right;">
    						<a href="/user/findAccount.do">내 계정 찾기</a>
    					</div>
-   				</div>
+				</div>
    			</div>
    		</div>
    	</div>

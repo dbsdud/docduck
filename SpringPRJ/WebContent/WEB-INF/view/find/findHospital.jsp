@@ -13,20 +13,7 @@
 <meta name="author" content="">
 <title>병원찾기</title>
 <%@ include file="/WEB-INF/view/mainCss.jsp" %>
-
 <script>
-/* $(document).ready( function () {
-	$('#myTable').DataTable({
-		"bAutoWidth" : false,
-		"lengthMenu" : [[10,25,50,100], [10,25,50,100]],
-		"pageLength" : 10,
-		columns:[
-			{title:'No'},
-			{title:"병원명"},
-			{title:"전화번호"}
-		]
-	});
-} ); */
 $(function(){
 	// 병원찾기
 	$('#findHosp').click(function(){
@@ -189,20 +176,8 @@ $(function(){
 				</table>
 			</div>
 		</div>
-		<div class="container">
-			<div class="row">
-				<div id="map" style="width: 100%; height: 400px;"></div>
-					<%@ include file="findMapJs.jsp"%>
-				<!-- <div class="hAddr">
-					<span class="title">지도중심기준 행정동 주소정보</span> <span id="centerAddr"></span>
-				</div> -->
-				<p>
-					<em>지도 중심좌표가 변경되면 지도 정보가 표출됩니다</em>
-				</p>
-				<p id="result"></p>
-			</div>
-		</div>
 	</section>
+	<%@ include file="findMapJs.jsp"%>
 	<%@ include file="/WEB-INF/view/homeFooter.jsp" %>
 	<%@ include file="/WEB-INF/view/mainJs.jsp" %>
 </body>
