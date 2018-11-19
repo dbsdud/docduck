@@ -67,9 +67,45 @@ function reviewUpdate(reviewNo){
 					<span class="col-sm-4 pull-left">진료 만족도</span>
 					<span class="col-sm-4">의료진 친절도</span>
 					<span class="col-sm-4 pull-right">시설 만족도</span>
-					<span class="col-sm-4 pull-left"><%= rList.get(i).getReviewTreat() %></span>
-					<span class="col-sm-4 pull-left"><%= rList.get(i).getReviewService() %></span>
-					<span class="col-sm-4 pull-left"><%= rList.get(i).getReviewFacil() %></span>
+					<span class="col-sm-4 pull-left">
+						<% if(rList.get(i).getReviewTreat().equals("1")) { %>
+						<img src="/Resources/image/star_img_1.png" style="height:2%;">
+						<% } else if(rList.get(i).getReviewTreat().equals("2")) { %>
+						<img src="/Resources/image/star_img_2.png" style="height:2%;">
+						<% } else if(rList.get(i).getReviewTreat().equals("3")) { %>
+						<img src="/Resources/image/star_img_3.png" style="height:2%;">
+						<% } else if(rList.get(i).getReviewTreat().equals("4")) { %>
+						<img src="/Resources/image/star_img_4.png" style="height:2%;">
+						<% } else { %>
+						<img src="/Resources/image/star_img_5.png" style="height:2%;">
+						<% } %>
+					</span>
+					<span class="col-sm-4 pull-left">
+						<% if(rList.get(i).getReviewService().equals("1")) { %>
+						<img alt="1" src="/Resources/image/star_img_1.png" style="height:2%;">
+						<% } else if(rList.get(i).getReviewService().equals("2")) { %>
+						<img src="/Resources/image/star_img_2.png" style="height:2%;">
+						<% } else if(rList.get(i).getReviewService().equals("3")) { %>
+						<img src="/Resources/image/star_img_3.png" style="height:2%;">
+						<% } else if(rList.get(i).getReviewService().equals("4")) { %>
+						<img src="/Resources/image/star_img_4.png" style="height:2%;">
+						<% } else { %>
+						<img src="/Resources/image/star_img_5.png" style="height:2%;">
+						<% } %>
+					</span>
+					<span class="col-sm-4 pull-left">
+						<% if(rList.get(i).getReviewFacil().equals("1")) { %>
+						<img alt="1" src="/Resources/image/star_img_1.png" style="height:2%;">
+						<% } else if(rList.get(i).getReviewFacil().equals("2")) { %>
+						<img src="/Resources/image/star_img_2.png" style="height:2%;">
+						<% } else if(rList.get(i).getReviewFacil().equals("3")) { %>
+						<img src="/Resources/image/star_img_3.png" style="height:2%;">
+						<% } else if(rList.get(i).getReviewFacil().equals("4")) { %>
+						<img src="/Resources/image/star_img_4.png" style="height:2%;">
+						<% } else { %>
+						<img src="/Resources/image/star_img_5.png" style="height:2%;">
+						<% } %>
+					</span>
 				</div>
 				<div class="col-sm-12">
 					<span class="col-sm-6"><%= rList.get(i).getReviewContent() %></span>

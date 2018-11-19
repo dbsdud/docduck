@@ -41,10 +41,10 @@ public class ReviewController {
 		rDTO.setHospNo(hospNo);
 		
 		List<ReviewDTO> rList = reviewService.getReviewListHosp(rDTO);
-		if(rList==null) {
+		/*if(rList==null) {
 			rList = new ArrayList<ReviewDTO>();
-		}
-		
+		}*/
+		log.info(rList);
 		model.addAttribute("rDTO",rDTO);
 		model.addAttribute("rList",rList);
 		
