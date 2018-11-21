@@ -1,3 +1,4 @@
+<%@page import="poly.dto.ReviewDTO"%>
 <%@page import="poly.dto.ApiDTO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -135,7 +136,7 @@
 					})
 				</script>
 				<div class="col-lg-12 text-center" style="padding-top:5%;">
-					<h5>진료만족도 | test</h5>
+					<h5>상세정보</h5>
 					<hr class="my-4">
 				</div>
 				<div class="col-sm-12">

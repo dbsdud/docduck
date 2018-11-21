@@ -40,9 +40,9 @@ $(function(){
 					var contents="";
 					$.each(data, function(key,value){
 						contents+="<tr>";
-						contents+="<td style='overflow:hidden; text-overflow:ellipsis; white-space:nowrap;'><a href='/find/findHospitalDetail.do?hosp_no="+value.hosp_no+"&telno="+value.telno+"'>"+value.yadmNm+"</a></td>";
-						contents+="<td style='overflow:hidden; text-overflow:ellipsis; white-space:nowrap;'>"+value.addr+"</td>";
-						contents+="<td>"+value.telno+"</td>";
+						contents+="<td style='overflow:hidden; text-overflow:ellipsis;'><a href='/find/findHospitalDetail.do?hosp_no="+value.hosp_no+"&telno="+value.telno+"'>"+value.yadmNm+"</a></td>";
+						contents+="<td style='overflow:hidden; text-overflow:ellipsis;'>"+value.addr+"</td>";
+						contents+="<td class='text-center'>"+value.telno+"</td>";
 						contents+="</tr>";
 					});
 					$('#showFindTable').html(contents);
@@ -164,8 +164,8 @@ $(function(){
 					<thead class="text-center">
 						<tr>
 							<th style="width:20%;">병원명</th>
-							<th style="width:65%;">주소</th>
-							<th style="width:15%;">전화번호</th>
+							<th style="width:55%;">주소</th>
+							<th style="width:25%;">전화번호</th>
 						</tr>
 					</thead>
 					<tbody id="showFindTable">

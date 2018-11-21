@@ -234,4 +234,5 @@ public class UserContoller {
 		log.info(this.getClass() + " updInfoProc End!!!");
 		return "/alert";
 	}
+	
 }

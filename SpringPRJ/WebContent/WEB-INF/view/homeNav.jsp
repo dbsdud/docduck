@@ -1,3 +1,6 @@
+<%@page import="java.math.BigInteger"%>
+<%@page import="java.security.SecureRandom"%>
+<%@page import="java.net.URLEncoder"%>
 <%@page import="poly.util.CmmUtil"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -7,6 +10,17 @@
 	String userName = CmmUtil.nvl((String)session.getAttribute("userName"));
 	String userNo = CmmUtil.nvl((String)session.getAttribute("userNo"));
 	String regNo = CmmUtil.nvl((String)session.getAttribute("regNo"));
+%>
+<%
+	String clientId = "iUPkesYtJUc1VboWmHtr"; //애플리케이션 클라이언트 아이디값";
+	String redirectURI = URLEncoder.encode("naverCallback", "UTF-8");
+	SecureRandom random = new SecureRandom();
+	String state = new BigInteger(130, random).toString();
+	String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
+	apiURL += "&client_id=" + clientId;
+	apiURL += "&redirect_uri=" + redirectURI;
+	apiURL += "&state=" + state;
+	session.setAttribute("state", state);
 %>
 <script>
 	function loginSubmit(check){
@@ -101,10 +115,11 @@
    							</button>
    						</p>
    					</div>
-   					<!-- <div class="col-sm-12">
+   					<div class="col-sm-12 text-center">
 	   					<a id="kakao-login-btn">
    						<a href="http://developers.kakako.com/logout"></a>
    					</div>
+   					<br>
 					<script type='text/javascript'>
 						//<![CDATA[
 						// 사용할 앱의 JavaScript 키를 설정해 주세요.
@@ -113,6 +128,16 @@
 						Kakao.Auth.createLoginButton({
 							container : '#kakao-login-btn',
 							success : function(authObj) {
+								// 로그인 성공시, API를 호출합니다.
+								Kakao.API.request({
+									url: '/v2/user/me',
+									success: function(res){
+										alert(JSON.stringify(res));
+									},
+									fail: function(error){
+										alert(JSON.stringify(error));
+									}
+								});
 								alert(JSON.stringify(authObj));
 							},
 							fail : function(err) {
@@ -120,7 +145,10 @@
 							}
 						});
 						//]]>
-					</script> -->
+					</script>
+					<div class="col-sm-12 text-center">
+						<a href="<%= apiURL %>"><img src="/Resources/image/naverLogin.PNG" style="height:49px;"></a>
+					</div>
    				</form>
    				<div class="modal-footer" style="clear:both;">
    					<div class="col-sm-6" style="text-align: left;">

@@ -62,6 +62,13 @@ function reviewUpdate(reviewNo){
 					</h5>
 					<hr class="my-4">
 				</div>
+				<% if(rList.isEmpty()) { %>
+				<div class="col-sm-12 text-center">
+					<p>아직 등록된 리뷰가 없습니다. 첫 번째 리뷰를 등록해주세요!</p>
+					<br>
+					<p>리뷰 등록은 로그인 후에 가능합니다.</p>
+				</div>
+				<% } else { %>
 				<% for(int i=0; i<rList.size(); i++) { %>
 				<div class="col-sm-12 text-center review-detail-row">
 					<span class="col-sm-4 pull-left">진료 만족도</span>
@@ -121,6 +128,7 @@ function reviewUpdate(reviewNo){
 				</div>
 				<% } %>
 				<div class="col-sm-12 shared-pad" style="margin-top:1%;"></div>
+				<% } %>
 				<% } %>
 				<br>
 				<% if(!userNo.equals("")) { %>

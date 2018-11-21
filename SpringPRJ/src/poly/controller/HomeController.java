@@ -18,4 +18,9 @@ public class HomeController {
 	public String li(HttpServletRequest req, HttpServletResponse res, Model model) throws Exception{
 		return "/li";
 	}*/
+	// 여기서 부터 네이버 로그인
+	@RequestMapping(value="/naverCallback")
+	public String naverLogin(HttpServletRequest req) throws Exception {
+		return "/naverCallback";
+	}
 }
