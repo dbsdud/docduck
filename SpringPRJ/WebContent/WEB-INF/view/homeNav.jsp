@@ -5,6 +5,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+	/* 자체회원 */
 	String id = CmmUtil.nvl((String)session.getAttribute("id"));
 	String password = CmmUtil.nvl((String)session.getAttribute("password"));
 	String userName = CmmUtil.nvl((String)session.getAttribute("userName"));
@@ -12,15 +13,14 @@
 	String regNo = CmmUtil.nvl((String)session.getAttribute("regNo"));
 %>
 <%
-	String clientId = "iUPkesYtJUc1VboWmHtr"; //애플리케이션 클라이언트 아이디값";
-	String redirectURI = URLEncoder.encode("naverCallback", "UTF-8");
-	SecureRandom random = new SecureRandom();
-	String state = new BigInteger(130, random).toString();
-	String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
-	apiURL += "&client_id=" + clientId;
-	apiURL += "&redirect_uri=" + redirectURI;
-	apiURL += "&state=" + state;
-	session.setAttribute("state", state);
+	/* 카카오 */
+	String kId = CmmUtil.nvl((String)session.getAttribute("kId"));
+	String kName = CmmUtil.nvl((String)session.getAttribute("kName"));
+%>
+<%
+	/* 네이버 */
+	String email = CmmUtil.nvl((String)session.getAttribute("email"));
+	String uniqId = CmmUtil.nvl((String)session.getAttribute("uniqId"));
 %>
 <script>
 	function loginSubmit(check){
@@ -37,7 +37,7 @@
 		location.href="/user/logout.do"
 	}
 </script>
-
+<script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
 <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       	<div class="container">
@@ -47,7 +47,7 @@
 			</button>
 			<div class="collapse navbar-collapse text-center" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
-					<% if("".equals(id)) {%>
+					<% if("".equals(id) && "".equals(kId) && "".equals(uniqId)) {%>
 					<li class="nav-item">
 						<a class="nav-link" data-toggle="modal" data-target="#login" href="#">Login</a>
 					</li>
@@ -55,6 +55,7 @@
 						<a class="nav-link" href="/user/userReg.do">Join</a>
 					</li>
 					<%} else {%>
+					<% if(!"".equals(id)) { %>
 					<li class="nav-item">
 						<!-- 마이페이지 연동 -->
 						<a class="nav-link" href="/user/myPage.do"><%= userName + "님 환영합니다." %></a>
@@ -62,6 +63,21 @@
 					<li class="nav-item">
 						<a class="nav-link" onclick="logout();">Logout</a>
 					</li>
+					<% } else if(!"".equals(kId)) { %>
+					<li class="nav-item">
+						<a class="nav-link" href="#"><%= kName + "님 환영합니다." %></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" onclick="logout();">Logout</a>
+					</li>
+					<% } else { %>
+					<li class="nav-item">
+						<a class="nav-link" href="#"><%= email + "님 환영합니다." %></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" onclick="logout();">Logout</a>
+					</li>
+					<% } %>
 					<% } %>
 					<% if("admin".equals(id)) { %>
 					<li class="nav-item">
@@ -116,7 +132,7 @@
    						</p>
    					</div>
    					<div class="col-sm-12 text-center">
-	   					<a id="kakao-login-btn">
+	   					<a id="kakao-login-btn"></a>
    						<a href="http://developers.kakako.com/logout"></a>
    					</div>
    					<br>
@@ -124,6 +140,8 @@
 						//<![CDATA[
 						// 사용할 앱의 JavaScript 키를 설정해 주세요.
 						Kakao.init('3b51662875dac592f716746c1575ee20');
+						var kId = '';
+						var kName = '';
 						// 카카오 로그인 버튼을 생성합니다.
 						Kakao.Auth.createLoginButton({
 							container : '#kakao-login-btn',
@@ -133,6 +151,13 @@
 									url: '/v2/user/me',
 									success: function(res){
 										alert(JSON.stringify(res));
+										kId = JSON.stringify(res.id);
+										kName = JSON.stringify(res.properties.nickname);
+										console.log(" res.id : " +JSON.stringify(res.id));
+										console.log(" res.properties.nickname : " + JSON.stringify(res.properties.nickname));
+										console.log(" kId : " + JSON.stringify(res.id));
+										console.log(" kName : " + JSON.stringify(res.properties.nickname));
+										location.href='/kakaoCallback.do?kId='+kId+'&kName='+kName;
 									},
 									fail: function(error){
 										alert(JSON.stringify(error));
@@ -146,9 +171,32 @@
 						});
 						//]]>
 					</script>
-					<div class="col-sm-12 text-center">
-						<a href="<%= apiURL %>"><img src="/Resources/image/naverLogin.PNG" style="height:49px;"></a>
-					</div>
+					<div id="naverIdLogin" class="col-sm-12 text-center"></div>
+					<script type="text/javascript">
+						var naverLogin = new naver.LoginWithNaverId({
+							clientId: "iUPkesYtJUc1VboWmHtr",
+							callbackUrl: "http://localhost:8080/naverCallback.do",
+							isPopup: false, /* 팝업을 통한 연동처리 여부 */
+							callbackHandle:false,
+							loginButton: {color: "green", type: 3, height: 49} /* 로그인 버튼의 타입을 지정 */
+						});
+						/* 설정정보를 초기화하고 연동을 준비 */
+						naverLogin.init();
+						naverLogin.getLoginStatus(function (status) {
+							if (status) {
+								var email = naverLogin.user.getEmail();
+								var name = naverLogin.user.getNickName();
+								var uniqId = naverLogin.user.getId();
+								console.log(email);
+								console.log(uniqId);
+								console.log(name);
+								console.log(status);
+								/* location.href='/naverLogin.do?email='+email+'&uniqId='+uniqId; */
+							} else {
+								console.log("AccessToken이 올바르지 않습니다.");
+							}
+						});
+					</script>
    				</form>
    				<div class="modal-footer" style="clear:both;">
    					<div class="col-sm-6" style="text-align: left;">
