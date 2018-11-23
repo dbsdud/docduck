@@ -139,7 +139,7 @@
 					<script type='text/javascript'>
 						//<![CDATA[
 						// 사용할 앱의 JavaScript 키를 설정해 주세요.
-						Kakao.init('3b51662875dac592f716746c1575ee20');
+						Kakao.init('dfe82cc3269d1711faf54135539438a7');
 						var kId = '';
 						var kName = '';
 						// 카카오 로그인 버튼을 생성합니다.
@@ -172,6 +172,13 @@
 						//]]>
 					</script>
 					<div id="naverIdLogin" class="col-sm-12 text-center"></div>
+					<br>
+					<div class="col-sm-12 text-center">
+					<!-- <div id="fb-root" class="text-center">
+						<div class="fb-login-button text-center" data-max-rows="1" data-size="large" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false">
+						</div>	
+					</div> -->
+					</div>
 					<script type="text/javascript">
 						var naverLogin = new naver.LoginWithNaverId({
 							clientId: "iUPkesYtJUc1VboWmHtr",
@@ -197,6 +204,57 @@
 							}
 						});
 					</script>
+					<!-- <script>
+						(function(d,s,id){
+							var js, fjs = d.getElementsByTagName(s)[0];
+							if(d.getElementById(id)) return;
+							js = d.createElement(s); js.id = id;
+							js.src = 'https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v3.2&appId=2253461041644555&autoLogAppEvents=1';
+							fjs.parentNode.insertBefore(js, fjs);
+						}(document, 'script', 'facebook-jssdk'));
+						window.fbAsyncInit = function() {
+							FB.init({
+								appId      : '2253461041644555',
+								cookie     : true,
+								xfbml      : true,
+								version    : 'v3.2'
+							});
+							FB.AppEvents.logPageView();
+							FB.getLoginStatus(function(response) {
+								if(response.status == 'connected'){
+									
+								} else {
+									FB.login(function(response){
+										
+									},{scope:'public_profile, email'});
+								}
+							});
+						};
+						(function(d, s, id){
+							var js, fjs = d.getElementsByTagName(s)[0];
+							if (d.getElementById(id)) {return;}
+							js = d.createElement(s); js.id = id;
+							js.src = "https://connect.facebook.net/en_US/sdk.js";
+							fjs.parentNode.insertBefore(js, fjs);
+						}(document, 'script', 'facebook-jssdk'));
+						function checkLoginState(){
+							FB.getLoginStatus(function(response){
+								statusChangeCallback(response);
+							});
+						}
+						function statusChangeCallback(response){
+							if(response.status === 'connected'){
+								var fId = reponse.id;
+								console.log(fId);
+								var fName = reponse.name;
+								console.log(fName);
+								var fEmail = reponse.email;
+								console.log(fEmail);
+							} else {
+								document.getElementById('status').innerHTML = 'Please log into this app.';
+							}
+						}
+					</script> -->
    				</form>
    				<div class="modal-footer" style="clear:both;">
    					<div class="col-sm-6" style="text-align: left;">

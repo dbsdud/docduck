@@ -36,7 +36,7 @@ public class ApiController {
 	@Resource(name = "ApiService")
 	private IApiService apiService;
 	@RequestMapping(value="/insertSido")
-	public String inserSido(HttpServletRequest req, HttpServletResponse res, Model model) throws Exception{
+	public String insertSido(HttpServletRequest req, HttpServletResponse res, Model model) throws Exception{
 		log.info(this.getClass() + " insertSido Start!!!");
 		BufferedReader br = null;
 

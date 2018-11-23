@@ -57,6 +57,8 @@ function reviewUpdate(reviewNo){
 					<input type="hidden" id="id" name="id" value="<%= id %>" />
 					<input type="hidden" value="<%= userNo %>" />
 					<input type="hidden" value="<%= regNo %>" />
+					<input type="hidden" id="kId" name="kId" value="<%= kId %>" />
+					<input type="hidden" id="uniqId" name="uniqId" value="<%= uniqId %>" />
 					<h5>
 						병원후기
 					</h5>
@@ -131,7 +133,7 @@ function reviewUpdate(reviewNo){
 				<% } %>
 				<% } %>
 				<br>
-				<% if(!userNo.equals("")) { %>
+				<% if(!userNo.equals("") || !kId.equals("") || !uniqId.equals("")) { %>
 				<div class="col-sm-12">
 					<a href="/review/reviewReg.do?hosp_no=<%=rDTO.getHospNo() %>">
 						<button class="btn btn-primary btn-block pull-right" style="width:30%;" id="writeReview">
