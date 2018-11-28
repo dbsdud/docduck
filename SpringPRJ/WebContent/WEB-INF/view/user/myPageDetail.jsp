@@ -4,6 +4,8 @@
 <html>
 <%
 	UserDTO uDTO2 = (UserDTO)request.getAttribute("uDTO2");
+	String myPageUserNo = CmmUtil.nvl((String)session.getAttribute("myPageUserNo"));
+	String myPagePassword = CmmUtil.nvl((String)session.getAttribute("myPagePassword"));
 %>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">

@@ -45,6 +45,7 @@ public class UserService implements IUserService {
 	public List<UserDTO> findAccountPw(UserDTO uDTO) throws Exception {
 		return userMapper.findAccountPw(uDTO);
 	}
+	
 
 	@Override
 	public List<UserDTO> getUserList() throws Exception {
@@ -70,5 +71,10 @@ public class UserService implements IUserService {
 	public int updInfo(UserDTO uDTO) throws Exception {
 		return userMapper.updInfo(uDTO);
 	}
+
+	/*@Override
+	public UserDTO findAccountPw(UserDTO uDTO) throws Exception {
+		return userMapper.findAccountPw(uDTO);
+	}*/
 
 }

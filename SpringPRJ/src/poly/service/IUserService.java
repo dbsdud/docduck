@@ -18,6 +18,7 @@ public interface IUserService {
 	public List<UserDTO> findAccountId(UserDTO uDTO) throws Exception;
 	// 비밀번호 찾기
 	public List<UserDTO> findAccountPw(UserDTO uDTO) throws Exception;
+	/*public UserDTO findAccountPw(UserDTO uDTO) throws Exception;*/
 	// 회원 목록
 	public List<UserDTO> getUserList() throws Exception;
 	// 상세회원정보(관리자)

@@ -24,6 +24,7 @@ import poly.dto.UserDTO;
 import poly.service.IUserService;
 import poly.service.impl.UserService;
 import poly.util.CmmUtil;
+import poly.util.SecurityUtil;
 
 @Controller
 public class UserContoller {
@@ -50,11 +51,16 @@ public class UserContoller {
 		String userTel = CmmUtil.nvl(req.getParameter("userTel"));
 		log.info(this.getClass() + " userTel : " + userTel);
 		
+		
 		UserDTO uDTO = new UserDTO();
 		uDTO.setId(id);
-		uDTO.setPassword(password);
+		/*uDTO.setPassword(password);*/
 		uDTO.setUserName(userName);
 		uDTO.setUserTel(userTel);
+		
+		SecurityUtil securityUtil = new SecurityUtil();
+		String newPassword = securityUtil.encryptSHA256(password);
+		uDTO.setPassword(newPassword);
 		
 		int result = userService.insertUser(uDTO);
 		UserDTO uDTO2 = new UserDTO();
@@ -103,9 +109,13 @@ public class UserContoller {
 		log.info(this.getClass() + " id : " + id);
 		log.info(this.getClass() + " password : " + password);
 		
+		SecurityUtil securityUtil = new SecurityUtil();
+		String newPassword = securityUtil.encryptSHA256(password);
+		
 		UserDTO uDTO = new UserDTO();
 		uDTO.setId(id);
-		uDTO.setPassword(password);
+		/*uDTO.setPassword(password);*/
+		uDTO.setPassword(newPassword);
 		
 		uDTO = userService.getUserLogin(uDTO);
 		String msg = "";
@@ -189,15 +199,22 @@ public class UserContoller {
 		return "/user/myPage";
 	}
 	// 마이페이지 상세
-	@RequestMapping(value="user/myPageDetail",method=RequestMethod.GET)
+	@RequestMapping(value="user/myPageDetail",method=RequestMethod.POST)
 	public String myPageDetail(HttpServletRequest req, HttpSession session, Model model) throws Exception{
 		log.info(this.getClass() + " myPageDetail Start!!");
 		String userNo = CmmUtil.nvl(req.getParameter("userNo"));
 		log.info(this.getClass() + " userNo : " + userNo);
+		String password = CmmUtil.nvl(req.getParameter("password"));
+		log.info(this.getClass() + " password : " + password);
+		
+		SecurityUtil securityUtil = new SecurityUtil();
+		String newPassword = securityUtil.encryptSHA256(password);
 		
 		UserDTO uDTO = new UserDTO();
 		uDTO.setUserNo(userNo);
 		log.info(this.getClass() + " userNo : " + userNo);
+		uDTO.setPassword(newPassword);
+		log.info(this.getClass() + " password : " + password);
 		
 		UserDTO uDTO2 = userService.getUserDetail(uDTO);
 		model.addAttribute("uDTO2", uDTO2);
@@ -214,10 +231,13 @@ public class UserContoller {
 		String password = req.getParameter("updPassword");
 		log.info(this.getClass() + " password : " + password);
 		
+		SecurityUtil securityUtil = new SecurityUtil();
+		String newPassword = securityUtil.encryptSHA256(password);
+		
 		UserDTO uDTO = new UserDTO();
 		uDTO.setUserNo(userNo);
 		log.info(this.getClass() + " userNo : " + userNo);
-		uDTO.setPassword(password);
+		uDTO.setPassword(newPassword);
 		
 		int result = userService.updInfo(uDTO);
 		String msg="";
