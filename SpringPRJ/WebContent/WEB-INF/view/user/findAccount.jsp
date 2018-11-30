@@ -68,7 +68,7 @@ $(function(){
 			return false;
 		} else if (userTel==''){
 			alert("전화번호를 입력해주세요.")
-			$("#userTel").focus();
+			$("#findPwTel").focus();
 			return false;
 		} else {
 			$.ajax({
@@ -83,11 +83,18 @@ $(function(){
 					console.log(data);
 					var contents="";
 					$.each(data, function(key,value){
-						contents+="<form class='form-hotizonal' action='/user/updInfoProc.do' method='post'>";
-						contents+="<input type='hidden' id='id' name='id' value='"+id+"' />";
-						
+						contents+="<div class='col-lg-12 text-center' style='background-color : #fff'>";
+						contents+="변경할 비밀번호를 입력해주세요.";
+						contents+="<form class='form-horizontal text-center' action='/user/passChg.do' method='post'>";
+						contents+="<div class='form-group text-center'>";
+						contents+="<input type='password' class='form-control' id='pwd' name='pwd' placeholder='비밀번호' maxlength='20' value='' />";
+						contents+="<br>";
+						contents+="<input type='password' class='form-control' id='pwdCheck' name='pwdCheck' placeholder='비밀번호 확인' maxlength='20' value='' />";
+						contents+="</div>";
+						contents+="</div>";
+						contents+="<button>";
+						contents+="</button>";
 						contents+="</form>";
-						contents+="<div class='col-lg-12 text-center' style='background-color : #f8f9fa'>";
 						contents+="<h4>"+id+" 회원님의 비밀번호는</h4>";
 						contents+="<h3>"+value.password+"</h3>";
 						contents+="<h4>입니다.</h4>"
@@ -149,44 +156,42 @@ $(function(){
 							
 						</div>
 					</div>
-					<form action="/user/findAccountPw.do" method="post" accept-charset="UTF-8">
-						<div class="form-group">
-							<h4 class="section-heading">
-								비밀번호 찾기
-							</h4>
-							<hr class="my-4">
-							<div class="col-sm-12">
-								<div class="input-group">
-									<input type="text" class="form-control" id="findPwId" name="findPwId" placeholder="아이디를 입력하세요.">
-								</div>
-							</div>
-							<br>
-							<div class="col-sm-12">
-								<div class="input-group">
-									<input type="text" class="form-control" id="findPwName" name="findPwName" placeholder="이름을 입력하세요.">
-								</div>
-							</div>
-							<br>
-							<div class="col-sm-12">
-								<div class="input-group">
-									<input type="text" class="form-control" id="findPwTel" name="findPwTel" placeholder="전화번호를 입력하세요.">
-								</div>
-							</div>
-							<br>
-							<div class="col-sm-12 text-center">
-								<!-- <p>
-									<button class="btn btn-primary btn-block" id="findAccountPw">
-										임시비밀번호 발급
-									</button>
-								</p> -->
-								<p>
-									<button class="btn btn-primary btn-block">
-										임시비밀번호 발급
-									</button>
-								</p>
+					<div class="form-group">
+						<h4 class="section-heading">
+							비밀번호 찾기
+						</h4>
+						<hr class="my-4">
+						<div class="col-sm-12">
+							<div class="input-group">
+								<input type="text" class="form-control" id="findPwId" name="findPwId" placeholder="아이디를 입력하세요.">
 							</div>
 						</div>
-					</form>
+						<br>
+						<div class="col-sm-12">
+							<div class="input-group">
+								<input type="text" class="form-control" id="findPwName" name="findPwName" placeholder="이름을 입력하세요.">
+							</div>
+						</div>
+						<br>
+						<div class="col-sm-12">
+							<div class="input-group">
+								<input type="text" class="form-control" id="findPwTel" name="findPwTel" placeholder="전화번호를 입력하세요.">
+							</div>
+						</div>
+						<br>
+						<div class="col-sm-12 text-center">
+							<!-- <p>
+								<button class="btn btn-primary btn-block" id="findAccountPw">
+									임시비밀번호 발급
+								</button>
+							</p> -->
+							<p>
+								<button class="btn btn-primary btn-block" id="findAccountPw">
+									비밀번호 찾기
+								</button>
+							</p>
+						</div>
+					</div>
 					<div class="col-sm-12" id="findAccountPwValue">
 						
 					</div>

@@ -70,7 +70,7 @@ function userRegCancel(){
 			<div class="row">
 				<div class="col-lg-12 text-center">
 					<form class="form-horizontal" action="/user/userRegProc.do" method="post">
-						<div class="form-gourp">
+						<div class="form-group">
 							<h4 class="section-heading">
 								아이디
 							</h4>

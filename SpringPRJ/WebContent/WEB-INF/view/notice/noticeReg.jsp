@@ -18,6 +18,14 @@ function noticeRegCancel(){
 	location.href="/notice/noticeList.do";
 }
 </script>
+<!-- 네이버 스마트 에디터 -->
+<script src="/Resources/smarteditor2-master/workspace/js/service/HuskyEZCreator.js" charset="utf-8"></script>
+<script>
+var oEditors = [];
+$(function(){
+	
+})
+</script>
 </head>
 <body id="page-top">
 	<%@ include file="/WEB-INF/view/homeNav.jsp" %>
@@ -36,7 +44,7 @@ function noticeRegCancel(){
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12 text-center">
-					<form class="form-horizontal" method="post" action="/notice/noticeRegProc.do">
+					<form class="form-horizontal" method="post" action="/notice/noticeRegProc.do" id="noticeForm">
 						<div class="form-group">
 							<h4 class="section-heading">
 								제목
@@ -61,7 +69,7 @@ function noticeRegCancel(){
 							</div>
 							<br>
 							<div class="col-sm-12">
-								<button class="btn btn-primary" id="noticeRegSub" type="submit" style="width:30%;" onclick="if(!noticeSubmit(this.form)){return false;}">
+								<button class="btn btn-primary" id="noticeRegSub" type="submit" style="width:30%;" onclick="if(!noticeSubmit(this.form)){return false;}"> <!--  -->
 									등록
 								</button>
 							</div>
@@ -97,4 +105,50 @@ function noticeRegCancel(){
 		}
 	</script>
 </body>
+<!-- 네이버 스마트 에디터 -->
+<!-- <script>
+var oEditors = [];
+nhn.husky.EZCreator.createInIFrame({
+	oAppRef: oEditors,
+	elPlaceHolder: "noticeContent",
+	sSkinURI: "/Resources/smarteditor2-master/workspace/SmartEditor2Skin.html",
+	fCreator: "createSEditor2",
+	htParams : {
+		bUseToolbar : true,
+		bUseVerticalResizer : true,
+		bUseModeChanger : true,
+		fOnBeforeUnload : function(){
+			
+		}
+	},
+	fOnAppLoad : function(){
+		
+	}
+});
+</script>
+<script>
+window.onload = function(){
+	// 버튼 누를때 실행
+	var btn = document.getElementById("noticeRegSub");
+	btn.onclick = function() {
+		submitContents(btn);
+	}
+}
+function submitContents(){
+	var elClickedObj = $("#form");
+	oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []);
+	var noticeContent = $("#ir1").val();
+	if(noticeContent == ""  || noticeContent == null || noticeContent == '&nbsp;' || noticeContent == '<p>&nbsp;</p>'){
+		alert("내용을 입력하세요.");
+		oEditors.getById["ir1"].exec("FOCUS");
+		return;
+	}
+	try {
+		elClickedObj.submit();
+	} catch(e){
+		
+	}
+}
+
+</script> -->
 </html>
