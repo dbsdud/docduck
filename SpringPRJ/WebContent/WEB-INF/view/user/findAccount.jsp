@@ -85,21 +85,47 @@ $(function(){
 					$.each(data, function(key,value){
 						contents+="<div class='col-lg-12 text-center' style='background-color : #fff'>";
 						contents+="변경할 비밀번호를 입력해주세요.";
-						contents+="<form class='form-horizontal text-center' action='/user/passChg.do' method='post'>";
+						contents+="<form name='f' id='f' class='form-horizontal text-center' action='/user/updInfoProc.do' method='post'>";
 						contents+="<div class='form-group text-center'>";
-						contents+="<input type='password' class='form-control' id='pwd' name='pwd' placeholder='비밀번호' maxlength='20' value='' />";
+						contents+="<input type='hidden' id='userNo' name='userNo' value='"+value.userNo+"'>";
+						contents+="<input type='password' class='form-control' id='updPassword' name='updPassword' placeholder='비밀번호' maxlength='20' value='' />";
 						contents+="<br>";
-						contents+="<input type='password' class='form-control' id='pwdCheck' name='pwdCheck' placeholder='비밀번호 확인' maxlength='20' value='' />";
+						contents+="<input type='password' class='form-control' id='updPasswordCheck' name='updPasswordCheck' placeholder='비밀번호 확인' maxlength='20' value='' />";
 						contents+="</div>";
 						contents+="</div>";
-						contents+="<button>";
+						contents+="<button class='btn btn-primary' id='updSubmit' style='width: 30%'>";
+						contents+="변경";
 						contents+="</button>";
 						contents+="</form>";
-						contents+="<h4>"+id+" 회원님의 비밀번호는</h4>";
-						contents+="<h3>"+value.password+"</h3>";
-						contents+="<h4>입니다.</h4>"
 					});
 					$('#findAccountPwValue').html(contents);
+					$(document).on('click','#updSubmit', function(){
+						var updPassword=$('#updPassword').val();
+						var updPasswordCheck=$('#updPasswordCheck').val();
+						var userNo=$('#userNo').val();
+						var f = $('form[name=f]');
+						if(updPassword==""){
+							alert("비밀번호를 입력하지 않았습니다.")
+							updPasword.focus()
+							return false;
+						}
+						var pwCheck = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}$/;
+						if(!pwCheck.test(updPassword)){
+							alert("비밀번호는 영어, 숫자, 특수문자 조합의 8자 이상으로 해주세요.")
+							updPassword.focus();
+							return false;
+						}
+						if(updPassword!=updPasswordCheck){
+							alert("비밀번호가 일치하지 않습니다.")
+							updPassword=""
+							updPasswordCheck=""
+							updPassword.focus()
+							return false;
+						} else {
+							f.submit();
+							return true;
+						}
+					})
 				},
 				error : function(error){
 					alert("입력하신 정보와 일치하는 회원이 없습니다.");
@@ -107,7 +133,7 @@ $(function(){
 			})
 		}
 	})
-})
+});
 </script>
 </head>
 <body id="page-top">

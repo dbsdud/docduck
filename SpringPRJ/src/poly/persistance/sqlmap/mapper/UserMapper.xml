@@ -61,6 +61,7 @@
 	<!-- 비밀번호 찾기 -->
 	<select id="findAccountPw" parameterType="UserDTO" resultType="UserDTO">
 	SELECT
+		USER_NO AS userNo,
 		PASSWORD AS password
 	FROM
 		DOC_USER
