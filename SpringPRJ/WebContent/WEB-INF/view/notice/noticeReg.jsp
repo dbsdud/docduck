@@ -18,14 +18,13 @@ function noticeRegCancel(){
 	location.href="/notice/noticeList.do";
 }
 </script>
-<!-- 네이버 스마트 에디터 -->
+<!-- 에디터 -->
 <script src="/Resources/smarteditor2-master/workspace/js/service/HuskyEZCreator.js" charset="utf-8"></script>
-<script>
-var oEditors = [];
-$(function(){
-	
-})
-</script>
+<!-- include summernote css/js-->
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+<!-- include summernote-ko-KR -->
+<script src="/Resources/summernote/dist/lang/summernote-ko-KR.js"></script>
 </head>
 <body id="page-top">
 	<%@ include file="/WEB-INF/view/homeNav.jsp" %>
@@ -44,7 +43,7 @@ $(function(){
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12 text-center">
-					<form class="form-horizontal" method="post" action="/notice/noticeRegProc.do" id="noticeForm">
+					<form class="form-horizontal" method="post" action="/notice/noticeRegProc.do" id="noticeForm" onsubmit="return postForm()">
 						<div class="form-group">
 							<h4 class="section-heading">
 								제목
@@ -62,11 +61,26 @@ $(function(){
 							<hr class="my-4">
 							<div class="col-sm-12">
 								<div class="input-group">
-									<textarea class="form-control" rows="10" id="noticeContent" name="noticeContent" style="resize:none;" placeholder="내용을 입력하세요."></textarea>
+									<textarea id="noticeContent" name="noticeContent"></textarea>
 								</div>
 								<input type="hidden" id="noticeWriter" name="noticeWriter" value="<%= userName %>" />
 								<input type="hidden" id="regNo" name="regNo" value="<%= regNo %>" />
 							</div>
+							<script>
+								$(document).ready(function() {
+									$('#noticeContent').summernote({
+										height : 300,
+										width : 1180,
+										minHeight : null,
+										maxHeight : null,
+										focus : true,
+										lang : 'ko-KR'
+									});
+								});
+								var postForm = function(){
+									var noticeContent = $('textarea[name="noticeContent"]').html($('#noticeContent').code());
+								}
+							</script>
 							<br>
 							<div class="col-sm-12">
 								<button class="btn btn-primary" id="noticeRegSub" type="submit" style="width:30%;" onclick="if(!noticeSubmit(this.form)){return false;}"> <!--  -->
