@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3b51662875dac592f716746c1575ee20&libraries=services"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=dfe82cc3269d1711faf54135539438a7&libraries=services"></script>
 <script src="http://dmaps.daum.net/map_js_init/v3.js" type="text/javascript"></script>
 <script>
 /* 전국 병원지도 */

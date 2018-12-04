@@ -124,30 +124,6 @@ $(function(){
 						<option>읍/면/동 선택</option>
 					</select>
 				</div>
-				<!-- <div id="department" class="col-sm-6 form-group">
-					<select class="form-control">
-						<option value="n">진료 과목</option>
-						<option value="01">내과</option>
-						<option value="49">치과</option>
-						<option value="14">피부과</option>
-						<option value="12">안과</option>
-						<option value="05">정형외과</option>
-						<option value="08">성형외과</option>
-						<option value="80">한의원</option>
-						<option value="10">산부인과</option>
-						<option value="11">소아청소년과</option>
-						<option value="13">이비인후과</option>
-						<option value="05">정형외과</option>
-						<option value="04">외과</option>
-						<option value="02">신경과</option>
-						<option value="09">마취통증의학과</option>
-						<option value="21">재활의학과</option>
-						<option value="23">가정의학과</option>
-						<option value="16">영상/검진의학과</option>
-						<option value="15">비뇨기과</option>
-						<option value="">종합병원</option>
-					</select>
-				</div> -->
 				<div class="col-sm-3 form-group text-center">
 					<button class="btn btn-primary" id="findHosp" style="width:100%;">
 						검색
@@ -174,6 +150,90 @@ $(function(){
 						</tr>
 					</tbody>
 				</table>
+			</div>
+			<br>
+			<div class="row">
+				<div id="map" style="width: 100%; height:400px;">
+				
+				</div>
+				<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=dfe82cc3269d1711faf54135539438a7&libraries=services,clusterer,drawing"></script>
+				<script src="http://dmaps.daum.net/map_js_init/v3.js" type="text/javascript"></script>
+				<script>
+					var infowindow = new daum.maps.InfoWindow({zIndex:1});
+					var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+				    mapOption = { 
+				        center: new daum.maps.LatLng(37.549795, 126.842306), // 지도의 중심좌표
+				        level: 5 // 지도의 확대 레벨
+				    };
+			
+					// 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
+					var map = new daum.maps.Map(mapContainer, mapOption);
+					// HTML5의 geolocation으로 사용할 수 있는지 확인합니다
+					currentPosition="";
+					if (navigator.geolocation) {
+					    // GeoLocation을 이용해서 접속 위치를 얻어옵니다
+					    navigator.geolocation.getCurrentPosition(function(position) {
+					        var lat = position.coords.latitude, // 위도
+					        	lon = position.coords.longitude; // 경도
+					        	currentPosition = new daum.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
+					            message = '<div style="padding:5px;">현재 위치</div>'; // 인포윈도우에 표시될 내용입니다
+					        // 마커와 인포윈도우를 표시합니다
+							alert(currentPosition);
+					        displayMarker(currentPosition, message);
+					      });
+					} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
+					    var currentPosition = new daum.maps.LatLng(37.549795, 126.842306),    
+					        message = '현재 위치를 가져올 수 없습니다.';
+							alert(message);
+					    displayMarker(currentPosition, message);
+					}
+					// 지도에 마커와 인포윈도우를 표시하는 함수입니다
+					function displayMarker(currentPosition, message) {
+					    // 마커를 생성합니다
+					    var marker = new daum.maps.Marker({  
+					        map: map, 
+					        position: currentPosition
+					    }); 
+						daum.maps.event.addListener(marker,'click',function(){
+							infowindow.setContent('<div style="padding:5px;font-size:12px;">' + place.place_name + '</div>');
+					        infowindow.open(map, marker);
+						}); 
+					    var iwContent = message, // 인포윈도우에 표시할 내용
+					        iwRemoveable = true;
+					    // 인포윈도우를 생성합니다
+					    var infowindow = new daum.maps.InfoWindow({
+					        content : iwContent,
+					        removable : iwRemoveable
+					    });
+					    // 인포윈도우를 마커위에 표시합니다 
+					    infowindow.open(map, marker);
+					    // 지도 중심좌표를 접속위치로 변경합니다
+					    map.setCenter(currentPosition);
+					}
+					
+					// 장소 검색 객체를 생성합니다
+					var ps = new daum.maps.services.Places(map); 
+					// 카테고리로 병원을 검색합니다
+					ps.categorySearch('HP8', placesSearchCB, {useMapBounds:true}); 
+					// 키워드 검색 완료 시 호출되는 콜백함수 입니다
+					function placesSearchCB (data, status, pagination) {
+					    if (status === daum.maps.services.Status.OK) {
+					        for (var i=0; i<data.length; i++) {
+					            displayMarker(data[i]);    
+					        }       
+					    }
+					}
+					function displayMarker(place){
+						var marker = new daum.maps.Marker({
+							map:map,
+							position: new daum.maps.LatLng(place.y, place.x)
+						});
+						daum.maps.event.addListener(marker,'click',function(){
+							infowindow.setContent('<div style="padding:5px;font-size:12px;">' + place.place_name + '</div>');
+					        infowindow.open(map, marker);
+						});
+					}
+				</script>
 			</div>
 		</div>
 	</section>
