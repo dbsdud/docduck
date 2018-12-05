@@ -46,7 +46,7 @@ function myPageCancel(){
 					<%-- <input type="hidden" id="password" value="<%= password %>" /> --%>
 					<form action="/user/myPageDetail.do" method="post" accept-charset="UTF-8">
 						<div class="form-group">
-							<input type="text" id="userNo" name="userNo" value="<%= userNo %>" />
+							<input type="hidden" id="userNo" name="userNo" value="<%= userNo %>" />
 							<h4 class="section-heading">
 								본인확인을 위해 비밀번호를 입력해주세요
 							</h4>
