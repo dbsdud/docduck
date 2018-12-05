@@ -5,12 +5,12 @@
         http://www.springframework.org/schema/jdbc  http://www.springframework.org/schema/jdbc/spring-jdbc-4.0.xsd">
 	
     <!-- oracle Connection Pool -->
-    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+    <!-- <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
         destroy-method="close">
 	    <property name="driverClass" value="oracle.jdbc.driver.OracleDriver" />
 	    <property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:DATA16" />
-	    <property name="user" value="web_user" /> <!-- 오라클 계정 : 아이디 -->
-	    <property name="password" value="1234" /> <!-- 오라클 계정 : 비밀번호 -->
+	    <property name="user" value="web_user" /> 오라클 계정 : 아이디
+	    <property name="password" value="1234" /> 오라클 계정 : 비밀번호
 	    <property name="initialPoolSize" value="5" />
 	    <property name="maxPoolSize" value="30" />
 	    <property name="minPoolSize" value="5" />
@@ -21,6 +21,17 @@
 	    <property name="preferredTestQuery" value="SELECT 1 FROM DUAL" />
 	    <property name="testConnectionOnCheckin" value="true" />
 	    <property name="testConnectionOnCheckout" value="false" />
-	</bean>
+	</bean> -->
+	<!-- mySQL Connection Pool -->	
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+        lazy-init="false">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+        <!-- localhost -->
+        <property name="url" value="jdbc:mysql://localhost:3306/docduck?useSSL=false&amp;allowMultiQueries=true&amp;serverTimezone=Asia/Seoul" />
+        <!-- AWS LINUX Server -->
+        <!-- <property name="url" value="jdbc:mysql://13.209.164.26:3306/superdev?useSSL=false&amp;allowMultiQueries=true&amp;serverTimezone=Asia/Seoul" /> -->
+        <property name="username" value="docduck" />
+        <property name="password" value="admin" />
+    </bean>
     
 </beans>

@@ -2,5 +2,75 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- JAVA와 연결할 Mapper 파일 설정 -->
 <mapper namespace="poly.persistance.mapper.NoticeMapper">
-
+	<select id="getNoticeList" resultType="NoticeDTO">
+		SELECT 
+			NOTICE_NO AS noticeNo,
+			NOTICE_TITLE AS noticeTitle,
+			NOTICE_WRITER AS noticeWriter,
+			NOTICE_COUNT AS noticeCount,
+			REGDATE AS regDate
+		FROM
+			DOC_NOTICE
+	</select>
+	<update id="updateNoticeCount" parameterType="string">
+		UPDATE 
+			DOC_NOTICE
+		SET 
+			NOTICE_COUNT=NOTICE_COUNT+1
+		WHERE 
+			NOTICE_NO=#{noticeNo}
+	</update>
+	<insert id="insertNotice" parameterType="NoticeDTO">
+		INSERT INTO DOC_NOTICE
+		(
+			NOTICE_TITLE,
+			NOTICE_CONTENT,
+			NOTICE_WRITER,
+			NOTICE_COUNT,
+			REGDATE,
+			REGNO
+		)
+		VALUES
+		(
+			#{noticeTitle},
+			#{noticeContent},
+			#{noticeWriter},
+			0,
+			now(),
+			#{regNo}
+		)
+	</insert>
+	<select id="getNoticeDetail" parameterType="NoticeDTO" resultType="NoticeDTO">
+		SELECT
+			NOTICE_NO AS noticeNo,
+			NOTICE_TITLE AS noticeTitle,
+			NOTICE_CONTENT AS noticeContent,
+			IFNULL(NOTICE_COUNT,0) AS noticeCount,
+			REGDATE AS regDate,
+			REGNO AS regNo,
+			UPDDATE AS updDate,
+			UPDNO AS updNo
+		FROM
+			DOC_NOTICE
+		WHERE
+			NOTICE_NO=#{noticeNo}
+	</select>
+	<delete id="deleteNotice" parameterType="string">
+		DELETE
+		FROM
+			DOC_NOTICE
+		WHERE
+			NOTICE_NO=#{noticeNo}
+	</delete>
+	<update id="updateNotice" parameterType="NoticeDTO">
+		UPDATE
+			DOC_NOTICE
+		SET
+			NOTICE_TITLE=#{noticeTitle},
+			NOTICE_CONTENT=#{noticeContent},
+			UPDDATE=now(),
+			UPDNO=#{regNo}
+		WHERE
+			NOTICE_NO=#{noticeNo}
+	</update>
 </mapper>

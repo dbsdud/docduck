@@ -1,0 +1,100 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="poly.dto.NoticeDTO" %>
+<%@ page import="java.util.List" %>
+<%
+	List<NoticeDTO> nList=(List<NoticeDTO>)request.getAttribute("nList");
+%>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>공지사항</title>
+<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.1/css/responsive.dataTables.min.css">
+<%@ include file="/WEB-INF/view/mainCss.jsp" %>
+<script>
+$(document).ready( function () {
+    $('#noticeTable').DataTable();
+} );
+</script>
+</head>
+<body id="page-top">
+	<%@ include file="/WEB-INF/view/homeNav.jsp" %>
+	<header class="masthead text-center text-white d-flex">
+		<div class="container my-auto">
+			<div class="row">
+				<div class="col-lg-10 mx-auto">
+					<h1 class="text-uppercase">
+						<strong>공지사항</strong>
+					</h1>
+				</div>
+			</div>
+		</div>
+	</header>
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 text-center">
+				<input type="hidden" value="<%=userNo %>" />
+				<input type="hidden" value="<%=regNo %>" />
+					<table id="noticeTable" class="display table table-hover table-bordered results text-center">
+						<thead>
+							<tr>
+								<th style="width: 10%">No</th>
+								<th style="width: 50%">제목</th>
+								<th style="width: 15%">작성자</th>
+								<th style="width: 15%">작성일</th>
+								<th style="width: 10%">조회수</th>
+							</tr>
+							<%-- <% if(nList.size()==0){ %>
+							<tr class="warning">
+								<td colspan="5">
+									<i class="fa fa-warning"></i>
+									<i> 등록된 공지사항이 없습니다.</i>
+								</td>
+							</tr>
+							<% } else { %>
+							<tr class="warning no-result">
+								<td colspan="5">
+									<i class="fa fa-warning"></i>
+									<i> 검색 결과가 없습니다.</i>
+								</td>
+							</tr>
+							<% } %> --%>
+						</thead>
+						<tbody>
+						<% if(nList!=null) { %>
+							<% for(int i=0; i<nList.size(); i++) { %>
+							<tr>
+								<th scope="row"><%=nList.get(i).getNoticeNo() %></th>
+								<td><a href="/notice/noticeDetail.do?noticeNo=<%=nList.get(i).getNoticeNo() %>"><%=nList.get(i).getNoticeTitle() %></a></td>
+								<td><%=nList.get(i).getNoticeWriter() %></td>
+								<td><%=nList.get(i).getRegDate() %></td>
+								<td><%=nList.get(i).getNoticeCount() %></td>
+							</tr>
+							<% } %>
+						<% } %>
+						</tbody>
+					</table>
+					<br>
+					<% if(userNo.equals("1")) { %>
+					<div class="col-sm-12">
+						<a href="/notice/noticeReg.do">
+							<button class="btn btn-primary btn-block pull-right" style="width:30%" id="writeNotice">
+								작성
+							</button>
+						</a>
+					</div>
+					<% } %>
+				</div>
+			</div>		
+		</div>
+	</section>
+	<%@ include file="/WEB-INF/view/homeFooter.jsp" %>
+	<%@ include file="/WEB-INF/view/mainJs.jsp" %>
+	<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+	<script src="/Resources/user/vendor/jquery/jquery.dataTables.min.js"></script>
+</body>
+</html>

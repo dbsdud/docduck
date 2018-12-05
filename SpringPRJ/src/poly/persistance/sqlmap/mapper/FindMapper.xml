@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="poly.persistance.mapper.FindMapper">
+<select id="getGugunList" resultType="GugunDTO">
+SELECT
+	sidoCd AS sidoCd,
+	sidoCdNm AS sidoCdNm,
+	sgguCd AS sgguCd,
+	sgguCdNm AS sgguCdNm
+FROM
+	GUGUN
+WHERE
+	sidoCd = #{sidoCd}
+</select>
+<select id="getDongList" resultType="DongDTO">
+SELECT
+	sidoCd AS sidoCd,
+	sidoCdNm AS sidoCdNm,
+	sgguCd AS sgguCd,
+	sgguCdNm AS sgguCdNm,
+	emdongNm AS emdongNm
+FROM
+	DONG
+WHERE
+	sgguCd=#{sgguCd}
+</select>
+<select id="getHospSearch" resultType="ApiDTO">
+SELECT
+	HOSP_NO AS hosp_no,
+	yadmNm,
+	telno,
+	addr
+FROM
+	DOC_HOSP
+WHERE
+	sidoCd=#{sidoCd} and sgguCd=#{sgguCd} and emdongNm=#{emdongNm}
+</select>
+<select id="getFindHospitalDetail_1" resultType="ApiDTO">
+SELECT
+	HOSP_NO AS hosp_no,
+	yadmNm,
+	postNo,
+	addr,
+	telNo AS telno,
+	hospUrl,
+	XPos,
+	YPos
+FROM
+	doc_hosp
+WHERE
+	hosp_no=#{hosp_no}
+</select>
+<select id="getFindHospitalDetail_2" parameterType="ApiDTO" resultType="ApiDTO">
+SELECT
+	ITEM_NO AS item_no,
+	dutyTel1,
+	dutyTime1c,
+	dutyTime6c,
+	dutyTime7c,
+	dutyTime8c,
+	dutyTime1s,
+	dutyTime6s,
+	dutyTime7s,
+	dutyTime8s,
+	dutyInf
+FROM
+	doc_hosp_2
+WHERE
+	dutyTel1 = (SELECT telno FROM doc_hosp WHERE telno=#{telno})
+</select>
+</mapper>

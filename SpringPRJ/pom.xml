@@ -168,10 +168,15 @@
 			<version>4.3.7.RELEASE</version>
 		</dependency>
 		<!-- Mysql -->
-		<dependency>
+		<!-- <dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.41</version>
+		</dependency> -->
+		<dependency>
+		    <groupId>mysql</groupId>
+		    <artifactId>mysql-connector-java</artifactId>
+		    <version>5.1.44</version>
 		</dependency>
 		<dependency>
 			<groupId>org.bgee.log4jdbc-log4j2</groupId>

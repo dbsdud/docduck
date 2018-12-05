@@ -16,4 +16,34 @@ public class NoticeService implements INoticeService{
 	@Resource(name="NoticeMapper")
 	private NoticeMapper noticeMapper;
 	
+	@Override
+	public List<NoticeDTO> getNoticeList() throws Exception{
+		return noticeMapper.getNoticeList();
+	}
+
+	@Override
+	public int insertNotice(NoticeDTO nDTO) throws Exception {
+		return noticeMapper.insertNotice(nDTO);
+	}
+
+	@Override
+	public NoticeDTO getNoticeDetail(NoticeDTO nDTO) throws Exception {
+		return noticeMapper.getNoticeDetail(nDTO);
+	}
+
+	@Override
+	public int updateNoticeCount(String noticeNo) throws Exception {
+		return noticeMapper.updateNoticeCount(noticeNo);
+	}
+
+	@Override
+	public int deleteNotice(String noticeNo) throws Exception {
+		return noticeMapper.deleteNotice(noticeNo);
+	}
+
+	@Override
+	public int updateNotice(NoticeDTO nDTO) throws Exception {
+		return noticeMapper.updateNotice(nDTO);
+	}
+
 }

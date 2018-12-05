@@ -1,0 +1,48 @@
+package poly.service.impl;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
+import poly.dto.ApiDTO;
+import poly.persistance.mapper.ApiMapper;
+import poly.service.IApiService;
+
+@Service("ApiService")
+public class ApiService implements IApiService {
+	@Resource(name="ApiMapper")
+	private ApiMapper apiMapper;
+	
+	@Override
+	public int insertApi(ApiDTO aDTO) throws Exception {
+		return apiMapper.insertApi(aDTO);
+	}
+
+	@Override
+	public int insertApi2(ApiDTO aDTO) throws Exception {
+		return apiMapper.insertApi2(aDTO);
+	}
+
+	@Override
+	public List<ApiDTO> getHospList() throws Exception {
+		return apiMapper.getHospList();
+	}
+
+	@Override
+	public int insertSido(ApiDTO aDTO) throws Exception {
+		return apiMapper.insertSido(aDTO);
+	}
+
+	@Override
+	public int insertGugun(ApiDTO aDTO) throws Exception {
+		return apiMapper.insertGugun(aDTO);
+	}
+
+	@Override
+	public int insertDong(ApiDTO aDTO) throws Exception {
+		return apiMapper.insertDong(aDTO);
+	}
+	
+}

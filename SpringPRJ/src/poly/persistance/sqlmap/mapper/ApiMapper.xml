@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="poly.persistance.mapper.ApiMapper">
+<insert id="insertApi" parameterType="ApiDTO">
+	INSERT INTO DOC_HOSP
+	(
+		yadmNm,
+		clCd,
+		clCdNm,
+		sidoCd,
+		sidoCdNm,
+		sgguCd,
+		sgguCdNm,
+		emdongNm,
+		postNo,
+		addr,
+		telno,
+		hospUrl,
+		estbDd,
+		drTotCnt,
+		gdrCnt,
+		intnCnt,
+		resdntCnt,
+		sdrCnt,
+		xPos,
+		yPos,
+		REGDATE,
+		REGNO
+	)
+	VALUES
+	(
+		#{yadmNm},
+	    #{clCd},
+	    #{clCdNm},
+	    #{sidoCd},
+	    #{sidoCdNm},
+	    #{sgguCd},
+	    #{sgguCdNm},
+	    #{emdongNm},
+	    #{postNo},
+	    #{addr},
+	    #{telno},
+	    #{hospUrl},
+	    #{estbDd},
+	    #{drTotCnt},
+	    #{gdrCnt},
+	    #{intnCnt},
+	    #{resdntCnt},
+	    #{sdrCnt},
+	    #{XPos},
+	    #{YPos},
+	    NOW(),
+	    #{hosp_no}
+	)
+</insert>
+<insert id="insertApi2" parameterType="ApiDTO">
+	INSERT INTO DOC_HOSP_2
+	(
+		dutyAddr,
+		dutyDiv,
+		dutyDivNam,
+		dutyEmcls,
+		dutyEmclsName,
+		dutyEryn,
+		dutyEtc,
+		dutyMapimg,
+		dutyName,
+		dutyTel1,
+		dutyTel3,
+		dutyTime1c,
+		dutyTime2c,
+		dutyTime3c,
+		dutyTime4c,
+		dutyTime5c,
+		dutyTime6c,
+		dutyTime7c,
+		dutyTime8c,
+		dutyTime1s,
+		dutyTime2s,
+		dutyTime3s,
+		dutyTime4s,
+		dutyTime5s,
+		dutyTime6s,
+		dutyTime7s,
+		dutyTime8s,
+		hpid,
+		postCdn1,
+		postCdn2,
+		wgs84Lon,
+		wgs84Lat,
+		dutyInf
+	)
+	VALUES
+	(
+		#{dutyAddr},
+		#{dutyDiv},
+		#{dutyDivNam},
+		#{dutyEmcls},
+		#{dutyEmclsName},
+		#{dutyEryn},
+		#{dutyEtc},
+		#{dutyMapimg},
+		#{dutyName},
+		#{dutyTel1},
+		#{dutyTel3},
+		#{dutyTime1c},
+		#{dutyTime2c},
+		#{dutyTime3c},
+		#{dutyTime4c},
+		#{dutyTime5c},
+		#{dutyTime6c},
+		#{dutyTime7c},
+		#{dutyTime8c},
+		#{dutyTime1s},
+		#{dutyTime2s},
+		#{dutyTime3s},
+		#{dutyTime4s},
+		#{dutyTime5s},
+		#{dutyTime6s},
+		#{dutyTime7s},
+		#{dutyTime8s},
+		#{hpid},
+		#{postCdn1},
+		#{postCdn2},
+		#{wgs84Lon},
+		#{wgs84Lat},
+		#{dutyInf}
+	)
+</insert>
+<insert id="insertSido" parameterType="ApiDTO">
+	INSERT INTO SIDO(
+		sidoCd,
+		sidoCdNm
+	)
+	VALUES
+	(
+		#{sidoCd},
+		#{sidoCdNm}
+	)
+</insert>
+<insert id="insertGugun" parameterType="ApiDTO">
+	INSERT INTO GUGUN(
+		sidoCd,
+		sidoCdNm,
+		sgguCd,
+		sgguCdNm
+	)
+	VALUES
+	(
+		#{sidoCd},
+		#{sidoCdNm},
+		#{sgguCd},
+		#{sgguCdNm}
+	)
+</insert>
+<insert id="insertDong" parameterType="ApiDTO">
+	INSERT INTO DONG(
+		sidoCd,
+		sidoCdNm,
+		sgguCd,
+		sgguCdNm,
+		emdongNm
+	)
+	VALUES
+	(
+		#{sidoCd},
+		#{sidoCdNm},
+		#{sgguCd},
+		#{sgguCdNm},
+		#{emdongNm}
+	)
+</insert>
+<select id="getHospList" resultType="ApiDTO">
+	SELECT
+		ITEM_NO AS item_no,
+		dutyAddr,
+		dutyDiv,
+		dutyDivNam,
+		dutyEmcls,
+		dutyEmclsName,
+		dutyEryn,
+		dutyEtc,
+		dutyMapimg,
+		dutyName,
+		dutyTel1,
+		dutyTel3,
+		dutyTime1c,
+		dutyTime2c,
+		dutyTime3c,
+		dutyTime4c,
+		dutyTime5c,
+		dutyTime6c,
+		dutyTime7c,
+		dutyTime8c,
+		dutyTime1s,
+		dutyTime2s,
+		dutyTime3s,
+		dutyTime4s,
+		dutyTime5s,
+		dutyTime6s,
+		dutyTime7s,
+		dutyTime8s,
+		hpid,
+		postCdn1,
+		postCdn2,
+		wgs84Lon,
+		wgs84Lat,
+		dutyInf
+	FROM
+		doc_hosp_2
+</select>
+</mapper>

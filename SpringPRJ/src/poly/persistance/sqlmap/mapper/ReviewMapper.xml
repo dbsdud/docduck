@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="poly.persistance.mapper.ReviewMapper">
+<insert id="insertReview" parameterType="ReviewDTO">
+	INSERT INTO DOC_REVIEW
+	(
+		HOSP_NO,
+		ID,
+		REVIEW_TREAT,
+		REVIEW_SERVICE,
+		REVIEW_FACIL,
+		REVIEW_CONTENT,
+		REGDATE,
+		REGNO
+	) VALUES (
+		#{hospNo},
+		#{id},
+		#{reviewTreat},
+		#{reviewService},
+		#{reviewFacil},
+		#{reviewContent},
+		NOW(),
+		#{regNo}
+	)
+</insert>
+<select id="getReviewList" resultType="ReviewDTO">
+	SELECT
+		REVIEW_NO AS reviewNo,
+		HOSP_NO AS hospNo,
+		ID AS id,
+		REVIEW_TREAT AS reviewTreat,
+		REVIEW_SERVICE AS reviewService,
+		REVIEW_FACIL AS reviewFacil,
+		REVIEW_CONTENT AS reviewContent,
+		REGDATE AS regDate,
+		REGNO AS regNo
+	FROM
+		DOC_REVIEW
+</select>
+<select id="getReviewListHosp" resultType="ReviewDTO">
+	SELECT
+		REVIEW_NO AS reviewNo,
+		HOSP_NO AS hospNo,
+		ID AS id,
+		REVIEW_TREAT AS reviewTreat,
+		REVIEW_SERVICE AS reviewService,
+		REVIEW_FACIL AS reviewFacil,
+		REVIEW_CONTENT AS reviewContent,
+		REGDATE AS regDate,
+		REGNO AS regNo
+	FROM
+		DOC_REVIEW
+	WHERE
+		HOSP_NO = #{hospNo}
+</select>
+<select id="getReviewDetail" parameterType="ReviewDTO" resultType="ReviewDTO">
+	SELECT
+		REVIEW_NO AS reviewNo,
+		HOSP_NO AS hospNo,
+		ID AS id,
+		REVIEW_CONTENT AS reviewContent,
+		REGDATE AS regDate,
+		REGNO AS regNo,
+		UPDDATE AS updDate,
+		UPDNO AS updNo
+	FROM
+		DOC_REVIEW
+	WHERE
+		REVIEW_NO=#{reviewNo}
+</select>
+<update id="updateReview" parameterType="ReviewDTO">
+	UPDATE
+		DOC_REVIEW
+	SET
+		REVIEW_TREAT=#{reviewTreat},
+		REVIEW_SERVICE=#{reviewService},
+		REVIEW_FACIL=#{reviewFacil},
+		REVIEW_CONTENT=#{reviewContent},
+		UPDDATE=now(),
+		UPDNO=#{regNo}
+	WHERE
+		REVIEW_NO=#{reviewNo}
+</update>
+<delete id="reviewDel" parameterType="string">
+	DELETE
+	FROM
+		DOC_REVIEW
+	WHERE
+		REVIEW_NO=#{reviewNo}
+</delete>
+</mapper>
