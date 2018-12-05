@@ -150,7 +150,7 @@
 								Kakao.API.request({
 									url: '/v2/user/me',
 									success: function(res){
-										alert(JSON.stringify(res));
+										/* alert(JSON.stringify(res)); */
 										kId = JSON.stringify(res.id);
 										kName = JSON.stringify(res.properties.nickname);
 										console.log(" res.id : " +JSON.stringify(res.id));
@@ -163,7 +163,7 @@
 										alert(JSON.stringify(error));
 									}
 								});
-								alert(JSON.stringify(authObj));
+								/* alert(JSON.stringify(authObj)); */
 							},
 							fail : function(err) {
 								alert(JSON.stringify(err));
