@@ -18,13 +18,8 @@ function noticeRegCancel(){
 	location.href="/notice/noticeList.do";
 }
 </script>
-<!-- 에디터 -->
-<script src="/Resources/smarteditor2-master/workspace/js/service/HuskyEZCreator.js" charset="utf-8"></script>
-<!-- include summernote css/js-->
-<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
-<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
-<!-- include summernote-ko-KR -->
-<script src="/Resources/summernote/dist/lang/summernote-ko-KR.js"></script>
+<!-- 네이버 스마트 에디터 -->
+<script src="/Resources/smarteditor2/workspace/js/service/HuskyEZCreator.js" charset="utf-8"></script>
 </head>
 <body id="page-top">
 	<%@ include file="/WEB-INF/view/homeNav.jsp" %>
@@ -43,7 +38,7 @@ function noticeRegCancel(){
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12 text-center">
-					<form class="form-horizontal" method="post" action="/notice/noticeRegProc.do" id="noticeForm" onsubmit="return postForm()">
+					<form class="form-horizontal" method="post" action="/notice/noticeRegProc.do" id="noticeForm">
 						<div class="form-group">
 							<h4 class="section-heading">
 								제목
@@ -61,29 +56,14 @@ function noticeRegCancel(){
 							<hr class="my-4">
 							<div class="col-sm-12">
 								<div class="input-group">
-									<textarea id="noticeContent" name="noticeContent"></textarea>
+									<textarea id="noticeContent" name="noticeContent" rows="10" style="width: 100%; min-width:100px;"></textarea>
 								</div>
 								<input type="hidden" id="noticeWriter" name="noticeWriter" value="<%= userName %>" />
 								<input type="hidden" id="regNo" name="regNo" value="<%= regNo %>" />
 							</div>
-							<script>
-								$(document).ready(function() {
-									$('#noticeContent').summernote({
-										height : 300,
-										width : 1180,
-										minHeight : null,
-										maxHeight : null,
-										focus : true,
-										lang : 'ko-KR'
-									});
-								});
-								var postForm = function(){
-									var noticeContent = $('textarea[name="noticeContent"]').html($('#noticeContent').code());
-								}
-							</script>
 							<br>
 							<div class="col-sm-12">
-								<button class="btn btn-primary" id="noticeRegSub" type="submit" style="width:30%;" onclick="if(!noticeSubmit(this.form)){return false;}"> <!--  -->
+								<button class="btn btn-primary" id="noticeRegSub" type="submit" style="width:30%;" onclick="if(!noticeSubmit(this.form)){return false;}"> 
 									등록
 								</button>
 							</div>
@@ -100,32 +80,14 @@ function noticeRegCancel(){
 	</section>
 	<%@ include file="/WEB-INF/view/homeFooter.jsp" %>
 	<%@ include file="/WEB-INF/view/mainJs.jsp" %>
-	<script>
-		function noticeSubmit(check){
-			if(check.noticeTitle.value==""){
-				alert("제목을 입력하지 않았습니다.")
-				check.noticeTitle.focus()
-				return false;
-			} else if(check.noticeContent.value==""){
-				alert("내용을 입력하지 않았습니다.")
-				check.noticeContent.focus()
-				return false;
-			} else {
-				var noticeSubmitConfirm = confirm("공지사항을 등록하시겠습니까?");
-				if(noticeSubmitConfirm == true){
-					return true;
-				}	
-			}
-		}
-	</script>
 </body>
 <!-- 네이버 스마트 에디터 -->
-<!-- <script>
+<script>
 var oEditors = [];
 nhn.husky.EZCreator.createInIFrame({
 	oAppRef: oEditors,
 	elPlaceHolder: "noticeContent",
-	sSkinURI: "/Resources/smarteditor2-master/workspace/SmartEditor2Skin.html",
+	sSkinURI: "/Resources/smarteditor2/workspace/SmartEditor2Skin.html",
 	fCreator: "createSEditor2",
 	htParams : {
 		bUseToolbar : true,
@@ -139,30 +101,24 @@ nhn.husky.EZCreator.createInIFrame({
 		
 	}
 });
+function noticeSubmit(check){
+	var elClickedObj = $("#noticeForm");
+	oEditors.getById["noticeContent"].exec("UPDATE_CONTENTS_FIELD", []);
+	var noticeContent = $("#noticeContent").val();
+	if(check.noticeTitle.value==""){
+		alert("제목을 입력하지 않았습니다.")
+		check.noticeTitle.focus()
+		return false;
+	} else if(noticeContent == "" || noticeContent == null || noticeContent == '&nbsp;' || noticeContent == '<p><br></p>'){
+		alert("내용을 입력하지 않았습니다.")
+		oEditors.getById["noticeContent"].exec("FOCUS");
+		return false;
+	} else {
+		var noticeSubmitConfirm = confirm("공지사항을 등록하시겠습니까?");
+		if(noticeSubmitConfirm == true){
+			return true;
+		}	
+	}
+}
 </script>
-<script>
-window.onload = function(){
-	// 버튼 누를때 실행
-	var btn = document.getElementById("noticeRegSub");
-	btn.onclick = function() {
-		submitContents(btn);
-	}
-}
-function submitContents(){
-	var elClickedObj = $("#form");
-	oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []);
-	var noticeContent = $("#ir1").val();
-	if(noticeContent == ""  || noticeContent == null || noticeContent == '&nbsp;' || noticeContent == '<p>&nbsp;</p>'){
-		alert("내용을 입력하세요.");
-		oEditors.getById["ir1"].exec("FOCUS");
-		return;
-	}
-	try {
-		elClickedObj.submit();
-	} catch(e){
-		
-	}
-}
-
-</script> -->
 </html>

@@ -29,6 +29,22 @@ import poly.util.CmmUtil;
 public class NoticeController {
 	private Logger log = Logger.getLogger(this.getClass());
 	
+	public String stringToHtmlSign(String str) {
+		return str.replaceAll("&amp;", "&")
+				.replaceAll("&lt;", "<")
+	            .replaceAll("&gt;", ">")
+	            .replaceAll("&quot;", "[\"]")
+	            .replaceAll("&#39;", "[\\]")
+	            .replaceAll("&#40;", "(")
+	            .replaceAll("&#41;", ")")
+	            .replaceAll("& amp;", "&")
+	            .replaceAll("& lt;", "<")
+	            .replaceAll("& gt;", ">")
+	            .replaceAll("& quot;", "[\"]")
+	            .replaceAll("& #39;", "[\\]")
+				.replaceAll("& #40;", "(")
+				.replaceAll("& #41;", ")");
+	}
 	/*
 	 * 비즈니스 로직(중요 로직을 수행하기 위해 사용되는 서비스를 메모리에 적재(싱글톤패턴 적용됨)
 	 * */
@@ -79,15 +95,18 @@ public class NoticeController {
 	@RequestMapping(value="notice/noticeRegProc", method=RequestMethod.POST)
 	public String insertNotice(HttpServletRequest req, Model model) throws Exception{
 		log.info(this.getClass() + " noticeRegProc Start!!!");
-		String noticeTitle = req.getParameter("noticeTitle");
+		String noticeTitle = stringToHtmlSign(req.getParameter("noticeTitle"));
 		log.info(this.getClass() + " noticeTitle : " + noticeTitle);
-		String noticeContent = req.getParameter("noticeContent");
+		String noticeContent = stringToHtmlSign(req.getParameter("noticeContent"));
 		log.info(this.getClass() + " noticeContent : " + noticeContent);
 		String noticeWriter = req.getParameter("noticeWriter");
 		log.info(this.getClass() + " noticeWriter : " + noticeWriter);
 		String regNo = req.getParameter("regNo");
-		log.info(this.getClass() + " regNo" + regNo);
+		log.info(this.getClass() + " regNo : " + regNo);
 		
+		
+		String msg="";
+		String url="";
 		NoticeDTO nDTO = new NoticeDTO();
 		nDTO.setNoticeTitle(noticeTitle);
 		nDTO.setNoticeContent(noticeContent);
@@ -95,8 +114,7 @@ public class NoticeController {
 		nDTO.setRegNo(regNo);
 		
 		int result=noticeService.insertNotice(nDTO);
-		String msg="";
-		String url="";
+		
 		if(result != 0) {
 			msg="공지사항을 등록했습니다.";
 			url="/notice/noticeList.do";
@@ -106,7 +124,6 @@ public class NoticeController {
 		}
 		model.addAttribute("msg", msg);
 		model.addAttribute("url", url);
-		
 		log.info(this.getClass() + " noticeRegProc End!!!");
 		return "/alert";
 	}
@@ -173,9 +190,9 @@ public class NoticeController {
 		log.info(this.getClass() + " noticeUpdateProc Start!!!");
 		String noticeNo = req.getParameter("noticeNo");
 		log.info(this.getClass() + " noticeNo : " + noticeNo);
-		String noticeTitle = req.getParameter("noticeTitle");
+		String noticeTitle = stringToHtmlSign(req.getParameter("noticeTitle"));
 		log.info(this.getClass() + " noticeTitle : " + noticeTitle);
-		String noticeContent = req.getParameter("noticeContent");
+		String noticeContent = stringToHtmlSign(req.getParameter("noticeContent"));
 		String noticeWriter = req.getParameter("noticeWriter");
 		log.info(this.getClass() + " noticeWriter : " + noticeWriter);
 		String regNo = req.getParameter("regNo");
